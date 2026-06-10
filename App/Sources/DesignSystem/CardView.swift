@@ -1,8 +1,31 @@
 import SwiftUI
 import GuandanCore
 
-/// A single playing card in the premium art direction: warm ivory stock,
-/// gold hairline inset, serif indices, ornamented courts and jokers.
+/// Suit glyph via SF Symbols — identical metrics across all four suits
+/// (Text glyphs vary in fatness; symbols don't).
+struct SuitIcon: View {
+    let suit: Suit
+    let size: CGFloat
+
+    private var symbolName: String {
+        switch suit {
+        case .spades: return "suit.spade.fill"
+        case .hearts: return "suit.heart.fill"
+        case .clubs: return "suit.club.fill"
+        case .diamonds: return "suit.diamond.fill"
+        }
+    }
+
+    var body: some View {
+        Image(systemName: symbolName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: size, height: size)
+    }
+}
+
+/// A single playing card in the reference art direction: clean white stock,
+/// big rank + suit at top-left, medium pip at bottom.
 struct CardView: View {
     let card: Card
     var width: CGFloat = 56
@@ -41,23 +64,26 @@ struct CardView: View {
                     .padding(EdgeInsets(top: 0, leading: 0,
                                         bottom: width * 0.1, trailing: width * 0.08))
             } else {
-                // BIG rank top-left with the small suit to its RIGHT —
-                // a thin stacked strip always shows both
-                HStack(alignment: .firstTextBaseline, spacing: width * 0.04) {
+                // BIG rank top-left with the small suit to its RIGHT, both
+                // hugging the top edge — a thin stacked strip shows them whole
+                HStack(alignment: .top, spacing: width * 0.05) {
                     Text(card.rank.shortName)
-                        .font(.system(size: width * 0.44, weight: .heavy))
-                    Text(card.suit?.symbol ?? "")
-                        .font(.system(size: width * 0.3))
+                        .font(.system(size: width * 0.4, weight: .heavy))
+                    if let suit = card.suit {
+                        SuitIcon(suit: suit, size: width * 0.24)
+                            .padding(.top, width * 0.07)
+                    }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(EdgeInsets(top: width * 0.03, leading: width * 0.08,
+                .padding(EdgeInsets(top: width * 0.02, leading: width * 0.08,
                                     bottom: 0, trailing: 0))
 
                 // medium suit pip at the bottom
-                Text(card.suit?.symbol ?? "")
-                    .font(.system(size: width * 0.5))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    .padding(.bottom, width * 0.1)
+                if let suit = card.suit {
+                    SuitIcon(suit: suit, size: width * 0.42)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .padding(.bottom, width * 0.12)
+                }
             }
 
             // 逢人配: gold heart at top-right + WILD ribbon bottom-left

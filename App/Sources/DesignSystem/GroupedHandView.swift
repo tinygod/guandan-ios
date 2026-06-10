@@ -113,60 +113,63 @@ struct GroupedHandView: View {
 
     // MARK: layout
 
+    private static let viewHeight: CGFloat = 128
+
     var body: some View {
         GeometryReader { geo in
             let cols = columns
             let overlap: CGFloat = 0.1   // horizontal tuck between columns
             let effective = CGFloat(cols.count) * (1 - overlap) + overlap
             let cardW = min(76, max(46, geo.size.width / effective))
-            let cardH = cardW * 1.4
 
             HStack(alignment: .bottom, spacing: -cardW * overlap) {
                 ForEach(cols) { column in
-                    columnView(column, cardW: cardW, cardH: cardH)
+                    columnView(column, cardW: cardW)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
-        // base row + one tight layer stays inside; expanded/tall stacks rise
-        // freely over the felt (no clipping)
-        .frame(height: 60 * 1.4 + 60 * 0.36 + 14)
+        // every column is exactly this tall with its base card pinned to the
+        // bottom; taller/expanded stacks rise over the felt without clipping
+        .frame(height: Self.viewHeight)
     }
 
-    private func columnView(_ column: Column, cardW: CGFloat, cardH: CGFloat) -> some View {
-        // selecting a COVERED card spreads the column open; the front card
-        // selected leaves spacing untouched (reference behaviour)
+    private func columnView(_ column: Column, cardW: CGFloat) -> some View {
+        // selecting a COVERED card spreads the column open; selecting the
+        // front card changes nothing (reference behaviour)
         let covered = column.cards.dropLast()
         let expanded = covered.contains { selection.contains($0) }
-        let step: CGFloat = expanded ? cardW * 0.78 : cardW * 0.36
+        let step: CGFloat = expanded ? cardW * 0.5 : cardW * 0.40
 
-        return VStack(spacing: 2) {
+        return ZStack(alignment: .bottom) {
+            ForEach(Array(column.cards.enumerated()), id: \.element.id) { i, card in
+                CardView(card: card, width: cardW,
+                         selected: selection.contains(card),
+                         highlighted: highlightedCards.contains(card),
+                         wildBadge: card.isWildcard(level: level))
+                    .offset(y: -CGFloat(column.count - 1 - i) * step)
+                    .onTapGesture { onTap(card) }
+            }
+        }
+        .frame(width: cardW, height: Self.viewHeight, alignment: .bottom)
+        .overlay(alignment: .bottomLeading) {
             if let label = column.label {
-                HStack(spacing: 2) {
+                VStack(spacing: -1) {
                     if column.locked {
-                        Image(systemName: "lock.fill").font(.system(size: 7))
+                        Image(systemName: "lock.fill").font(.system(size: 6))
                     }
-                    Text(label)
-                        .font(.system(size: 8, weight: .black, design: .rounded))
+                    ForEach(Array(label.prefix(6).enumerated()), id: \.offset) { _, ch in
+                        Text(String(ch))
+                            .font(.system(size: 7, weight: .black, design: .rounded))
+                    }
                 }
                 .foregroundStyle(Theme.ink)
-                .padding(.horizontal, 5).padding(.vertical, 1.5)
-                .background(column.locked ? Theme.goldSoft : Theme.gold, in: Capsule())
+                .padding(.vertical, 3).padding(.horizontal, 2)
+                .background(column.locked ? Theme.goldSoft : Theme.gold,
+                            in: RoundedRectangle(cornerRadius: 4))
+                .padding(.leading, 2).padding(.bottom, 6)
             }
-            ZStack(alignment: .bottom) {
-                ForEach(Array(column.cards.enumerated()), id: \.element.id) { i, card in
-                    CardView(card: card, width: cardW,
-                             selected: selection.contains(card),
-                             highlighted: highlightedCards.contains(card),
-                             wildBadge: card.isWildcard(level: level))
-                        .offset(y: -CGFloat(column.count - 1 - i) * step)
-                        .onTapGesture { onTap(card) }
-                }
-            }
-            .frame(width: cardW,
-                   height: cardH + CGFloat(column.count - 1) * step,
-                   alignment: .bottom)
-            .animation(.spring(duration: 0.25), value: expanded)
         }
+        .animation(.spring(duration: 0.25), value: expanded)
     }
 }
