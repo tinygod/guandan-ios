@@ -176,9 +176,9 @@ struct GameTableView: View {
                let owner = model.state?.trick.tableOwner {
                 Text("\(model.seatName(owner)) · \(comboName(table))")
                     .font(.body(13)).foregroundStyle(Theme.mint)
-                HStack(spacing: -22) {
+                HStack(spacing: -18) {
                     ForEach(table.cards) { card in
-                        CardView(card: card, width: 48)
+                        CardView(card: card, width: 38)
                     }
                 }
             } else {
@@ -187,7 +187,8 @@ struct GameTableView: View {
                     .padding(.vertical, 14)
             }
         }
-        .frame(maxWidth: .infinity, minHeight: 56)
+        .frame(maxWidth: .infinity)
+        .frame(height: 64)
         .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 20))
     }
 
@@ -206,30 +207,33 @@ struct GameTableView: View {
         }
     }
 
-    // MARK: per-seat last play (出牌驻留)
+    // MARK: per-seat last play (出牌驻留) — FIXED footprint so the layout
+    // never reflows when plays appear/disappear
 
-    @ViewBuilder
     private func seatPlay(_ seat: Seat) -> some View {
-        switch model.lastPlays[seat] {
-        case .play(let combo):
-            VStack(spacing: 1) {
-                HStack(spacing: -14) {
-                    ForEach(combo.cards) { card in CardView(card: card, width: 28) }
+        ZStack {
+            switch model.lastPlays[seat] {
+            case .play(let combo):
+                VStack(spacing: 1) {
+                    HStack(spacing: -14) {
+                        ForEach(combo.cards) { card in CardView(card: card, width: 28) }
+                    }
+                    Text(comboName(combo))
+                        .font(.system(size: 8, weight: .black, design: .rounded))
+                        .foregroundStyle(Theme.ink)
+                        .padding(.horizontal, 5).padding(.vertical, 1)
+                        .background(Theme.gold, in: Capsule())
                 }
-                Text(comboName(combo))
-                    .font(.system(size: 8, weight: .black, design: .rounded))
-                    .foregroundStyle(Theme.ink)
-                    .padding(.horizontal, 5).padding(.vertical, 1)
-                    .background(Theme.gold, in: Capsule())
+            case .pass:
+                Text("Pass")
+                    .font(.heading(12)).foregroundStyle(Theme.mint.opacity(0.85))
+                    .padding(.horizontal, 8).padding(.vertical, 3)
+                    .background(.black.opacity(0.3), in: Capsule())
+            case nil:
+                Color.clear
             }
-        case .pass:
-            Text("Pass")
-                .font(.heading(12)).foregroundStyle(Theme.mint.opacity(0.85))
-                .padding(.horizontal, 8).padding(.vertical, 3)
-                .background(.black.opacity(0.3), in: Capsule())
-        case nil:
-            EmptyView()
         }
+        .frame(width: 120, height: 54)
     }
 
     // MARK: action row — Pass / Hint / Play pills above the hand
