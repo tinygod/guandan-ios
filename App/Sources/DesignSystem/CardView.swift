@@ -66,16 +66,22 @@ struct CardView: View {
             } else {
                 // BIG rank top-left with the small suit to its RIGHT, both
                 // hugging the top edge — a thin stacked strip shows them whole
-                HStack(alignment: .top, spacing: width * 0.05) {
+                // rank sits in a FIXED-width slot so "10" is exactly as wide
+                // as single characters; suit position identical on every card
+                HStack(alignment: .top, spacing: width * 0.03) {
                     Text(card.rank.shortName)
                         .font(.system(size: width * 0.4, weight: .heavy))
+                        .kerning(card.rank == .ten ? -width * 0.04 : 0)
+                        .minimumScaleFactor(0.55)
+                        .lineLimit(1)
+                        .frame(width: width * 0.42, alignment: .center)
                     if let suit = card.suit {
                         SuitIcon(suit: suit, size: width * 0.24)
                             .padding(.top, width * 0.07)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(EdgeInsets(top: width * 0.02, leading: width * 0.08,
+                .padding(EdgeInsets(top: width * 0.02, leading: width * 0.04,
                                     bottom: 0, trailing: 0))
 
                 // medium suit pip at the bottom

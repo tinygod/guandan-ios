@@ -20,25 +20,29 @@ struct GameTableView: View {
             VStack(spacing: 2) {
                 topBar
                 HStack(alignment: .top, spacing: 6) {
-                    VStack(spacing: 2) {
+                    // upstream: play shows to the RIGHT of their avatar
+                    HStack(alignment: .top, spacing: 4) {
                         seatBadge(.west)
                         seatPlay(.west)
                     }
-                    VStack(spacing: 2) {
+                    // center: partner's play up top, your own play + the
+                    // action pills in the middle (reference arrangement)
+                    VStack(spacing: 4) {
                         HStack(alignment: .top, spacing: 8) {
                             Spacer()
                             seatBadge(.north)
                             seatPlay(.north)
                             Spacer()
                         }
-                        tableCenter
+                        centerArea
                     }
-                    VStack(spacing: 2) {
-                        seatBadge(.east)
+                    // downstream: play shows to the LEFT of their avatar
+                    HStack(alignment: .top, spacing: 4) {
                         seatPlay(.east)
+                        seatBadge(.east)
                     }
                 }
-                actionRow
+                Spacer(minLength: 0)
                 GroupedHandView(cards: model.humanHand,
                                 level: model.state?.level ?? .two,
                                 mode: sortMode,
@@ -49,6 +53,39 @@ struct GameTableView: View {
             }
             .padding(.horizontal, 12)
             .padding(.bottom, 2)
+
+            // hand tools — compact, bottom-right corner like the reference
+            VStack(alignment: .trailing, spacing: 4) {
+                Spacer()
+                Group {
+                    if let combo = model.selectionCombo {
+                        Text(comboName(combo))
+                            .foregroundStyle(model.selectionPlayable ? Theme.goldSoft : Theme.coral)
+                    } else if !model.selection.isEmpty {
+                        Text("Not a combo").foregroundStyle(Theme.coral)
+                    }
+                }
+                .font(.heading(11))
+                .padding(.horizontal, 8).padding(.vertical, 3)
+                .background(.black.opacity(0.45), in: Capsule())
+
+                HStack(spacing: 6) {
+                    if model.canGroupSelection {
+                        toolPill("lock.fill", "Organize") { model.groupSelection() }
+                    }
+                    if !model.displayGroups.isEmpty {
+                        toolPill("arrow.uturn.backward", "Reset") { model.resetGroups() }
+                    }
+                    toolPill(sortMode == .byRank ? "wand.and.stars" : "list.number",
+                             sortMode == .byRank ? "Smart Sort" : "By Rank") {
+                        withAnimation(.spring(duration: 0.3)) {
+                            sortMode = sortMode == .byRank ? .combos : .byRank
+                        }
+                    }
+                }
+            }
+            .padding(.trailing, 8).padding(.bottom, 6)
+            .frame(maxWidth: .infinity, alignment: .trailing)
 
             // counting HUD (记牌) — toggleable practice aid
             VStack {
@@ -103,15 +140,21 @@ struct GameTableView: View {
         Button { withAnimation { hudOn.toggle() } } label: {
             if hudOn {
                 let counts = model.keyCounts
-                HStack(spacing: 10) {
-                    hudItem("JOKER", counts.bigJokersLeft, max: 2)
-                    hudItem("joker", counts.smallJokersLeft, max: 2)
-                    hudItem("LVL", counts.levelCardsLeft, max: 8)
-                    hudItem("💣", counts.bombsSeen, max: nil)
+                VStack(spacing: 2) {
+                    HStack(spacing: 12) {
+                        hudItem("BIG JKR", counts.bigJokersLeft, max: 2)
+                        hudItem("SM JKR", counts.smallJokersLeft, max: 2)
+                        hudItem("LEVEL", counts.levelCardsLeft, max: 8)
+                        hudItem("BOMBS", counts.bombsSeen, max: nil)
+                    }
+                    Text("still in enemy/partner hands · bombs = exploded so far")
+                        .font(.system(size: 7, weight: .medium))
+                        .foregroundStyle(Theme.mint.opacity(0.8))
                 }
-                .padding(.horizontal, 12).padding(.vertical, 6)
-                .background(.black.opacity(0.5), in: Capsule())
-                .overlay(Capsule().strokeBorder(Theme.gold.opacity(0.4)))
+                .padding(.horizontal, 12).padding(.vertical, 5)
+                .background(.black.opacity(0.55), in: RoundedRectangle(cornerRadius: 12))
+                .overlay(RoundedRectangle(cornerRadius: 12)
+                    .strokeBorder(Theme.gold.opacity(0.4)))
             } else {
                 Image(systemName: "brain.head.profile")
                     .font(.system(size: 14)).foregroundStyle(Theme.mint)
@@ -162,34 +205,70 @@ struct GameTableView: View {
         }
     }
 
-    // MARK: table center
+    // MARK: center area — your play above, big action pills mid-table
+    // (reference arrangement: 不出 / 提示 / 出牌 dead centre)
 
-    private var tableCenter: some View {
-        VStack(spacing: 10) {
-            if let banner = model.tributeBanner {
-                Text(banner)
-                    .font(.body(12)).foregroundStyle(Theme.goldSoft)
-                    .padding(.horizontal, 12).padding(.vertical, 6)
-                    .background(.black.opacity(0.35), in: Capsule())
-            }
-            if let table = model.state?.trick.tableCombo,
-               let owner = model.state?.trick.tableOwner {
-                Text("\(model.seatName(owner)) · \(comboName(table))")
-                    .font(.body(13)).foregroundStyle(Theme.mint)
-                HStack(spacing: -18) {
-                    ForEach(table.cards) { card in
-                        CardView(card: card, width: 38)
-                    }
+    private var centerArea: some View {
+        VStack(spacing: 6) {
+            ZStack {
+                if model.lastPlays[.south] != nil {
+                    seatPlay(.south)
+                } else if let banner = model.tributeBanner {
+                    Text(banner)
+                        .font(.body(11)).foregroundStyle(Theme.goldSoft)
+                        .padding(.horizontal, 10).padding(.vertical, 4)
+                        .background(.black.opacity(0.35), in: Capsule())
+                } else if model.isHumanTurn, model.state?.trick.tableCombo == nil {
+                    Text("Your lead — play anything")
+                        .font(.body(13)).foregroundStyle(Theme.mint.opacity(0.8))
                 }
-            } else {
-                Text(model.isHumanTurn ? "Your lead — play anything" : "New trick")
-                    .font(.body(14)).foregroundStyle(Theme.mint.opacity(0.8))
-                    .padding(.vertical, 14)
             }
+            .frame(height: 54)
+
+            HStack(spacing: 14) {
+                if model.isHumanTurn {
+                    if model.mayPass {
+                        bigPill("Pass", fill: Theme.feltLight,
+                                stroke: Theme.mintBright.opacity(0.5)) { model.pass() }
+                    }
+                    if model.hintAvailable {
+                        bigPill("Hint 💡", fill: Theme.feltLight,
+                                stroke: Theme.mintBright.opacity(0.5)) { model.hint() }
+                    }
+                    bigPill("Play ▸",
+                            fill: model.selectionPlayable ? Theme.coral : Theme.coral.opacity(0.35),
+                            stroke: .clear) { model.playSelection() }
+                        .disabled(!model.selectionPlayable)
+                }
+            }
+            .frame(height: 46)
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 64)
-        .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 20))
+    }
+
+    private func bigPill(_ title: String, fill: Color, stroke: Color,
+                         action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.heading(17)).foregroundStyle(.white)
+                .padding(.horizontal, 26).padding(.vertical, 11)
+                .background(fill, in: Capsule())
+                .overlay(Capsule().strokeBorder(stroke, lineWidth: 1))
+                .shadow(color: .black.opacity(0.25), radius: 4, y: 2)
+        }
+    }
+
+    private func toolPill(_ icon: String, _ title: String,
+                          action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 4) {
+                Image(systemName: icon).font(.system(size: 10))
+                Text(title).font(.heading(11))
+            }
+            .foregroundStyle(Theme.goldSoft)
+            .padding(.horizontal, 10).padding(.vertical, 6)
+            .background(.black.opacity(0.45), in: Capsule())
+            .overlay(Capsule().strokeBorder(Theme.gold.opacity(0.35)))
+        }
     }
 
     private func comboName(_ combo: Combo) -> String {

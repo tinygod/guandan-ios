@@ -243,18 +243,19 @@ final class GameViewModel {
         var bombsSeen = 0
     }
 
-    /// Remaining key cards from this hand's action log (excludes your own hand).
+    /// Key cards you CANNOT see: total minus played minus your own hand —
+    /// i.e. what the other three players still hold.
     var keyCounts: KeyCardCounts {
         var counts = KeyCardCounts()
-        var played: [Card] = []
+        var seen: [Card] = engine?.state.hands[.south] ?? []
         for entry in actionLog {
             if case .play(let combo) = entry.action {
-                played += combo.cards
+                seen += combo.cards
                 if combo.kind.isBomb { counts.bombsSeen += 1 }
             }
         }
         let level = engine?.state.level
-        for card in played {
+        for card in seen {
             if card.rank == .bigJoker { counts.bigJokersLeft -= 1 }
             if card.rank == .smallJoker { counts.smallJokersLeft -= 1 }
             if card.rank == level { counts.levelCardsLeft -= 1 }

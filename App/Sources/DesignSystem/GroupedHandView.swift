@@ -139,7 +139,12 @@ struct GroupedHandView: View {
         // front card changes nothing (reference behaviour)
         let covered = column.cards.dropLast()
         let expanded = covered.contains { selection.contains($0) }
-        let step: CGFloat = expanded ? cardW * 0.5 : cardW * 0.40
+        let rawStep: CGFloat = expanded ? cardW * 0.5 : cardW * 0.40
+        // tall stacks compress so no column towers over the buttons
+        let maxColumnH: CGFloat = 168
+        let step: CGFloat = column.count > 1
+            ? min(rawStep, (maxColumnH - cardW * 1.4) / CGFloat(column.count - 1))
+            : 0
 
         return ZStack(alignment: .bottom) {
             ForEach(Array(column.cards.enumerated()), id: \.element.id) { i, card in
