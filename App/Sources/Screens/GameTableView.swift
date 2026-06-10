@@ -10,30 +10,41 @@ struct GameTableView: View {
         _model = State(initialValue: GameViewModel(difficulty: difficulty))
     }
 
+    @State private var reviewRecord: HandRecord?
+
     var body: some View {
         ZStack {
             Theme.background
 
-            VStack(spacing: 0) {
+            VStack(spacing: 4) {
                 topBar
-                Spacer(minLength: 8)
-                opponentsRow
-                Spacer(minLength: 8)
-                tableCenter
-                Spacer(minLength: 8)
+                HStack(spacing: 10) {
+                    seatBadge(.west)
+                    VStack(spacing: 6) {
+                        seatBadge(.north)
+                        tableCenter
+                    }
+                    seatBadge(.east)
+                }
                 humanArea
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 14)
+            .padding(.bottom, 4)
 
             if let order = model.handResult {
                 RoundResultOverlay(order: order, model: model) {
                     model.startHand()
                 } onExit: {
                     router.home()
+                } onReview: {
+                    reviewRecord = model.lastHandRecord
                 }
             }
         }
         .navigationBarHidden(true)
+        .fullScreenCover(item: $reviewRecord) { record in
+            ReviewView(record: record, seatName: { model.seatName($0) })
+        }
     }
 
     // MARK: top bar
@@ -68,17 +79,6 @@ struct GameTableView: View {
     }
 
     // MARK: opponents
-
-    private var opponentsRow: some View {
-        VStack(spacing: 10) {
-            seatBadge(.north)
-            HStack {
-                seatBadge(.west)
-                Spacer()
-                seatBadge(.east)
-            }
-        }
-    }
 
     private func seatBadge(_ seat: Seat) -> some View {
         let isTurn = model.state?.turn == seat && model.handResult == nil
@@ -134,7 +134,7 @@ struct GameTableView: View {
                     .padding(.vertical, 26)
             }
         }
-        .frame(maxWidth: .infinity, minHeight: 130)
+        .frame(maxWidth: .infinity, minHeight: 104)
         .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 20))
     }
 
@@ -153,51 +153,51 @@ struct GameTableView: View {
         }
     }
 
-    // MARK: human area
+    // MARK: human area — hand strip with action buttons docked right
 
     private var humanArea: some View {
-        VStack(spacing: 10) {
-            if let combo = model.selectionCombo {
-                Text(comboName(combo))
-                    .font(.heading(13))
-                    .foregroundStyle(model.selectionPlayable ? Theme.goldSoft : Theme.coral)
-                    .padding(.horizontal, 12).padding(.vertical, 4)
-                    .background(.black.opacity(0.3), in: Capsule())
-            } else if !model.selection.isEmpty {
-                Text("Not a combo")
-                    .font(.heading(13)).foregroundStyle(Theme.coral)
-                    .padding(.horizontal, 12).padding(.vertical, 4)
-                    .background(.black.opacity(0.3), in: Capsule())
-            }
-
+        HStack(alignment: .center, spacing: 12) {
             HandFanView(cards: model.humanHand,
                         selection: model.selection,
-                        cardWidth: 54) { model.toggle($0) }
+                        cardWidth: 56) { model.toggle($0) }
 
-            HStack(spacing: 12) {
-                Button {
-                    model.pass()
-                } label: {
-                    Text("Pass")
-                        .font(.heading(17)).foregroundStyle(.white.opacity(0.9))
-                        .frame(maxWidth: .infinity).padding(.vertical, 14)
-                        .background(.white.opacity(model.isHumanTurn && model.mayPass ? 0.14 : 0.05),
-                                    in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+            VStack(spacing: 8) {
+                Group {
+                    if let combo = model.selectionCombo {
+                        Text(comboName(combo))
+                            .foregroundStyle(model.selectionPlayable ? Theme.goldSoft : Theme.coral)
+                    } else if !model.selection.isEmpty {
+                        Text("Not a combo").foregroundStyle(Theme.coral)
+                    } else {
+                        Text(" ").foregroundStyle(.clear)
+                    }
                 }
-                .disabled(!(model.isHumanTurn && model.mayPass))
+                .font(.heading(12))
+                .lineLimit(1)
 
                 Button {
                     model.playSelection()
                 } label: {
                     Text("Play")
-                        .font(.heading(17)).foregroundStyle(.white)
-                        .frame(maxWidth: .infinity).padding(.vertical, 14)
+                        .font(.heading(16)).foregroundStyle(.white)
+                        .frame(maxWidth: .infinity).padding(.vertical, 11)
                         .background(model.selectionPlayable ? Theme.coral : Theme.coral.opacity(0.3),
                                     in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
                 }
                 .disabled(!model.selectionPlayable)
+
+                Button {
+                    model.pass()
+                } label: {
+                    Text("Pass")
+                        .font(.heading(15)).foregroundStyle(.white.opacity(0.9))
+                        .frame(maxWidth: .infinity).padding(.vertical, 9)
+                        .background(.white.opacity(model.isHumanTurn && model.mayPass ? 0.14 : 0.05),
+                                    in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                }
+                .disabled(!(model.isHumanTurn && model.mayPass))
             }
-            .padding(.bottom, 8)
+            .frame(width: 130)
         }
     }
 }

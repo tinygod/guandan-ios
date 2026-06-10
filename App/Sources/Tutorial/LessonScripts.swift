@@ -113,7 +113,11 @@ enum LessonScripts {
         switch id {
         case 3: return firstHand
         case 5: return bombs
+        case 6: return partnerPlay
+        case 10: return endgame
         default: return nil
         }
     }
+
+    static var allScripted: [ScriptedLesson] { [firstHand, bombs, partnerPlay, endgame] }
 }

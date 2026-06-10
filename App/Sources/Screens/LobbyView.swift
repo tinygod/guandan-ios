@@ -14,6 +14,7 @@ struct LobbyView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     header
+                        .frame(maxWidth: 760)
 
                     Button { router.go(.learn) } label: {
                         PanelCard {
@@ -37,30 +38,31 @@ struct LobbyView: View {
                             }
                         }
                     }
+                    .frame(maxWidth: 760)
 
-                    modeButton("Practice vs Bots", icon: "cpu.fill",
-                               subtitle: "Easy bots, hints welcome") {
-                        router.go(.game(.easy))
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 12),
+                                        GridItem(.flexible(), spacing: 12)], spacing: 12) {
+                        modeButton("Practice vs Bots", icon: "cpu.fill",
+                                   subtitle: "Easy bots — review every hand after") {
+                            router.go(.game(.easy))
+                        }
+                        modeButton("Standard Match", icon: "bolt.fill",
+                                   subtitle: "Normal bots, full rules") {
+                            router.go(.game(.normal))
+                        }
+                        modeButton("Expert Table", icon: "flame.fill",
+                                   subtitle: "Hard bots protect their bombs") {
+                            router.go(.game(.hard))
+                        }
+                        modeButton("Quick Match", icon: "person.2.fill",
+                                   subtitle: "Online — coming soon", dimmed: true) {
+                            comingSoonShown = true
+                        }
                     }
-                    modeButton("Standard Match", icon: "bolt.fill",
-                               subtitle: "Normal bots, full rules") {
-                        router.go(.game(.normal))
-                    }
-                    modeButton("Expert Table", icon: "flame.fill",
-                               subtitle: "Hard bots protect their bombs") {
-                        router.go(.game(.hard))
-                    }
-
-                    modeButton("Quick Match", icon: "person.2.fill",
-                               subtitle: "Online — coming soon", dimmed: true) {
-                        comingSoonShown = true
-                    }
-                    modeButton("Play with Friends", icon: "link",
-                               subtitle: "Online — coming soon", dimmed: true) {
-                        comingSoonShown = true
-                    }
+                    .frame(maxWidth: 760)
                 }
                 .padding(20)
+                .frame(maxWidth: .infinity)
             }
         }
         .navigationBarHidden(true)

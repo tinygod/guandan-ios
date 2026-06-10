@@ -50,7 +50,8 @@ struct CardView: View {
     }
 }
 
-/// A fanned, overlapping hand of cards with tap-to-select.
+/// A fanned, overlapping hand of cards with tap-to-select. Sizes itself to
+/// the width it is given (landscape: the full bottom strip).
 struct HandFanView: View {
     let cards: [Card]
     let selection: Set<Card>
@@ -58,22 +59,24 @@ struct HandFanView: View {
     var cardWidth: CGFloat = 52
     let onTap: (Card) -> Void
 
-    private var overlap: CGFloat {
-        guard cards.count > 1 else { return 0 }
-        let available = UIScreen.main.bounds.width - 32 - cardWidth
-        return min(cardWidth * 0.72, available / CGFloat(cards.count - 1))
-    }
-
     var body: some View {
-        HStack(spacing: overlap - cardWidth) {
-            ForEach(cards) { card in
-                CardView(card: card, width: cardWidth,
-                         selected: selection.contains(card),
-                         highlighted: highlightedCards.contains(card))
-                    .onTapGesture { onTap(card) }
+        GeometryReader { geo in
+            let overlap: CGFloat = {
+                guard cards.count > 1 else { return 0 }
+                let available = geo.size.width - cardWidth
+                return min(cardWidth * 0.72, available / CGFloat(cards.count - 1))
+            }()
+            HStack(spacing: overlap - cardWidth) {
+                ForEach(cards) { card in
+                    CardView(card: card, width: cardWidth,
+                             selected: selection.contains(card),
+                             highlighted: highlightedCards.contains(card))
+                        .onTapGesture { onTap(card) }
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity)
+        .frame(height: cardWidth * 1.4 + 18)
     }
 }
 

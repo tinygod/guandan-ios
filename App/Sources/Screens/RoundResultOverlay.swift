@@ -1,12 +1,13 @@
 import SwiftUI
 import GuandanCore
 
-/// Mirror of the Stitch "Round Won" celebration, shown over the table.
+/// Round result celebration — landscape: standings left, actions right.
 struct RoundResultOverlay: View {
     let order: [Seat]
     let model: GameViewModel
     let onNext: () -> Void
     let onExit: () -> Void
+    let onReview: () -> Void
 
     private var humanTeamWon: Bool { order[0].team == .northSouth }
     private var matchOver: Bool { model.match.matchWinner != nil }
@@ -15,45 +16,49 @@ struct RoundResultOverlay: View {
         ZStack {
             Color.black.opacity(0.65).ignoresSafeArea()
 
-            VStack(spacing: 18) {
-                Text(headline)
-                    .font(.display(34))
-                    .foregroundStyle(humanTeamWon ? Theme.goldSoft : Theme.mintBright)
-                    .multilineTextAlignment(.center)
-
+            HStack(spacing: 20) {
+                // standings
                 VStack(spacing: 8) {
                     ForEach(Array(order.enumerated()), id: \.offset) { i, seat in
                         HStack {
-                            Text(medal(i)).font(.body(18))
+                            Text(medal(i)).font(.body(16))
                             Text(model.seatName(seat))
-                                .font(.heading(16)).foregroundStyle(.white)
+                                .font(.heading(15)).foregroundStyle(.white)
                             Spacer()
                             Text(seat.team == .northSouth ? "Your team" : "Opponents")
-                                .font(.body(13))
+                                .font(.body(12))
                                 .foregroundStyle(seat.team == .northSouth ? Theme.goldSoft : Theme.mint)
                         }
-                        .padding(.horizontal, 16).padding(.vertical, 8)
-                        .background(.white.opacity(0.07),
-                                    in: RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal, 14).padding(.vertical, 7)
+                        .background(.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
                     }
                 }
+                .frame(width: 270)
 
-                Text(levelLine)
-                    .font(.body(15)).foregroundStyle(Theme.mint)
-                    .multilineTextAlignment(.center)
+                // headline + actions
+                VStack(spacing: 12) {
+                    Text(headline)
+                        .font(.display(28))
+                        .foregroundStyle(humanTeamWon ? Theme.goldSoft : Theme.mintBright)
+                        .multilineTextAlignment(.center)
 
-                VStack(spacing: 10) {
+                    Text(levelLine)
+                        .font(.body(13)).foregroundStyle(Theme.mint)
+                        .multilineTextAlignment(.center)
+
+                    SecondaryButton(title: "Review Hand 🔍") { onReview() }
+
                     if !matchOver {
                         PrimaryButton(title: "Next Hand", icon: "arrow.right") { onNext() }
                     }
-                    SecondaryButton(title: matchOver ? "Back to Lobby" : "Leave Table") { onExit() }
+                    SecondaryButton(title: matchOver ? "Back to Home" : "Leave Table") { onExit() }
                 }
+                .frame(width: 250)
             }
-            .padding(24)
-            .frame(maxWidth: 360)
+            .padding(22)
             .background(Theme.felt, in: RoundedRectangle(cornerRadius: 24))
             .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(.white.opacity(0.15)))
-            .padding(24)
+            .padding(20)
         }
     }
 
@@ -76,6 +81,6 @@ struct RoundResultOverlay: View {
                 ? "Your team conquered the Ace level!"
                 : "Opponents took the match at Ace level."
         }
-        return "Levels — your team: \(us) · opponents: \(them)\nNext hand plays \(model.match.activeLevel.shortName)s"
+        return "Your team: \(us) · Opponents: \(them) — next hand plays \(model.match.activeLevel.shortName)s"
     }
 }

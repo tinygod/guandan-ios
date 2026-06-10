@@ -189,17 +189,29 @@ struct ScriptedLessonView: View {
         ZStack {
             Theme.background
 
-            VStack(spacing: 0) {
-                header
-                Spacer(minLength: 6)
-                opponents
-                Spacer(minLength: 6)
-                tableCenter
-                Spacer(minLength: 6)
-                coachBubble
-                handArea
+            HStack(spacing: 14) {
+                // left: the table
+                VStack(spacing: 6) {
+                    header
+                    opponents
+                    tableCenter
+                    HandFanView(cards: runner.humanHand,
+                                selection: runner.selection,
+                                highlightedCards: runner.highlight,
+                                cardWidth: 54) { runner.toggle($0) }
+                }
+
+                // right: the coach panel
+                VStack(spacing: 12) {
+                    coachBubble
+                    Spacer()
+                    actionButtons
+                }
+                .frame(width: 280)
+                .padding(.vertical, 8)
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 14)
+            .padding(.bottom, 4)
         }
         .navigationBarHidden(true)
         .onChange(of: runner.done) { _, isDone in
@@ -281,11 +293,14 @@ struct ScriptedLessonView: View {
     }
 
     private var coachBubble: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Text("🐼")
-                .font(.system(size: 30))
-                .padding(6)
-                .background(.white.opacity(0.1), in: Circle())
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 8) {
+                Text("🐼")
+                    .font(.system(size: 26))
+                    .padding(5)
+                    .background(.white.opacity(0.1), in: Circle())
+                Text("Coach Pan").font(.heading(14)).foregroundStyle(Theme.goldSoft)
+            }
             Text(runner.coachText)
                 .font(.body(15))
                 .foregroundStyle(Theme.ink)
@@ -293,51 +308,38 @@ struct ScriptedLessonView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Theme.ivory, in: RoundedRectangle(cornerRadius: 14))
         }
-        .padding(.vertical, 10)
         .animation(.easeInOut(duration: 0.2), value: runner.stepIndex)
     }
 
-    private var handArea: some View {
-        VStack(spacing: 10) {
-            HandFanView(cards: runner.humanHand,
-                        selection: runner.selection,
-                        highlightedCards: runner.highlight,
-                        cardWidth: 50) { runner.toggle($0) }
-
-            Group {
-                if runner.awaitingNext {
-                    PrimaryButton(title: runner.stepIndex == runner.lesson.steps.count - 1
-                                  ? "Finish Lesson" : "Next", icon: "arrow.right") {
-                        runner.tapNext()
-                    }
-                } else if runner.awaitingHumanPass {
-                    PrimaryButton(title: "Pass", icon: "hand.raised.fill") {
-                        runner.tapPass()
-                    }
-                } else {
-                    HStack(spacing: 12) {
-                        Button {} label: {
-                            Text("Pass")
-                                .font(.heading(16)).foregroundStyle(.white.opacity(0.4))
-                                .frame(maxWidth: .infinity).padding(.vertical, 14)
-                                .background(.white.opacity(0.05),
-                                            in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                        }
-                        .disabled(true)
-
-                        Button { runner.tapPlay() } label: {
-                            Text("Play")
-                                .font(.heading(16)).foregroundStyle(.white)
-                                .frame(maxWidth: .infinity).padding(.vertical, 14)
-                                .background(runner.selectionMatchesRequired
-                                            ? Theme.coral : Theme.coral.opacity(0.3),
-                                            in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
-                        }
-                        .disabled(!runner.selectionMatchesRequired)
-                    }
+    private var actionButtons: some View {
+        Group {
+            if runner.awaitingNext {
+                PrimaryButton(title: runner.stepIndex == runner.lesson.steps.count - 1
+                              ? "Finish Lesson" : "Next", icon: "arrow.right") {
+                    runner.tapNext()
                 }
+            } else if runner.awaitingHumanPass {
+                PrimaryButton(title: "Pass", icon: "hand.raised.fill") {
+                    runner.tapPass()
+                }
+            } else if runner.awaitingHumanPlay {
+                Button { runner.tapPlay() } label: {
+                    Text("Play")
+                        .font(.heading(16)).foregroundStyle(.white)
+                        .frame(maxWidth: .infinity).padding(.vertical, 13)
+                        .background(runner.selectionMatchesRequired
+                                    ? Theme.coral : Theme.coral.opacity(0.3),
+                                    in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                }
+                .disabled(!runner.selectionMatchesRequired)
+            } else {
+                // bot is acting
+                HStack(spacing: 8) {
+                    ProgressView().tint(Theme.mint)
+                    Text("watch the table…").font(.body(13)).foregroundStyle(Theme.mint)
+                }
+                .frame(maxWidth: .infinity).padding(.vertical, 13)
             }
-            .padding(.bottom, 8)
         }
     }
 }

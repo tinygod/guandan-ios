@@ -12,6 +12,11 @@ final class GameViewModel {
     private(set) var lastPlays: [Seat: PlayerAction] = [:]  // what each seat just did
     private(set) var handResult: [Seat]?                    // finish order when hand ends
     private(set) var tributeBanner: String?
+    private(set) var lastHandRecord: HandRecord?            // for review (复盘)
+
+    private var initialHands: [Seat: [Card]] = [:]
+    private var firstLeader: Seat = .south
+    private var actionLog: [(seat: Seat, action: PlayerAction)] = []
 
     private var bots: [Seat: any Bot] = [:]
     private var rng = SeededGenerator(seed: UInt64.random(in: 0...UInt64.max))
@@ -108,6 +113,9 @@ final class GameViewModel {
         handResult = nil
         lastPlays = [:]
         selection = []
+        initialHands = hands
+        firstLeader = leader
+        actionLog = []
         scheduleBotsIfNeeded()
     }
 
@@ -117,6 +125,7 @@ final class GameViewModel {
             try e.apply(action, by: seat)
             engine = e
             lastPlays[seat] = action
+            actionLog.append((seat, action))
             if e.state.isOver {
                 finishHand()
             } else {
@@ -132,6 +141,9 @@ final class GameViewModel {
         let order = e.state.finishOrder
         handResult = order
         previousFinishOrder = order
+        lastHandRecord = HandRecord(level: e.state.level, initialHands: initialHands,
+                                    firstLeader: firstLeader, actions: actionLog,
+                                    finishOrder: order)
         match.recordHand(finishOrder: order)
     }
 

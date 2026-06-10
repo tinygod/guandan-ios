@@ -31,7 +31,7 @@ struct GuandanApp: App {
                     if route == "lesson5" { router.go(.lesson(5)) }
                 }
                 #if DEBUG
-                for lesson in [LessonScripts.firstHand, LessonScripts.bombs] {
+                for lesson in LessonScripts.allScripted {
                     if let problem = ScriptRunner.validate(lesson) {
                         print("SCRIPT-INVALID [\(lesson.title)]: \(problem)")
                     } else {
@@ -49,6 +49,9 @@ struct GuandanApp: App {
         case 1: WhatIsGuandanLesson()
         case 2: CombosLessonView()
         case 4: ClimbToAceLesson()
+        case 7: WildcardMasteryLesson()
+        case 8: BombTimingLesson()
+        case 9: CardCountingLesson()
         default:
             if let script = LessonScripts.lesson(for: id) {
                 ScriptedLessonView(lesson: script)

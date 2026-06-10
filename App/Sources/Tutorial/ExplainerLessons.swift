@@ -63,17 +63,15 @@ struct WhatIsGuandanLesson: View {
 
     private func explainPage(title: String, emoji: String, body bodyText: String,
                              diagram: AnyView) -> some View {
-        VStack(spacing: 18) {
-            Spacer()
-            Text(emoji).font(.system(size: 56))
-            Text(title).font(.display(28)).foregroundStyle(Theme.goldSoft)
-                .multilineTextAlignment(.center)
-            Text(bodyText).font(.body(16)).foregroundStyle(.white.opacity(0.9))
-                .multilineTextAlignment(.center)
-                .lineSpacing(4)
-            diagram.padding(.top, 6)
-            Spacer()
-            Spacer()
+        HStack(spacing: 30) {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(emoji).font(.system(size: 44))
+                Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
+                Text(bodyText).font(.body(15)).foregroundStyle(.white.opacity(0.9))
+                    .lineSpacing(4)
+            }
+            .frame(maxWidth: 360, alignment: .leading)
+            diagram
         }
     }
 }
@@ -157,15 +155,14 @@ struct ClimbToAceLesson: View {
     }
 
     private func page(title: String, body bodyText: String, diagram: AnyView) -> some View {
-        VStack(spacing: 18) {
-            Spacer()
-            Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
-                .multilineTextAlignment(.center)
-            Text(bodyText).font(.body(16)).foregroundStyle(.white.opacity(0.9))
-                .multilineTextAlignment(.center).lineSpacing(4)
-            diagram.padding(.top, 10)
-            Spacer()
-            Spacer()
+        HStack(spacing: 30) {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
+                Text(bodyText).font(.body(15)).foregroundStyle(.white.opacity(0.9))
+                    .lineSpacing(4)
+            }
+            .frame(maxWidth: 360, alignment: .leading)
+            diagram
         }
     }
 }

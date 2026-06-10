@@ -68,10 +68,12 @@ struct CombosLessonView: View {
                 .padding(.top, 8)
 
                 ScrollView {
-                    VStack(spacing: 10) {
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 10),
+                                        GridItem(.flexible(), spacing: 10)], spacing: 10) {
                         ForEach(rows) { row in rowView(row) }
                     }
                     .padding(16)
+                    .frame(maxWidth: 860)
                 }
 
                 PrimaryButton(title: learned.count == rows.count ? "Finish Lesson" : "Got them all?",

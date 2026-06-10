@@ -1,76 +1,121 @@
 import SwiftUI
 
-/// Learning journey home — mirrors the lesson-list portions of the Stitch
-/// "My Journey" design.
+/// The app's home: learning journey (Basics + Techniques) with the Practice
+/// Arena attached. Landscape: two-column course grid.
 struct LearnHomeView: View {
     @Environment(Router.self) private var router
     @Environment(LessonProgress.self) private var progress
+
+    private let columns = [GridItem(.flexible(), spacing: 12),
+                           GridItem(.flexible(), spacing: 12)]
 
     var body: some View {
         ZStack {
             Theme.background
 
             ScrollView {
-                VStack(spacing: 16) {
-                    VStack(spacing: 6) {
-                        Text("Learn GuanDan").font(.display(30)).foregroundStyle(.white)
-                        Text("5 short lessons — then you're table-ready")
-                            .font(.body(14)).foregroundStyle(Theme.mint)
+                VStack(spacing: 18) {
+                    header
 
-                        ProgressView(value: progress.fractionComplete)
-                            .tint(Theme.gold)
-                            .padding(.top, 8)
-                        Text("\(progress.completed.count) of \(Lessons.all.count) complete")
-                            .font(.body(12)).foregroundStyle(Theme.mint)
-                    }
-                    .padding(.top, 8)
-
-                    ForEach(Lessons.all) { lesson in
-                        lessonRow(lesson)
+                    ForEach(Lessons.Section.allCases, id: \.self) { section in
+                        sectionView(section)
                     }
 
-                    if progress.completed.count == Lessons.all.count {
-                        PrimaryButton(title: "Graduate — play a real match", icon: "checkmark.seal.fill") {
-                            router.go(.game(.easy))
-                        }
-                        .padding(.top, 8)
-                    }
+                    arenaCard
                 }
-                .padding(20)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 16)
+                .frame(maxWidth: 860)
+                .frame(maxWidth: .infinity)
             }
         }
         .navigationTitle("")
         .toolbarBackground(.hidden, for: .navigationBar)
     }
 
-    private func lessonRow(_ lesson: Lessons.Info) -> some View {
+    private var header: some View {
+        VStack(spacing: 6) {
+            Text("GuanDan Academy").font(.display(28)).foregroundStyle(.white)
+            HStack(spacing: 10) {
+                ProgressView(value: progress.fractionComplete)
+                    .tint(Theme.gold)
+                    .frame(width: 220)
+                Text("\(progress.completed.count)/\(Lessons.all.count)")
+                    .font(.body(13)).foregroundStyle(Theme.mint)
+            }
+        }
+    }
+
+    private func sectionView(_ section: Lessons.Section) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Text(section == .basics ? "📖 Basics" : "🎯 Techniques")
+                    .font(.heading(18)).foregroundStyle(Theme.goldSoft)
+                Text(section == .basics ? "get table-ready" : "play like a regular")
+                    .font(.body(13)).foregroundStyle(Theme.mint)
+                Spacer()
+            }
+            LazyVGrid(columns: columns, spacing: 12) {
+                ForEach(Lessons.inSection(section)) { lesson in
+                    lessonCard(lesson)
+                }
+            }
+        }
+    }
+
+    private func lessonCard(_ lesson: Lessons.Info) -> some View {
         let done = progress.completed.contains(lesson.id)
         return Button {
             router.go(.lesson(lesson.id))
         } label: {
-            HStack(spacing: 14) {
+            HStack(spacing: 12) {
                 ZStack {
                     Circle()
                         .fill(done ? Theme.gold.opacity(0.25) : .white.opacity(0.08))
-                        .frame(width: 46, height: 46)
+                        .frame(width: 42, height: 42)
                     Image(systemName: done ? "checkmark" : lesson.icon)
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: 16, weight: .bold))
                         .foregroundStyle(done ? Theme.goldSoft : Theme.coral)
                 }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Lesson \(lesson.id) · \(lesson.title)")
-                        .font(.heading(16)).foregroundStyle(.white)
-                    Text(lesson.subtitle).font(.body(13)).foregroundStyle(Theme.mint)
+                    Text(lesson.title)
+                        .font(.heading(15)).foregroundStyle(.white)
+                        .lineLimit(1)
+                    Text(lesson.subtitle).font(.body(12)).foregroundStyle(Theme.mint)
+                        .lineLimit(1)
                 }
                 Spacer()
-                Text("\(lesson.minutes) min")
-                    .font(.body(12)).foregroundStyle(Theme.mint.opacity(0.8))
+                Text("\(lesson.minutes)m")
+                    .font(.body(11)).foregroundStyle(Theme.mint.opacity(0.8))
             }
-            .padding(14)
+            .padding(12)
             .background(.white.opacity(0.07),
                         in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
             .overlay(RoundedRectangle(cornerRadius: Theme.cornerRadius)
                 .strokeBorder(done ? Theme.gold.opacity(0.4) : .white.opacity(0.1)))
+        }
+    }
+
+    private var arenaCard: some View {
+        Button { router.go(.lobby) } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "flag.2.crossed.fill")
+                    .font(.system(size: 24)).foregroundStyle(Theme.ink)
+                    .frame(width: 48, height: 48)
+                    .background(Theme.gold, in: Circle())
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Practice Arena").font(.heading(17)).foregroundStyle(.white)
+                    Text("Apply your lessons vs AI — every hand can be reviewed move-by-move with the coach")
+                        .font(.body(13)).foregroundStyle(Theme.mint)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").foregroundStyle(Theme.mint)
+            }
+            .padding(16)
+            .background(Theme.gold.opacity(0.12),
+                        in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+            .overlay(RoundedRectangle(cornerRadius: Theme.cornerRadius)
+                .strokeBorder(Theme.gold.opacity(0.4)))
         }
     }
 }
