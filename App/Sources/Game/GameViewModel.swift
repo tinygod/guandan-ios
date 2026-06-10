@@ -78,6 +78,42 @@ final class GameViewModel {
         hintIndex = 0
     }
 
+    // MARK: manual organize (理牌锁组)
+
+    struct HandGroup: Identifiable {
+        let id = UUID()
+        var cards: [Card]
+        let kind: ComboKind
+    }
+
+    private(set) var customGroups: [HandGroup] = []
+
+    /// Selection can be locked into a group when it forms a real combo.
+    var canGroupSelection: Bool {
+        selection.count >= 2 && selectionCombo != nil
+    }
+
+    func groupSelection() {
+        guard let combo = selectionCombo, selection.count >= 2,
+              let engine else { return }
+        customGroups.append(HandGroup(
+            cards: displaySorted(Array(selection), level: engine.state.level),
+            kind: combo.kind))
+        selection = []
+    }
+
+    func resetGroups() { customGroups = [] }
+
+    /// Groups pruned to cards still in hand (played cards drop out).
+    var displayGroups: [HandGroup] {
+        let hand = Set(engine?.state.hands[.south] ?? [])
+        return customGroups.compactMap { group in
+            let remaining = group.cards.filter { hand.contains($0) }
+            guard remaining.count >= 2 else { return nil }
+            return HandGroup(cards: remaining, kind: group.kind)
+        }
+    }
+
     // MARK: hint (提示) — cycle through legal plays, weakest first
 
     private var hintIndex = 0

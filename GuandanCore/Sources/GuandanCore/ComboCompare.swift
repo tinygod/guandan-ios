@@ -3,7 +3,7 @@ import Foundation
 extension ComboKind {
     /// Position on the bomb ladder; nil for non-bombs.
     /// 4炸 < 5炸 < 同花顺 < 6炸 < 7炸 < 8炸 < 四大天王
-    var bombTier: Int? {
+    public var bombTier: Int? {
         switch self {
         case .bomb(let size) where size <= 5: return size          // 4, 5
         case .straightFlush: return 5_5                            // 55: between 5 and 6

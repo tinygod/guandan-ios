@@ -42,7 +42,8 @@ struct GameTableView: View {
                 GroupedHandView(cards: model.humanHand,
                                 level: model.state?.level ?? .two,
                                 mode: sortMode,
-                                selection: model.selection) { model.toggle($0) }
+                                selection: model.selection,
+                                lockedGroups: model.displayGroups) { model.toggle($0) }
             }
             .padding(.horizontal, 12)
             .padding(.bottom, 2)
@@ -250,6 +251,30 @@ struct GameTableView: View {
                 .padding(.horizontal, 10).padding(.vertical, 6)
                 .background(.white.opacity(0.1), in: Capsule())
                 .overlay(Capsule().strokeBorder(Theme.gold.opacity(0.35)))
+            }
+
+            // organize (理牌) — lock the selected combo into an edge group
+            if model.canGroupSelection {
+                Button { model.groupSelection() } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "lock.fill").font(.system(size: 9))
+                        Text("Organize").font(.heading(11))
+                    }
+                    .foregroundStyle(Theme.ink)
+                    .padding(.horizontal, 10).padding(.vertical, 6)
+                    .background(Theme.goldSoft, in: Capsule())
+                }
+            }
+            if !model.displayGroups.isEmpty {
+                Button { model.resetGroups() } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "arrow.uturn.backward").font(.system(size: 9))
+                        Text("Reset").font(.heading(11))
+                    }
+                    .foregroundStyle(Theme.mint)
+                    .padding(.horizontal, 10).padding(.vertical, 6)
+                    .background(.white.opacity(0.1), in: Capsule())
+                }
             }
 
             Spacer()

@@ -41,22 +41,23 @@ struct CardView: View {
                     .padding(EdgeInsets(top: 0, leading: 0,
                                         bottom: width * 0.1, trailing: width * 0.08))
             } else {
-                // BIG rank top-left, suit directly below it
-                VStack(alignment: .leading, spacing: -width * 0.06) {
+                // BIG rank top-left with the small suit to its RIGHT —
+                // a thin stacked strip always shows both
+                HStack(alignment: .firstTextBaseline, spacing: width * 0.04) {
                     Text(card.rank.shortName)
-                        .font(.system(size: width * 0.46, weight: .heavy))
+                        .font(.system(size: width * 0.44, weight: .heavy))
                     Text(card.suit?.symbol ?? "")
-                        .font(.system(size: width * 0.34))
+                        .font(.system(size: width * 0.3))
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(EdgeInsets(top: width * 0.03, leading: width * 0.09,
+                .padding(EdgeInsets(top: width * 0.03, leading: width * 0.08,
                                     bottom: 0, trailing: 0))
 
-                // giant suit pip filling the bottom
+                // medium suit pip at the bottom
                 Text(card.suit?.symbol ?? "")
-                    .font(.system(size: width * 0.78))
+                    .font(.system(size: width * 0.5))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    .padding(.bottom, width * 0.02)
+                    .padding(.bottom, width * 0.1)
             }
 
             // 逢人配: gold heart at top-right + WILD ribbon bottom-left
@@ -78,6 +79,11 @@ struct CardView: View {
                     .padding(EdgeInsets(top: 0, leading: width * 0.05,
                                         bottom: width * 0.05, trailing: 0))
             }
+            // selected state: gray veil (reference style)
+            if selected {
+                RoundedRectangle(cornerRadius: width * 0.12)
+                    .fill(.black.opacity(0.24))
+            }
         }
         .foregroundStyle(isRed ? Theme.cardRed : Theme.ink)
         .frame(width: width, height: width * 1.4)
@@ -87,8 +93,7 @@ struct CardView: View {
                               lineWidth: highlighted ? 2.5 : 0.8)
         )
         .shadow(color: .black.opacity(0.25), radius: 2.5, y: 1.5)
-        .offset(y: selected ? -16 : 0)
-        .animation(.spring(duration: 0.2), value: selected)
+        .animation(.easeInOut(duration: 0.15), value: selected)
     }
 }
 
