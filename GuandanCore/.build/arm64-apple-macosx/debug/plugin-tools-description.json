@@ -60,6 +60,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift"
         },
         {
@@ -83,6 +87,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o"
       ],
       "otherArguments" : [
@@ -170,6 +175,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o"
         },
         {
@@ -187,6 +196,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/GameEngine.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift"
       ],
       "tempsPath" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build",
@@ -314,6 +324,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrickLegalityTests.swift"
         },
         {
@@ -338,6 +352,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboDetectTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/FuzzMatchTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.swift.o"
       ],
       "otherArguments" : [
@@ -412,6 +427,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.swift.o"
         },
         {
@@ -426,6 +445,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/FuzzMatchTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ScoringTributeTests.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrickLegalityTests.swift"
       ],
       "tempsPath" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build",
@@ -451,6 +471,7 @@
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/GameEngine.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift",
       "-I",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules",
@@ -576,6 +597,7 @@
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/FuzzMatchTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ScoringTributeTests.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrickLegalityTests.swift",
       "-I",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules",
@@ -704,6 +726,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift"
         }
       ],
@@ -764,6 +790,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o"
         },
         {
@@ -789,6 +819,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o"
         },
         {
           "kind" : "file",
@@ -823,6 +857,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ScoringTributeTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift"
         },
         {
           "kind" : "file",

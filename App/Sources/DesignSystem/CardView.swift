@@ -1,7 +1,8 @@
 import SwiftUI
 import GuandanCore
 
-/// A single playing card, scaled by `width` (height = 1.4 × width).
+/// A single playing card in the premium art direction: warm ivory stock,
+/// gold hairline inset, serif indices, ornamented courts and jokers.
 struct CardView: View {
     let card: Card
     var width: CGFloat = 56
@@ -12,41 +13,75 @@ struct CardView: View {
         card.suit == .hearts || card.suit == .diamonds || card.rank == .bigJoker
     }
 
-    private var rankText: String {
-        switch card.rank {
-        case .smallJoker, .bigJoker: return "★"
-        default: return card.rank.shortName
-        }
+    private var isCourt: Bool {
+        card.rank == .jack || card.rank == .queen || card.rank == .king
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: -2) {
-                Text(rankText)
-                    .font(.system(size: width * 0.34, weight: .heavy, design: .rounded))
+        ZStack {
+            // stock + gold hairline inset
+            RoundedRectangle(cornerRadius: width * 0.13)
+                .fill(LinearGradient(colors: [Theme.ivory, Theme.ivoryDeep],
+                                     startPoint: .topLeading, endPoint: .bottomTrailing))
+            RoundedRectangle(cornerRadius: width * 0.09)
+                .strokeBorder(Theme.gold.opacity(0.5), lineWidth: max(0.5, width * 0.012))
+                .padding(width * 0.055)
+
+            // corner index
+            VStack(alignment: .leading, spacing: -width * 0.02) {
+                Text(card.rank.isJoker ? "J" : card.rank.shortName)
+                    .font(.system(size: width * 0.30, weight: .bold, design: .serif))
                 if let suit = card.suit {
-                    Text(suit.symbol)
-                        .font(.system(size: width * 0.26))
+                    Text(suit.symbol).font(.system(size: width * 0.2))
                 } else {
-                    Text(card.rank == .bigJoker ? "JOKER" : "joker")
-                        .font(.system(size: width * 0.13, weight: .black, design: .rounded))
-                        .rotationEffect(.degrees(0))
+                    Text("★").font(.system(size: width * 0.18))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(width * 0.1)
+            .padding(EdgeInsets(top: width * 0.08, leading: width * 0.1,
+                                bottom: 0, trailing: 0))
+
+            // center motif
+            centerMotif
         }
         .foregroundStyle(isRed ? Theme.cardRed : Theme.ink)
         .frame(width: width, height: width * 1.4)
-        .background(Theme.ivory, in: RoundedRectangle(cornerRadius: width * 0.14))
         .overlay(
-            RoundedRectangle(cornerRadius: width * 0.14)
-                .strokeBorder(highlighted ? Theme.gold : .black.opacity(0.12),
-                              lineWidth: highlighted ? 2.5 : 1)
+            RoundedRectangle(cornerRadius: width * 0.13)
+                .strokeBorder(highlighted ? Theme.gold : .black.opacity(0.15),
+                              lineWidth: highlighted ? 2.5 : 0.8)
         )
-        .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
+        .shadow(color: .black.opacity(0.3), radius: 3, y: 2)
         .offset(y: selected ? -16 : 0)
         .animation(.spring(duration: 0.2), value: selected)
+    }
+
+    @ViewBuilder
+    private var centerMotif: some View {
+        if card.rank.isJoker {
+            VStack(spacing: width * 0.02) {
+                Text("🃏").font(.system(size: width * 0.36))
+                Text("JOKER")
+                    .font(.system(size: width * 0.12, weight: .bold, design: .serif))
+                    .tracking(1)
+            }
+            .offset(y: width * 0.18)
+        } else if isCourt {
+            ZStack {
+                RoundedRectangle(cornerRadius: width * 0.06)
+                    .strokeBorder(Theme.gold.opacity(0.7), lineWidth: max(0.6, width * 0.015))
+                    .frame(width: width * 0.46, height: width * 0.58)
+                    .rotationEffect(.degrees(45))
+                Text(card.rank.shortName)
+                    .font(.system(size: width * 0.34, weight: .bold, design: .serif))
+            }
+            .offset(y: width * 0.22)
+        } else {
+            Text(card.suit?.symbol ?? "")
+                .font(.system(size: width * 0.5))
+                .shadow(color: Theme.gold.opacity(0.35), radius: 0.5, x: 1, y: 1)
+                .offset(y: width * 0.22)
+        }
     }
 }
 

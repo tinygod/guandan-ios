@@ -6,6 +6,7 @@
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o
+/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCorePackageTests.build/runner.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/CardDeckTests.swift.o
@@ -13,4 +14,5 @@
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboDetectTests.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/FuzzMatchTests.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swift.o
+/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.swift.o

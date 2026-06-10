@@ -59,16 +59,12 @@ struct GameTableView: View {
                     .background(.white.opacity(0.08), in: Circle())
             }
             Spacer()
-            VStack(spacing: 1) {
-                Text("Playing \(levelName)")
-                    .font(.heading(18)).foregroundStyle(Theme.goldSoft)
-                Text("Us: \(rankName(model.match.levels[.northSouth])) · Them: \(rankName(model.match.levels[.eastWest]))")
-                    .font(.body(12)).foregroundStyle(Theme.mint)
-            }
+            GoldPlaque(top: "CURRENT LEVEL", big: levelName,
+                       bottom: "us \(rankName(model.match.levels[.northSouth])) · them \(rankName(model.match.levels[.eastWest]))")
             Spacer()
             Color.clear.frame(width: 36, height: 36)
         }
-        .padding(.top, 6)
+        .padding(.top, 2)
     }
 
     private var levelName: String { rankName(model.state?.level) }
@@ -178,11 +174,16 @@ struct GameTableView: View {
                 Button {
                     model.playSelection()
                 } label: {
-                    Text("Play")
-                        .font(.heading(16)).foregroundStyle(.white)
-                        .frame(maxWidth: .infinity).padding(.vertical, 11)
-                        .background(model.selectionPlayable ? Theme.coral : Theme.coral.opacity(0.3),
-                                    in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                    HStack(spacing: 6) {
+                        Image(systemName: "play.fill").font(.system(size: 12))
+                        Text("Play Combo")
+                    }
+                    .font(.heading(15)).foregroundStyle(.white)
+                    .frame(maxWidth: .infinity).padding(.vertical, 11)
+                    .background(model.selectionPlayable ? Theme.coral : Theme.coral.opacity(0.3),
+                                in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                    .shadow(color: model.selectionPlayable ? Theme.coral.opacity(0.4) : .clear,
+                            radius: 8, y: 3)
                 }
                 .disabled(!model.selectionPlayable)
 

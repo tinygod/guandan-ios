@@ -37,6 +37,13 @@
     "swift-dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swiftdeps",
     "diagnostics": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.dia"
   },
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift": {
+    "dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.d",
+    "object": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o",
+    "swiftmodule": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swiftdeps",
+    "diagnostics": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.dia"
+  },
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrickLegalityTests.swift": {
     "dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.d",
     "object": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.swift.o",
