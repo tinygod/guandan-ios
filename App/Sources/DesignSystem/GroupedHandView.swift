@@ -120,7 +120,13 @@ struct GroupedHandView: View {
             let cols = columns
             let overlap: CGFloat = 0.1   // horizontal tuck between columns
             let effective = CGFloat(cols.count) * (1 - overlap) + overlap
-            let cardW = min(76, max(46, geo.size.width / effective))
+            let widthBound = geo.size.width / effective
+            // CARDS SHRINK (not the stack spacing) so the tallest column at
+            // full 0.40w steps still fits the height budget — every layer's
+            // rank+suit stays fully visible no matter how tall the stack
+            let maxStack = CGFloat(cols.map(\.count).max() ?? 1)
+            let heightBound = 172 / (1.4 + 0.40 * (maxStack - 1))
+            let cardW = min(76, max(30, min(widthBound, heightBound)))
 
             HStack(alignment: .bottom, spacing: -cardW * overlap) {
                 ForEach(cols) { column in
@@ -130,7 +136,7 @@ struct GroupedHandView: View {
             .frame(maxWidth: .infinity, alignment: .center)
         }
         // every column is exactly this tall with its base card pinned to the
-        // bottom; taller/expanded stacks rise over the felt without clipping
+        // bottom; expanded stacks rise over the felt without clipping
         .frame(height: Self.viewHeight)
     }
 
@@ -139,12 +145,7 @@ struct GroupedHandView: View {
         // front card changes nothing (reference behaviour)
         let covered = column.cards.dropLast()
         let expanded = covered.contains { selection.contains($0) }
-        let rawStep: CGFloat = expanded ? cardW * 0.5 : cardW * 0.40
-        // tall stacks compress so no column towers over the buttons
-        let maxColumnH: CGFloat = 168
-        let step: CGFloat = column.count > 1
-            ? min(rawStep, (maxColumnH - cardW * 1.4) / CGFloat(column.count - 1))
-            : 0
+        let step: CGFloat = expanded ? cardW * 0.5 : cardW * 0.40
 
         return ZStack(alignment: .bottom) {
             ForEach(Array(column.cards.enumerated()), id: \.element.id) { i, card in
