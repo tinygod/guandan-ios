@@ -61,18 +61,18 @@ struct GoldPlaque: View {
     var bottom: String? = nil
 
     var body: some View {
-        VStack(spacing: 1) {
-            Text(top).font(.system(size: 9, weight: .semibold, design: .serif))
+        VStack(spacing: 0) {
+            Text(top).font(.system(size: 8, weight: .semibold, design: .serif))
                 .tracking(1.5)
                 .foregroundStyle(Theme.gold.opacity(0.8))
-            Text(big).font(.system(size: 24, weight: .bold, design: .serif))
+            Text(big).font(.system(size: 19, weight: .bold, design: .serif))
                 .foregroundStyle(Theme.goldSoft)
             if let bottom {
-                Text(bottom).font(.system(size: 9, weight: .medium, design: .serif))
+                Text(bottom).font(.system(size: 8, weight: .medium, design: .serif))
                     .foregroundStyle(Theme.gold.opacity(0.8))
             }
         }
-        .padding(.horizontal, 18).padding(.vertical, 6)
+        .padding(.horizontal, 14).padding(.vertical, 4)
         .background(.black.opacity(0.45), in: RoundedRectangle(cornerRadius: 10))
         .overlay(RoundedRectangle(cornerRadius: 10)
             .strokeBorder(Theme.gold.opacity(0.55), lineWidth: 1))

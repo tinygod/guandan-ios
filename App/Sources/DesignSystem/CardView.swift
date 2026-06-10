@@ -8,6 +8,7 @@ struct CardView: View {
     var width: CGFloat = 56
     var selected: Bool = false
     var highlighted: Bool = false
+    var wildBadge: Bool = false
 
     private var isRed: Bool {
         card.suit == .hearts || card.suit == .diamonds || card.rank == .bigJoker
@@ -43,6 +44,17 @@ struct CardView: View {
 
             // center motif
             centerMotif
+
+            // 逢人配 ribbon
+            if wildBadge {
+                Text("WILD")
+                    .font(.system(size: width * 0.13, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, width * 0.08).padding(.vertical, width * 0.025)
+                    .background(Theme.coral, in: Capsule())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    .padding(.bottom, width * 0.08)
+            }
         }
         .foregroundStyle(isRed ? Theme.cardRed : Theme.ink)
         .frame(width: width, height: width * 1.4)

@@ -174,7 +174,7 @@ struct GameTableView: View {
                     .padding(.vertical, 26)
             }
         }
-        .frame(maxWidth: .infinity, minHeight: 104)
+        .frame(maxWidth: .infinity, minHeight: 78)
         .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 20))
     }
 
@@ -193,15 +193,37 @@ struct GameTableView: View {
         }
     }
 
-    // MARK: human area — hand strip with action buttons docked right
+    // MARK: human area — grouped hand with action buttons docked right
+
+    @State private var sortMode: HandSortMode = .byRank
 
     private var humanArea: some View {
-        HStack(alignment: .center, spacing: 12) {
-            HandFanView(cards: model.humanHand,
-                        selection: model.selection,
-                        cardWidth: 56) { model.toggle($0) }
+        HStack(alignment: .bottom, spacing: 12) {
+            GroupedHandView(cards: model.humanHand,
+                            level: model.state?.level ?? .two,
+                            mode: sortMode,
+                            selection: model.selection) { model.toggle($0) }
 
             VStack(spacing: 8) {
+                Button {
+                    withAnimation(.spring(duration: 0.3)) {
+                        sortMode = sortMode == .byRank ? .combos : .byRank
+                    }
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: sortMode == .byRank
+                              ? "wand.and.stars" : "list.number")
+                            .font(.system(size: 11))
+                        Text(sortMode == .byRank ? "Smart Sort" : "By Rank")
+                            .font(.heading(12))
+                    }
+                    .foregroundStyle(Theme.goldSoft)
+                    .frame(maxWidth: .infinity).padding(.vertical, 7)
+                    .background(.white.opacity(0.1),
+                                in: RoundedRectangle(cornerRadius: 10))
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(Theme.gold.opacity(0.35)))
+                }
                 Group {
                     if let combo = model.selectionCombo {
                         Text(comboName(combo))

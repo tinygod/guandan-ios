@@ -52,6 +52,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/HandPlanner.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift"
         },
         {
@@ -85,6 +89,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/ComboCompare.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Deck.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/HandPlanner.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o",
@@ -167,6 +172,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/HandPlanner.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o"
         },
         {
@@ -194,6 +203,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/GameEngine.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/HandPlanner.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift",
@@ -320,6 +330,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/HandPlannerTests.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ScoringTributeTests.swift"
         },
         {
@@ -351,6 +365,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboCompareTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboDetectTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/FuzzMatchTests.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/HandPlannerTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.swift.o"
@@ -423,6 +438,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/HandPlannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swift.o"
         },
         {
@@ -444,6 +463,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboCompareTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/FuzzMatchTests.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/HandPlannerTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ScoringTributeTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrickLegalityTests.swift"
@@ -469,6 +489,7 @@
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/GameEngine.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/HandPlanner.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift",
@@ -596,6 +617,7 @@
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboCompareTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/FuzzMatchTests.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/HandPlannerTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ScoringTributeTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrainingTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/TrickLegalityTests.swift",
@@ -718,6 +740,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/HandPlanner.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift"
         },
         {
@@ -782,6 +808,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/HandPlanner.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o"
         },
         {
@@ -815,6 +845,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/FuzzMatchTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/HandPlannerTests.swift.o"
         },
         {
           "kind" : "file",
@@ -853,6 +887,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/FuzzMatchTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/HandPlannerTests.swift"
         },
         {
           "kind" : "file",
