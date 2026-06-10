@@ -28,17 +28,25 @@ struct CardView: View {
                 .strokeBorder(Theme.gold.opacity(0.5), lineWidth: max(0.5, width * 0.012))
                 .padding(width * 0.055)
 
-            // corner index — HORIZONTAL so a thin stacked strip still shows
-            // both rank and suit
-            HStack(spacing: width * 0.05) {
-                Text(card.rank.isJoker ? (card.rank == .bigJoker ? "JOKER" : "joker")
-                     : card.rank.shortName)
-                    .font(.system(size: card.rank.isJoker ? width * 0.2 : width * 0.34,
-                                  weight: .bold, design: .serif))
-                if let suit = card.suit {
-                    Text(suit.symbol).font(.system(size: width * 0.3))
+            // corner index — horizontal rank+suit so a thin stacked strip
+            // still shows both; jokers spell JOKER vertically (classic style)
+            Group {
+                if card.rank.isJoker {
+                    VStack(spacing: -width * 0.015) {
+                        ForEach(Array("JOKER".enumerated()), id: \.offset) { _, ch in
+                            Text(String(ch))
+                                .font(.system(size: width * 0.19,
+                                              weight: .heavy, design: .serif))
+                        }
+                    }
                 } else {
-                    Text("★").font(.system(size: width * 0.22))
+                    HStack(spacing: width * 0.05) {
+                        Text(card.rank.shortName)
+                            .font(.system(size: width * 0.34, weight: .bold, design: .serif))
+                        if let suit = card.suit {
+                            Text(suit.symbol).font(.system(size: width * 0.3))
+                        }
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -74,13 +82,8 @@ struct CardView: View {
     @ViewBuilder
     private var centerMotif: some View {
         if card.rank.isJoker {
-            VStack(spacing: width * 0.02) {
-                Text("🃏").font(.system(size: width * 0.36))
-                Text("JOKER")
-                    .font(.system(size: width * 0.12, weight: .bold, design: .serif))
-                    .tracking(1)
-            }
-            .offset(y: width * 0.18)
+            Text("🃏").font(.system(size: width * 0.4))
+                .offset(x: width * 0.1, y: width * 0.24)
         } else if isCourt {
             ZStack {
                 RoundedRectangle(cornerRadius: width * 0.06)
