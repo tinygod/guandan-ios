@@ -176,3 +176,68 @@ final class BotStyleTests: XCTestCase {
         }
     }
 }
+
+final class PlannerBotTests: XCTestCase {
+    let level = Rank.two
+
+    func fill(_ used: [Card], counts: [Int]) -> [[Card]] {
+        let pool = Deck.standard().filter { card in
+            !used.contains(where: { $0.id == card.id })
+        }
+        var result: [[Card]] = []
+        var i = 0
+        for n in counts { result.append(Array(pool[i..<(i+n)])); i += n }
+        return result
+    }
+
+    /// Holding a lone 9 and a planned pair of Kings, the bot answers a cheap
+    /// single with the 9 — it does not split the pair.
+    func testDoesNotBreakPairForCheapSingle() throws {
+        let south = [c(.nine), c(.king), c(.king, .hearts),
+                     c(.queen), c(.queen, .hearts), c(.seven), c(.seven, .hearts),
+                     c(.six), c(.six, .hearts), c(.four), c(.four, .hearts), c(.three)]
+        let others = fill(south, counts: [12, 12, 12])
+        var engine = GameEngine(level: level,
+                                hands: [.south: south, .east: others[0],
+                                        .north: others[1], .west: others[2]],
+                                firstLeader: .east)
+        // east leads a small single the bot must answer
+        let eastSingle = others[0].first {
+            $0.rank.rawValue >= 3 && $0.rank.rawValue <= 8 && $0.rank != level
+                && !$0.isWildcard(level: level)
+        }!
+        try engine.apply(.play(Combo.detect([eastSingle], level: level)!), by: .east)
+        try engine.apply(.pass, by: .north)
+        try engine.apply(.pass, by: .west)
+
+        var rng = SeededGenerator(seed: 1)
+        let action = HeuristicBot(difficulty: .hard)
+            .decide(engine: engine, seat: .south, rng: &rng)
+        if case .play(let combo) = action {
+            XCTAssertEqual(combo.kind, .single)
+            XCTAssertNotEqual(combo.cards[0].rank, .king,
+                              "must not split the planned pair of Kings")
+            XCTAssertNotEqual(combo.cards[0].rank, .queen,
+                              "must not split the planned pair of Queens")
+        } else {
+            XCTFail("bot should beat a cheap single while holding lone 9")
+        }
+    }
+
+    /// New bots must stay legal across many seeded hands.
+    func testPlannerBotFuzz() throws {
+        let bots: [Seat: any Bot] = [
+            .south: HeuristicBot(difficulty: .hard, style: .controller),
+            .east: HeuristicBot(difficulty: .normal, style: .charger),
+            .north: HeuristicBot(difficulty: .hard, style: .balanced),
+            .west: HeuristicBot(difficulty: .normal, style: .balanced),
+        ]
+        var previous: [Seat]? = nil
+        for seed in 0..<80 {
+            let result = try MatchRunner.playBotHand(seed: UInt64(seed + 31337), level: .five,
+                                                     previousFinishOrder: previous, bots: bots)
+            XCTAssertEqual(Set(result.finishOrder), Set(Seat.allCases))
+            previous = result.finishOrder
+        }
+    }
+}

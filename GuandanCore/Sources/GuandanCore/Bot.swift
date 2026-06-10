@@ -48,63 +48,127 @@ public struct HeuristicBot: Bot {
         }
 
         let hand = state.hands[seat]!
+        let level = state.level
+
+        // ---- 组牌: plan the hand structure and protect it ----
+        let plan = HandPlanner.partition(hand, level: level)
+        let unitSets = plan.map { Set($0.cards.map(\.id)) }
+        let moveCount = plan.count
+
+        /// A play is "clean" when it consumes whole planned units only —
+        /// it never fragments a bomb, run or pair the plan wants to keep.
+        func isClean(_ combo: Combo) -> Bool {
+            let ids = Set(combo.cards.map(\.id))
+            for unit in unitSets {
+                let hit = ids.intersection(unit)
+                if !hit.isEmpty && hit != unit { return false }
+            }
+            return true
+        }
+
+        // exit now whenever possible
+        if let out = combos.first(where: { $0.cards.count == hand.count }) {
+            return .play(out)
+        }
+
         let bombs = combos.filter { $0.kind.isBomb }
         let nonBombs = combos.filter { !$0.kind.isBomb }
+        let clean = nonBombs.filter(isClean)          // weakest-first
 
-        // Following a trick
+        let opponents = Seat.allCases.filter { $0.team != seat.team && state.isActive($0) }
+        let minOppCards = opponents.map { state.hands[$0]?.count ?? 99 }.min() ?? 99
+        let partnerCards = state.isActive(seat.partner)
+            ? (state.hands[seat.partner]?.count ?? 0) : 0
+
+        // ---- following a trick ----
         if let owner = state.trick.tableOwner, let table = state.trick.tableCombo,
            owner != seat {
-            let partnerOwns = owner == seat.partner
-            if partnerOwns {
-                // pass on partner's strong play unless we can go out now
-                let canGoOut = combos.contains { $0.cards.count == hand.count }
-                let partnerStrong = table.rankValue >= 13 || table.kind.isBomb
-                if partnerStrong && !canGoOut { return .pass }
-                // beat partner only with a cheap same-shape move
-                if let cheap = nonBombs.first, !partnerStrong { return .play(cheap) }
+            if owner == seat.partner {
+                // never outbid a winning partner; take over only when WE are
+                // about to run and their play is weak
+                let partnerWeak = table.rankValue < 9 && !table.kind.isBomb
+                if partnerWeak, moveCount <= 4, let cheap = clean.first {
+                    return .play(cheap)
+                }
                 return .pass
             }
-            // opponent owns the table
-            if let cheapest = nonBombs.first {
-                // controllers conserve big cards on cheap tables mid-hand
-                if style == .controller, cheapest.rankValue >= 13,
+
+            let ownerRunning = (state.hands[owner]?.count ?? 99) <= 6
+
+            // 阻断: an opponent close to out gets capped to the TOP, not
+            // nudged (要封封到顶) — break structures if that's what it takes
+            if ownerRunning {
+                if let top = clean.last ?? nonBombs.last { return .play(top) }
+                if let bomb = bombs.first { return .play(bomb) }
+                return .pass
+            }
+
+            // normal defence: cheapest CLEAN beat
+            if let cheap = clean.first {
+                if style == .controller, cheap.rankValue >= 13,
                    table.rankValue < 9, hand.count > 10 {
                     return .pass
                 }
-                return .play(cheapest)
+                return .play(cheap)
             }
+            // structure-breaking beats only when the trick matters
+            if let cheapBreak = nonBombs.first {
+                let worthIt = table.rankValue >= 11 || hand.count <= 8
+                    || style == .charger
+                if worthIt { return .play(cheapBreak) }
+            }
+            // bombs: stop a runner, take a rich table, or clear our own road
             if let bomb = bombs.first {
                 let tableValuable = table.rankValue >= 12 || table.cards.count >= 4
-                    || hand.count <= 8
+                let exitAfterBomb = moveCount <= 3
                 let useBomb: Bool
                 switch style {
-                case .charger: useBomb = true                       // 见之必盖
-                case .controller: useBomb = table.kind.isBomb == false && hand.count <= 8
-                case .balanced: useBomb = difficulty == .hard ? tableValuable : true
+                case .charger: useBomb = tableValuable || exitAfterBomb
+                case .controller: useBomb = exitAfterBomb && !table.kind.isBomb
+                case .balanced: useBomb = tableValuable || exitAfterBomb || hand.count <= 8
                 }
                 if useBomb { return .play(bomb) }
             }
             return .pass
         }
 
-        // Leading: prefer shedding many cards with low rank; keep bombs intact.
-        let bombCards = Set(bombs.flatMap { $0.cards })
-        let preserving = nonBombs.filter { combo in
-            difficulty == .hard ? combo.cards.allSatisfy { !bombCards.contains($0) } : true
+        // ---- leading ----
+        // 喂牌: partner is short and we are not racing — serve small units
+        if partnerCards > 0, partnerCards <= 6, moveCount > 5 {
+            if let feed = clean.filter({ $0.cards.count <= 2 && $0.rankValue <= 10 })
+                .min(by: { $0.rankValue < $1.rankValue }) {
+                return .play(feed)
+            }
         }
-        let candidates = preserving.isEmpty ? nonBombs : preserving
-        if candidates.isEmpty { return .play(combos.first!) } // only bombs left
 
-        let best = candidates.min { a, b in
-            score(leading: a, handCount: hand.count) > score(leading: b, handCount: hand.count)
+        let pool = clean.isEmpty ? nonBombs : clean
+        guard !pool.isEmpty else { return .play(combos.first!) }   // only bombs left
+
+        // 防顺: an opponent is short — don't hand them cheap rides; lead a
+        // multi-card unit or our strongest single lane instead
+        if minOppCards <= 6 {
+            if let multi = pool.filter({ $0.cards.count >= 2 })
+                .min(by: { $0.rankValue < $1.rankValue }) {
+                return .play(multi)
+            }
+            if let strong = pool.last { return .play(strong) }   // big single jams
+        }
+
+        // normal lead: shed the weakest unit; 尾牌原理 — among small lone
+        // singles lead the BIGGER one and park the runt for last
+        let best = pool.min { a, b in
+            leadScore(a) < leadScore(b) ? false : true
         }!
         return .play(best)
     }
 
-    /// Higher score = better lead. Shed more cards, lower ranks first.
-    private func score(leading combo: Combo, handCount: Int) -> Double {
+    /// Higher = better lead. Multi-card units first, low ranks first; small
+    /// singles invert (bigger small single leads, smallest stays as tail).
+    private func leadScore(_ combo: Combo) -> Double {
         var s = Double(combo.cards.count) * 10 - Double(combo.rankValue)
-        if combo.cards.count == handCount { s += 1000 }   // going out wins outright
+        if combo.kind == .single, combo.rankValue <= 10 {
+            s += Double(combo.rankValue) * 1.6   // prefer 6 over 3 as the lead
+        }
         return s
     }
 }
