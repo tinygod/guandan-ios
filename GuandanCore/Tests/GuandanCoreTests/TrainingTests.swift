@@ -157,3 +157,22 @@ final class LeadOrderTests: XCTestCase {
                        "leading the 6 first (keeping 3 as tail) is correct")
     }
 }
+
+final class BotStyleTests: XCTestCase {
+    /// Styled bots must stay legal and terminate across many seeded hands.
+    func testStyledBotsPlayLegalHands() throws {
+        let bots: [Seat: any Bot] = [
+            .south: HeuristicBot(difficulty: .hard, style: .controller),
+            .east: HeuristicBot(difficulty: .hard, style: .charger),
+            .north: HeuristicBot(difficulty: .normal, style: .controller),
+            .west: HeuristicBot(difficulty: .normal, style: .charger),
+        ]
+        var previous: [Seat]? = nil
+        for seed in 0..<60 {
+            let result = try MatchRunner.playBotHand(seed: UInt64(seed + 7777), level: .five,
+                                                     previousFinishOrder: previous, bots: bots)
+            XCTAssertEqual(Set(result.finishOrder), Set(Seat.allCases))
+            previous = result.finishOrder
+        }
+    }
+}

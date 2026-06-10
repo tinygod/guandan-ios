@@ -4,6 +4,13 @@ public enum BotDifficulty: String, CaseIterable, Codable, Sendable {
     case easy, normal, hard
 }
 
+/// Play personality (丁华：控制型 vs 冲锋型).
+public enum BotStyle: String, CaseIterable, Codable, Sendable {
+    case balanced
+    case controller   // 控制型：节约牌力，留大牌封盖，长于忍耐
+    case charger      // 冲锋型：见牌就盖，宁愿自己不舒服也让对手不舒服
+}
+
 public protocol Bot: Sendable {
     func decide(engine: GameEngine, seat: Seat, rng: inout SeededGenerator) -> PlayerAction
 }
@@ -19,9 +26,11 @@ public protocol Bot: Sendable {
 ///   pushes harder when close to finishing.
 public struct HeuristicBot: Bot {
     public let difficulty: BotDifficulty
+    public let style: BotStyle
 
-    public init(difficulty: BotDifficulty = .normal) {
+    public init(difficulty: BotDifficulty = .normal, style: BotStyle = .balanced) {
         self.difficulty = difficulty
+        self.style = style
     }
 
     public func decide(engine: GameEngine, seat: Seat,
@@ -57,13 +66,22 @@ public struct HeuristicBot: Bot {
             }
             // opponent owns the table
             if let cheapest = nonBombs.first {
-                // hard bots avoid feeding high cards early for tiny tables
+                // controllers conserve big cards on cheap tables mid-hand
+                if style == .controller, cheapest.rankValue >= 13,
+                   table.rankValue < 9, hand.count > 10 {
+                    return .pass
+                }
                 return .play(cheapest)
             }
             if let bomb = bombs.first {
                 let tableValuable = table.rankValue >= 12 || table.cards.count >= 4
                     || hand.count <= 8
-                let useBomb = difficulty == .hard ? tableValuable : true
+                let useBomb: Bool
+                switch style {
+                case .charger: useBomb = true                       // 见之必盖
+                case .controller: useBomb = table.kind.isBomb == false && hand.count <= 8
+                case .balanced: useBomb = difficulty == .hard ? tableValuable : true
+                }
                 if useBomb { return .play(bomb) }
             }
             return .pass

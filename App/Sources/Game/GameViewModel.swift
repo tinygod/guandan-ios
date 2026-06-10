@@ -33,8 +33,12 @@ final class GameViewModel {
         case .normal: .normal
         case .hard: .hard
         }
-        for seat in [Seat.east, .north, .west] {
-            bots[seat] = HeuristicBot(difficulty: botDifficulty)
+        // each table gets personalities (taught in Reading Opponents)
+        var styleRng = SeededGenerator(seed: seed)
+        let styles: [BotStyle] = [.controller, .charger, .balanced].shuffled(using: &styleRng)
+        for (i, seat) in [Seat.east, .north, .west].enumerated() {
+            bots[seat] = HeuristicBot(difficulty: botDifficulty,
+                                      style: botDifficulty == .easy ? .balanced : styles[i])
         }
         startHand()
     }

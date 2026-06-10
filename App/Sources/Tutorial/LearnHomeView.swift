@@ -55,12 +55,15 @@ struct LearnHomeView: View {
 
     private func stageView(_ stage: Lessons.Stage) -> some View {
         let unlocked = progress.isStageUnlocked(stage)
+        let stageDone = progress.fraction(of: stage) >= 1.0
         return VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
                 Text("\(stage.emoji) Stage \(stage.rawValue) · \(stage.title)")
                     .font(.heading(18))
                     .foregroundStyle(unlocked ? Theme.goldSoft : Theme.mint.opacity(0.6))
-                if !unlocked {
+                if stageDone {
+                    Text("🏅").font(.system(size: 16))
+                } else if !unlocked {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 13)).foregroundStyle(Theme.mint.opacity(0.6))
                 }

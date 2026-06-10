@@ -51,7 +51,7 @@ private struct WildLadderDemo: View {
 
 struct BombTimingLesson: View {
     var body: some View {
-        PagedLessonView(lessonId: 23, pages: [
+        PagedLessonView(lessonId: 26, pages: [
             AnyView(TechPage(
                 title: "Bombs are tempo, not points",
                 body: "A bomb doesn't score — it STEALS THE LEAD. Its whole value is choosing the moment the table resets to you. Spend it like money, not like fireworks.",

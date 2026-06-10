@@ -62,7 +62,7 @@ extension LessonScripts {
 
         return ScriptedLesson(
             lessonId: 22,
-            title: "Endgame Lines",
+            title: "Four Ways to First",
             level: .two,
             hands: [
                 .south: [s3, s6a, s6b, sA],
@@ -74,7 +74,8 @@ extension LessonScripts {
             ],
             firstLeader: .south,
             steps: [
-                .coach("Endgame drill: 4 cards left — a lone ♣3, a pair of 6s, and an Ace. STOP. Plan your exit before touching anything."),
+                .coach("There are four roads to 1st place: BOMB out (fire escorts everything), CHARGE out (your last big play just happens to be unbeatable), LISTEN out (one move left, partner delivers), and AMBUSH out (a 6-card tube nobody saw coming). Most wins are charges and listens."),
+                .coach("This drill is a CHARGE. 4 cards left — a lone ♣3, a pair of 6s, and an Ace. STOP. Plan the exit before touching anything."),
                 .coach("Count your exits: the Ace wins a trick. The 6s only walk if everyone passes. The 3 can NEVER win. So the 3 must go while your Ace can still win back the lead."),
                 .humanPlay([s3], "Shed the dead card — lead the 3."),
                 .botPlays(.east, [e9], "Lena takes it cheap with a 9."),
