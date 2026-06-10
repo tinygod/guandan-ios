@@ -4,6 +4,7 @@ import SwiftUI
 /// online modes shown as Coming Soon).
 struct LobbyView: View {
     @Environment(Router.self) private var router
+    @Environment(LessonProgress.self) private var progress
     @State private var comingSoonShown = false
 
     var body: some View {
@@ -14,14 +15,26 @@ struct LobbyView: View {
                 VStack(spacing: 16) {
                     header
 
-                    PanelCard {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Label("Continue Learning", systemImage: "graduationcap.fill")
-                                .font(.heading(18))
-                                .foregroundStyle(Theme.goldSoft)
-                            Text("Lessons arrive in the next update — jump into practice to learn by playing.")
-                                .font(.body(14))
-                                .foregroundStyle(Theme.mint)
+                    Button { router.go(.learn) } label: {
+                        PanelCard {
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Label("Continue Learning", systemImage: "graduationcap.fill")
+                                        .font(.heading(18))
+                                        .foregroundStyle(Theme.goldSoft)
+                                    Spacer()
+                                    Image(systemName: "chevron.right").foregroundStyle(Theme.mint)
+                                }
+                                if let next = progress.nextLesson {
+                                    Text("Next: Lesson \(next.id) · \(next.title)")
+                                        .font(.body(14)).foregroundStyle(Theme.mint)
+                                } else {
+                                    Text("All 5 lessons complete 🎓")
+                                        .font(.body(14)).foregroundStyle(Theme.mint)
+                                }
+                                ProgressView(value: progress.fractionComplete)
+                                    .tint(Theme.gold)
+                            }
                         }
                     }
 

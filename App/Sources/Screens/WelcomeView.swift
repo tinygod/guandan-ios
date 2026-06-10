@@ -45,7 +45,7 @@ struct WelcomeView: View {
 
                 VStack(spacing: 12) {
                     PrimaryButton(title: "Learn in 5 minutes", icon: "graduationcap.fill") {
-                        router.go(.lobby)   // tutorial lands in Sprint 5; lobby for now
+                        router.go(.learn)
                     }
                     SecondaryButton(title: "I already know how to play") {
                         router.go(.lobby)
