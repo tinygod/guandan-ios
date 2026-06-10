@@ -20,86 +20,75 @@ struct CardView: View {
 
     var body: some View {
         ZStack {
-            // stock + gold hairline inset
-            RoundedRectangle(cornerRadius: width * 0.13)
-                .fill(LinearGradient(colors: [Theme.ivory, Theme.ivoryDeep],
-                                     startPoint: .topLeading, endPoint: .bottomTrailing))
-            RoundedRectangle(cornerRadius: width * 0.09)
-                .strokeBorder(Theme.gold.opacity(0.5), lineWidth: max(0.5, width * 0.012))
-                .padding(width * 0.055)
+            // clean white stock (reference style)
+            RoundedRectangle(cornerRadius: width * 0.12)
+                .fill(Color(hex: 0xFEFDFA))
 
-            // corner index — horizontal rank+suit so a thin stacked strip
-            // still shows both; jokers spell JOKER vertically (classic style)
-            Group {
-                if card.rank.isJoker {
-                    VStack(spacing: -width * 0.015) {
-                        ForEach(Array("JOKER".enumerated()), id: \.offset) { _, ch in
-                            Text(String(ch))
-                                .font(.system(size: width * 0.19,
-                                              weight: .heavy, design: .serif))
-                        }
-                    }
-                } else {
-                    HStack(spacing: width * 0.05) {
-                        Text(card.rank.shortName)
-                            .font(.system(size: width * 0.34, weight: .bold, design: .serif))
-                        if let suit = card.suit {
-                            Text(suit.symbol).font(.system(size: width * 0.3))
-                        }
+            if card.rank.isJoker {
+                // vertical JOKER lettering + mascot
+                VStack(spacing: -width * 0.02) {
+                    ForEach(Array("JOKER".enumerated()), id: \.offset) { _, ch in
+                        Text(String(ch))
+                            .font(.system(size: width * 0.2, weight: .heavy, design: .serif))
                     }
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(EdgeInsets(top: width * 0.05, leading: width * 0.08,
-                                bottom: 0, trailing: 0))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .padding(EdgeInsets(top: width * 0.05, leading: width * 0.09,
+                                    bottom: 0, trailing: 0))
+                Text("🃏").font(.system(size: width * 0.46))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity,
+                           alignment: .bottomTrailing)
+                    .padding(EdgeInsets(top: 0, leading: 0,
+                                        bottom: width * 0.1, trailing: width * 0.08))
+            } else {
+                // BIG rank top-left, suit directly below it
+                VStack(alignment: .leading, spacing: -width * 0.06) {
+                    Text(card.rank.shortName)
+                        .font(.system(size: width * 0.46, weight: .heavy))
+                    Text(card.suit?.symbol ?? "")
+                        .font(.system(size: width * 0.34))
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .padding(EdgeInsets(top: width * 0.03, leading: width * 0.09,
+                                    bottom: 0, trailing: 0))
 
-            // center motif
-            centerMotif
-
-            // 逢人配 ribbon
-            if wildBadge {
-                Text("WILD")
-                    .font(.system(size: width * 0.13, weight: .black, design: .rounded))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, width * 0.08).padding(.vertical, width * 0.025)
-                    .background(Theme.coral, in: Capsule())
+                // giant suit pip filling the bottom
+                Text(card.suit?.symbol ?? "")
+                    .font(.system(size: width * 0.78))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    .padding(.bottom, width * 0.08)
+                    .padding(.bottom, width * 0.02)
+            }
+
+            // 逢人配: gold heart at top-right + WILD ribbon bottom-left
+            if wildBadge {
+                Text("♥")
+                    .font(.system(size: width * 0.2, weight: .bold))
+                    .foregroundStyle(Theme.ink)
+                    .padding(width * 0.05)
+                    .background(Theme.gold, in: Circle())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                    .padding(EdgeInsets(top: width * 0.05, leading: 0,
+                                        bottom: 0, trailing: width * 0.05))
+                Text("WILD")
+                    .font(.system(size: width * 0.12, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, width * 0.07).padding(.vertical, width * 0.02)
+                    .background(Theme.coral, in: Capsule())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                    .padding(EdgeInsets(top: 0, leading: width * 0.05,
+                                        bottom: width * 0.05, trailing: 0))
             }
         }
         .foregroundStyle(isRed ? Theme.cardRed : Theme.ink)
         .frame(width: width, height: width * 1.4)
         .overlay(
-            RoundedRectangle(cornerRadius: width * 0.13)
-                .strokeBorder(highlighted ? Theme.gold : .black.opacity(0.15),
+            RoundedRectangle(cornerRadius: width * 0.12)
+                .strokeBorder(highlighted ? Theme.gold : .black.opacity(0.18),
                               lineWidth: highlighted ? 2.5 : 0.8)
         )
-        .shadow(color: .black.opacity(0.3), radius: 3, y: 2)
+        .shadow(color: .black.opacity(0.25), radius: 2.5, y: 1.5)
         .offset(y: selected ? -16 : 0)
         .animation(.spring(duration: 0.2), value: selected)
-    }
-
-    @ViewBuilder
-    private var centerMotif: some View {
-        if card.rank.isJoker {
-            Text("🃏").font(.system(size: width * 0.4))
-                .offset(x: width * 0.1, y: width * 0.24)
-        } else if isCourt {
-            ZStack {
-                RoundedRectangle(cornerRadius: width * 0.06)
-                    .strokeBorder(Theme.gold.opacity(0.7), lineWidth: max(0.6, width * 0.015))
-                    .frame(width: width * 0.46, height: width * 0.58)
-                    .rotationEffect(.degrees(45))
-                Text(card.rank.shortName)
-                    .font(.system(size: width * 0.34, weight: .bold, design: .serif))
-            }
-            .offset(y: width * 0.22)
-        } else {
-            Text(card.suit?.symbol ?? "")
-                .font(.system(size: width * 0.5))
-                .shadow(color: Theme.gold.opacity(0.35), radius: 0.5, x: 1, y: 1)
-                .offset(y: width * 0.22)
-        }
     }
 }
 

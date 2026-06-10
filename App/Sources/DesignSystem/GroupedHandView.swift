@@ -63,28 +63,21 @@ struct GroupedHandView: View {
     var body: some View {
         GeometryReader { geo in
             let cols = columns
-            let spacing: CGFloat = 5
-            let cardW = min(66, max(40, (geo.size.width - spacing * CGFloat(cols.count - 1))
-                                        / CGFloat(cols.count)))
+            let cardW = min(76, max(46, geo.size.width / CGFloat(cols.count)))
             let cardH = cardW * 1.4
-            // step exposes the full rank+suit index row of covered cards
-            let stackStep: CGFloat = cardW * 0.44
+            // step exposes the big rank AND the suit beneath it (reference style)
+            let stackStep: CGFloat = cardW * 0.58
 
-            HStack(alignment: .bottom, spacing: spacing) {
+            HStack(alignment: .bottom, spacing: 0) {
                 ForEach(cols) { column in
                     columnView(column, cardW: cardW, cardH: cardH, step: stackStep)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
-        .frame(height: maxColumnHeight())
-    }
-
-    private func maxColumnHeight() -> CGFloat {
-        let maxStack = columns.map(\.count).max() ?? 1
-        // estimate with a mid-size card; GeometryReader refines actual width
-        let cardW: CGFloat = 56
-        return cardW * 1.4 + CGFloat(min(maxStack, 8) - 1) * cardW * 0.44 + 20
+        // base row + one stacked layer stays inside; taller stacks rise
+        // freely over the felt like the reference app (no clipping)
+        .frame(height: 60 * 1.4 + 60 * 0.58 + 18)
     }
 
     private func columnView(_ column: Column, cardW: CGFloat, cardH: CGFloat,
