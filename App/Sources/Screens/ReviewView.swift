@@ -1,4 +1,5 @@
 import SwiftUI
+import Charts
 import GuandanCore
 
 /// 复盘 — step through a finished hand with all cards face-up. Where the
@@ -24,18 +25,85 @@ struct ReviewView: View {
         step < record.actions.count ? record.actions[step] : nil
     }
 
+    enum Tab: String, CaseIterable { case replay = "Replay", momentum = "Momentum" }
+    @State private var tab: Tab = .replay
+    @State private var autoplay = false
+
     var body: some View {
         ZStack {
             Theme.background
 
-            HStack(spacing: 14) {
-                handsColumn
-                    .frame(maxWidth: .infinity)
-                rightPanel
-                    .frame(width: 320)
+            VStack(spacing: 8) {
+                Picker("", selection: $tab) {
+                    ForEach(Tab.allCases, id: \.self) { Text($0.rawValue) }
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 280)
+                .padding(.top, 8)
+
+                if tab == .replay {
+                    HStack(spacing: 14) {
+                        handsColumn.frame(maxWidth: .infinity)
+                        rightPanel.frame(width: 320)
+                    }
+                } else {
+                    momentumChart
+                }
             }
-            .padding(14)
+            .padding(.horizontal, 14).padding(.bottom, 10)
         }
+        .task(id: autoplay) {
+            while autoplay, step < record.actions.count {
+                try? await Task.sleep(for: .milliseconds(700))
+                guard autoplay else { break }
+                step += 1
+            }
+            if step >= record.actions.count { autoplay = false }
+        }
+    }
+
+    // MARK: 局势图
+
+    private var momentumChart: some View {
+        let points = record.momentum()
+        let colors: [Seat: Color] = [.south: Theme.goldSoft, .north: .green,
+                                     .east: Theme.coral, .west: .orange]
+        return VStack(spacing: 6) {
+            Chart {
+                ForEach(points) { p in
+                    LineMark(x: .value("Move", p.step), y: .value("Score", p.score),
+                             series: .value("Seat", seatName(p.seat)))
+                        .foregroundStyle(colors[p.seat] ?? .white)
+                        .interpolationMethod(.catmullRom)
+                }
+                ForEach(points.filter(\.bombPlayed)) { p in
+                    PointMark(x: .value("Move", p.step), y: .value("Score", p.score))
+                        .foregroundStyle(colors[p.seat] ?? .white)
+                        .symbolSize(120)
+                        .annotation(position: .top) { Text("💣").font(.system(size: 12)) }
+                }
+                RuleMark(x: .value("Now", step))
+                    .foregroundStyle(.white.opacity(0.3))
+            }
+            .chartYScale(domain: 0...100)
+            .chartXAxisLabel("move", alignment: .trailing)
+            .frame(maxHeight: .infinity)
+
+            HStack(spacing: 14) {
+                ForEach([Seat.south, .north, .east, .west], id: \.self) { seat in
+                    HStack(spacing: 4) {
+                        Circle().fill(colors[seat] ?? .white).frame(width: 8, height: 8)
+                        Text(seatName(seat)).font(.body(12)).foregroundStyle(Theme.mint)
+                    }
+                }
+                Spacer()
+                Button { dismiss() } label: {
+                    Text("Close").font(.heading(13)).foregroundStyle(Theme.mint)
+                }
+            }
+        }
+        .padding(12)
+        .background(.black.opacity(0.2), in: RoundedRectangle(cornerRadius: 14))
     }
 
     // MARK: all four hands, face up
@@ -154,10 +222,12 @@ struct ReviewView: View {
 
             // transport controls
             HStack(spacing: 10) {
-                control("backward.end.fill") { step = 0 }
-                control("chevron.left") { if step > 0 { step -= 1 } }
-                control("chevron.right") { if step < record.actions.count { step += 1 } }
-                control("forward.end.fill") { step = record.actions.count }
+                control("backward.end.fill") { autoplay = false; step = 0 }
+                control("chevron.left") { autoplay = false; if step > 0 { step -= 1 } }
+                control(autoplay ? "pause.fill" : "play.fill") { autoplay.toggle() }
+                control("chevron.right") { autoplay = false
+                    if step < record.actions.count { step += 1 } }
+                control("forward.end.fill") { autoplay = false; step = record.actions.count }
             }
             Slider(value: Binding(get: { Double(step) },
                                   set: { step = Int($0.rounded()) }),

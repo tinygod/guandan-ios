@@ -75,6 +75,25 @@ final class GameViewModel {
         guard let combo = selectionCombo, selectionPlayable else { return }
         apply(.play(combo), by: .south)
         selection = []
+        hintIndex = 0
+    }
+
+    // MARK: hint (提示) — cycle through legal plays, weakest first
+
+    private var hintIndex = 0
+
+    var hintAvailable: Bool {
+        guard let engine, isHumanTurn else { return false }
+        return !engine.legalCombos(for: .south).isEmpty
+    }
+
+    func hint() {
+        guard let engine, isHumanTurn else { return }
+        let candidates = engine.legalCombos(for: .south)
+        guard !candidates.isEmpty else { return }
+        let pick = candidates[hintIndex % candidates.count]
+        hintIndex += 1
+        selection = Set(pick.cards)
     }
 
     func pass() {
@@ -128,7 +147,12 @@ final class GameViewModel {
         do {
             try e.apply(action, by: seat)
             engine = e
-            lastPlays[seat] = action
+            // new trick: clear the per-seat play display
+            if e.state.trick.tableCombo == nil {
+                lastPlays = [:]
+            } else {
+                lastPlays[seat] = action
+            }
             actionLog.append((seat, action))
             if e.state.isOver {
                 finishHand()
