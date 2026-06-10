@@ -44,6 +44,8 @@ struct GameTableView: View {
                                 mode: sortMode,
                                 selection: model.selection,
                                 lockedGroups: model.displayGroups) { model.toggle($0) }
+                    // sink the base row into the screen edge (reference style)
+                    .offset(y: 26)
             }
             .padding(.horizontal, 12)
             .padding(.bottom, 2)
