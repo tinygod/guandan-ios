@@ -36,6 +36,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift"
         },
         {
@@ -53,6 +57,7 @@
       "objects" : [
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Card.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Combo.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/ComboCompare.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Deck.swift.o"
       ],
       "otherArguments" : [
@@ -116,6 +121,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/ComboCompare.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Deck.swift.o"
         },
         {
@@ -127,6 +136,7 @@
       "sources" : [
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Card.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Combo.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift"
       ],
       "tempsPath" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build",
@@ -238,6 +248,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboCompareTests.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift"
         },
         {
@@ -258,6 +272,7 @@
       "moduleOutputPath" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/GuandanCoreTests.swiftmodule",
       "objects" : [
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/CardDeckTests.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboCompareTests.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboDetectTests.swift.o"
       ],
       "otherArguments" : [
@@ -316,6 +331,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboCompareTests.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboDetectTests.swift.o"
         },
         {
@@ -326,6 +345,7 @@
       "prepareForIndexing" : false,
       "sources" : [
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/CardDeckTests.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboCompareTests.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift"
       ],
       "tempsPath" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build",
@@ -345,6 +365,7 @@
       "-c",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Card.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Combo.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift",
       "-I",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules",
@@ -466,6 +487,7 @@
       "guandancore",
       "-c",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/CardDeckTests.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboCompareTests.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboDetectTests.swift",
       "-I",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules",
@@ -570,6 +592,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift"
         }
       ],
@@ -606,6 +632,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/ComboCompare.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Deck.swift.o"
         },
         {
@@ -615,6 +645,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/CardDeckTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboCompareTests.swift.o"
         },
         {
           "kind" : "file",
@@ -633,6 +667,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/CardDeckTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/ComboCompareTests.swift"
         },
         {
           "kind" : "file",
