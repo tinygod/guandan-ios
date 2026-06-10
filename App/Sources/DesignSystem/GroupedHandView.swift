@@ -64,10 +64,11 @@ struct GroupedHandView: View {
         GeometryReader { geo in
             let cols = columns
             let spacing: CGFloat = 5
-            let cardW = min(46, max(34, (geo.size.width - spacing * CGFloat(cols.count - 1))
+            let cardW = min(66, max(40, (geo.size.width - spacing * CGFloat(cols.count - 1))
                                         / CGFloat(cols.count)))
             let cardH = cardW * 1.4
-            let stackStep: CGFloat = min(15, cardH * 0.26)
+            // step exposes the full rank+suit index row of covered cards
+            let stackStep: CGFloat = cardW * 0.44
 
             HStack(alignment: .bottom, spacing: spacing) {
                 ForEach(cols) { column in
@@ -81,8 +82,9 @@ struct GroupedHandView: View {
 
     private func maxColumnHeight() -> CGFloat {
         let maxStack = columns.map(\.count).max() ?? 1
-        let cardH: CGFloat = 46 * 1.4
-        return cardH + CGFloat(min(maxStack, 8) - 1) * 15 + 20  // + selection lift
+        // estimate with a mid-size card; GeometryReader refines actual width
+        let cardW: CGFloat = 56
+        return cardW * 1.4 + CGFloat(min(maxStack, 8) - 1) * cardW * 0.44 + 20
     }
 
     private func columnView(_ column: Column, cardW: CGFloat, cardH: CGFloat,

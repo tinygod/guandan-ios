@@ -28,18 +28,21 @@ struct CardView: View {
                 .strokeBorder(Theme.gold.opacity(0.5), lineWidth: max(0.5, width * 0.012))
                 .padding(width * 0.055)
 
-            // corner index
-            VStack(alignment: .leading, spacing: -width * 0.02) {
-                Text(card.rank.isJoker ? "J" : card.rank.shortName)
-                    .font(.system(size: width * 0.30, weight: .bold, design: .serif))
+            // corner index — HORIZONTAL so a thin stacked strip still shows
+            // both rank and suit
+            HStack(spacing: width * 0.05) {
+                Text(card.rank.isJoker ? (card.rank == .bigJoker ? "JOKER" : "joker")
+                     : card.rank.shortName)
+                    .font(.system(size: card.rank.isJoker ? width * 0.2 : width * 0.34,
+                                  weight: .bold, design: .serif))
                 if let suit = card.suit {
-                    Text(suit.symbol).font(.system(size: width * 0.2))
+                    Text(suit.symbol).font(.system(size: width * 0.3))
                 } else {
-                    Text("★").font(.system(size: width * 0.18))
+                    Text("★").font(.system(size: width * 0.22))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(EdgeInsets(top: width * 0.08, leading: width * 0.1,
+            .padding(EdgeInsets(top: width * 0.05, leading: width * 0.08,
                                 bottom: 0, trailing: 0))
 
             // center motif

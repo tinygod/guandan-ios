@@ -181,10 +181,10 @@ struct GameTableView: View {
             } else {
                 Text(model.isHumanTurn ? "Your lead — play anything" : "New trick")
                     .font(.body(14)).foregroundStyle(Theme.mint.opacity(0.8))
-                    .padding(.vertical, 26)
+                    .padding(.vertical, 14)
             }
         }
-        .frame(maxWidth: .infinity, minHeight: 78)
+        .frame(maxWidth: .infinity, minHeight: 56)
         .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 20))
     }
 
