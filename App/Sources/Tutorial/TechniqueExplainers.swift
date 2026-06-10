@@ -115,6 +115,14 @@ struct CardCountingLesson: View {
                 body: "Once both big jokers have hit the table, the strongest single left is a level card — and if those are gone too, your Ace is unbeatable. Singles you were scared to lead become winners.",
                 diagram: AnyView(Text("🃏🃏 gone → A♠ = 👑").font(.system(size: 26)).foregroundStyle(.white)))),
             AnyView(TechPage(
+                title: "Newly-crowned tops",
+                body: "Cards get promoted mid-hand: one big joker and one small joker gone → your LEVEL PAIR is now the biggest pair alive. All four natural level cards gone → your triple Aces rule every full house. Track promotions and cash them as forcing plays.",
+                diagram: AnyView(HStack(spacing: -12) {
+                    CardView(card: Card(rank: .ace, suit: .spades), width: 42, highlighted: true)
+                    CardView(card: Card(rank: .ace, suit: .hearts), width: 42, highlighted: true)
+                    CardView(card: Card(rank: .ace, suit: .clubs), width: 42, highlighted: true)
+                }))),
+            AnyView(TechPage(
                 title: "Watch the card counters",
                 body: "Every opponent's card count is on screen. At 5 cards or fewer, assume they hold an exit plan — stop leading the shapes they're waiting for, and save a bomb for their last play.",
                 diagram: AnyView(HStack(spacing: 14) {

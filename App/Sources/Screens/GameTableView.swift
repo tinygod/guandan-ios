@@ -11,6 +11,7 @@ struct GameTableView: View {
     }
 
     @State private var reviewRecord: HandRecord?
+    @State private var hudOn = false
 
     var body: some View {
         ZStack {
@@ -30,6 +31,16 @@ struct GameTableView: View {
             }
             .padding(.horizontal, 14)
             .padding(.bottom, 4)
+
+            // counting HUD (记牌) — toggleable practice aid
+            VStack {
+                HStack {
+                    Spacer()
+                    countingHUD
+                }
+                Spacer()
+            }
+            .padding(.trailing, 10).padding(.top, 6)
 
             if let order = model.handResult {
                 RoundResultOverlay(order: order, model: model) {
@@ -68,6 +79,39 @@ struct GameTableView: View {
     }
 
     private var levelName: String { rankName(model.state?.level) }
+
+    /// Key-card tracker (taught in Counting & New Tops).
+    private var countingHUD: some View {
+        Button { withAnimation { hudOn.toggle() } } label: {
+            if hudOn {
+                let counts = model.keyCounts
+                HStack(spacing: 10) {
+                    hudItem("JOKER", counts.bigJokersLeft, max: 2)
+                    hudItem("joker", counts.smallJokersLeft, max: 2)
+                    hudItem("LVL", counts.levelCardsLeft, max: 8)
+                    hudItem("💣", counts.bombsSeen, max: nil)
+                }
+                .padding(.horizontal, 12).padding(.vertical, 6)
+                .background(.black.opacity(0.5), in: Capsule())
+                .overlay(Capsule().strokeBorder(Theme.gold.opacity(0.4)))
+            } else {
+                Image(systemName: "brain.head.profile")
+                    .font(.system(size: 14)).foregroundStyle(Theme.mint)
+                    .frame(width: 32, height: 32)
+                    .background(.black.opacity(0.35), in: Circle())
+            }
+        }
+    }
+
+    private func hudItem(_ label: String, _ n: Int, max: Int?) -> some View {
+        VStack(spacing: 0) {
+            Text("\(n)")
+                .font(.heading(14))
+                .foregroundStyle(max != nil && n == 0 ? Theme.coral : Theme.goldSoft)
+            Text(label).font(.system(size: 8, weight: .semibold))
+                .foregroundStyle(Theme.mint)
+        }
+    }
 
     private func rankName(_ rank: Rank?) -> String {
         guard let rank else { return "–" }

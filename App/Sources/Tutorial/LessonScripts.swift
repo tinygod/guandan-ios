@@ -116,12 +116,13 @@ enum LessonScripts {
         case 9: return tailCard
         case 10: return partnerPlay
         case 12: return bombs
+        case 16: return feeding
         case 22: return endgame
         default: return nil
         }
     }
 
     static var allScripted: [ScriptedLesson] {
-        [firstHand, followOrPass, tailCard, partnerPlay, bombs, endgame]
+        [firstHand, followOrPass, tailCard, partnerPlay, bombs, feeding, endgame]
     }
 }

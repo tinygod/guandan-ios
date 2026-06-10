@@ -169,4 +169,32 @@ final class GameViewModel {
         case .west: return "Marco"
         }
     }
+
+    // MARK: counting HUD (记牌)
+
+    struct KeyCardCounts {
+        var bigJokersLeft = 2
+        var smallJokersLeft = 2
+        var levelCardsLeft = 8
+        var bombsSeen = 0
+    }
+
+    /// Remaining key cards from this hand's action log (excludes your own hand).
+    var keyCounts: KeyCardCounts {
+        var counts = KeyCardCounts()
+        var played: [Card] = []
+        for entry in actionLog {
+            if case .play(let combo) = entry.action {
+                played += combo.cards
+                if combo.kind.isBomb { counts.bombsSeen += 1 }
+            }
+        }
+        let level = engine?.state.level
+        for card in played {
+            if card.rank == .bigJoker { counts.bigJokersLeft -= 1 }
+            if card.rank == .smallJoker { counts.smallJokersLeft -= 1 }
+            if card.rank == level { counts.levelCardsLeft -= 1 }
+        }
+        return counts
+    }
 }
