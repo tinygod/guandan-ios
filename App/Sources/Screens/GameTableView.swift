@@ -1,0 +1,204 @@
+import SwiftUI
+import GuandanCore
+
+/// Mirror of the Stitch "Playing 5s" game table screen.
+struct GameTableView: View {
+    @Environment(Router.self) private var router
+    @State private var model: GameViewModel
+
+    init(difficulty: BotDifficultyChoice) {
+        _model = State(initialValue: GameViewModel(difficulty: difficulty))
+    }
+
+    var body: some View {
+        ZStack {
+            Theme.background
+
+            VStack(spacing: 0) {
+                topBar
+                Spacer(minLength: 8)
+                opponentsRow
+                Spacer(minLength: 8)
+                tableCenter
+                Spacer(minLength: 8)
+                humanArea
+            }
+            .padding(.horizontal, 12)
+
+            if let order = model.handResult {
+                RoundResultOverlay(order: order, model: model) {
+                    model.startHand()
+                } onExit: {
+                    router.home()
+                }
+            }
+        }
+        .navigationBarHidden(true)
+    }
+
+    // MARK: top bar
+
+    private var topBar: some View {
+        HStack {
+            Button { router.home() } label: {
+                Image(systemName: "xmark")
+                    .font(.heading(15))
+                    .foregroundStyle(Theme.mint)
+                    .frame(width: 36, height: 36)
+                    .background(.white.opacity(0.08), in: Circle())
+            }
+            Spacer()
+            VStack(spacing: 1) {
+                Text("Playing \(levelName)")
+                    .font(.heading(18)).foregroundStyle(Theme.goldSoft)
+                Text("Us: \(rankName(model.match.levels[.northSouth])) · Them: \(rankName(model.match.levels[.eastWest]))")
+                    .font(.body(12)).foregroundStyle(Theme.mint)
+            }
+            Spacer()
+            Color.clear.frame(width: 36, height: 36)
+        }
+        .padding(.top, 6)
+    }
+
+    private var levelName: String { rankName(model.state?.level) }
+
+    private func rankName(_ rank: Rank?) -> String {
+        guard let rank else { return "–" }
+        return rank.shortName + "s"
+    }
+
+    // MARK: opponents
+
+    private var opponentsRow: some View {
+        VStack(spacing: 10) {
+            seatBadge(.north)
+            HStack {
+                seatBadge(.west)
+                Spacer()
+                seatBadge(.east)
+            }
+        }
+    }
+
+    private func seatBadge(_ seat: Seat) -> some View {
+        let isTurn = model.state?.turn == seat && model.handResult == nil
+        let count = model.state?.hands[seat]?.count ?? 0
+        let finished = model.state?.finished.contains(seat) ?? false
+        return VStack(spacing: 4) {
+            ZStack {
+                Circle()
+                    .fill(seat.team == .northSouth ? Theme.feltLight : Theme.coralDark)
+                    .frame(width: 52, height: 52)
+                Text(String(model.seatName(seat).prefix(1)))
+                    .font(.display(22)).foregroundStyle(.white)
+                if isTurn {
+                    Circle().strokeBorder(Theme.gold, lineWidth: 3)
+                        .frame(width: 58, height: 58)
+                }
+            }
+            Text(model.seatName(seat)).font(.body(12)).foregroundStyle(Theme.mint)
+            Text(finished ? "Done 🎉" : "\(count) cards")
+                .font(.heading(11))
+                .foregroundStyle(finished ? Theme.goldSoft : .white)
+                .padding(.horizontal, 8).padding(.vertical, 3)
+                .background(.black.opacity(0.3), in: Capsule())
+
+            if case .pass = model.lastPlays[seat], model.state?.trick.tableOwner != seat {
+                Text("Pass").font(.body(11)).foregroundStyle(Theme.mint.opacity(0.8))
+            }
+        }
+    }
+
+    // MARK: table center
+
+    private var tableCenter: some View {
+        VStack(spacing: 10) {
+            if let banner = model.tributeBanner {
+                Text(banner)
+                    .font(.body(12)).foregroundStyle(Theme.goldSoft)
+                    .padding(.horizontal, 12).padding(.vertical, 6)
+                    .background(.black.opacity(0.35), in: Capsule())
+            }
+            if let table = model.state?.trick.tableCombo,
+               let owner = model.state?.trick.tableOwner {
+                Text("\(model.seatName(owner)) · \(comboName(table))")
+                    .font(.body(13)).foregroundStyle(Theme.mint)
+                HStack(spacing: -22) {
+                    ForEach(table.cards) { card in
+                        CardView(card: card, width: 48)
+                    }
+                }
+            } else {
+                Text(model.isHumanTurn ? "Your lead — play anything" : "New trick")
+                    .font(.body(14)).foregroundStyle(Theme.mint.opacity(0.8))
+                    .padding(.vertical, 26)
+            }
+        }
+        .frame(maxWidth: .infinity, minHeight: 130)
+        .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 20))
+    }
+
+    private func comboName(_ combo: Combo) -> String {
+        switch combo.kind {
+        case .single: return "Single"
+        case .pair: return "Pair"
+        case .triple: return "Triple"
+        case .fullHouse: return "Full House"
+        case .straight: return "Straight"
+        case .tube: return "Tube"
+        case .plate: return "Plate"
+        case .bomb(let size): return "\(size)-Bomb 💥"
+        case .straightFlush: return "Straight Flush 💥"
+        case .jokerBomb: return "FOUR JOKERS 👑"
+        }
+    }
+
+    // MARK: human area
+
+    private var humanArea: some View {
+        VStack(spacing: 10) {
+            if let combo = model.selectionCombo {
+                Text(comboName(combo))
+                    .font(.heading(13))
+                    .foregroundStyle(model.selectionPlayable ? Theme.goldSoft : Theme.coral)
+                    .padding(.horizontal, 12).padding(.vertical, 4)
+                    .background(.black.opacity(0.3), in: Capsule())
+            } else if !model.selection.isEmpty {
+                Text("Not a combo")
+                    .font(.heading(13)).foregroundStyle(Theme.coral)
+                    .padding(.horizontal, 12).padding(.vertical, 4)
+                    .background(.black.opacity(0.3), in: Capsule())
+            }
+
+            HandFanView(cards: model.humanHand,
+                        selection: model.selection,
+                        cardWidth: 54) { model.toggle($0) }
+
+            HStack(spacing: 12) {
+                Button {
+                    model.pass()
+                } label: {
+                    Text("Pass")
+                        .font(.heading(17)).foregroundStyle(.white.opacity(0.9))
+                        .frame(maxWidth: .infinity).padding(.vertical, 14)
+                        .background(.white.opacity(model.isHumanTurn && model.mayPass ? 0.14 : 0.05),
+                                    in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                }
+                .disabled(!(model.isHumanTurn && model.mayPass))
+
+                Button {
+                    model.playSelection()
+                } label: {
+                    Text("Play")
+                        .font(.heading(17)).foregroundStyle(.white)
+                        .frame(maxWidth: .infinity).padding(.vertical, 14)
+                        .background(model.selectionPlayable ? Theme.coral : Theme.coral.opacity(0.3),
+                                    in: RoundedRectangle(cornerRadius: Theme.cornerRadius))
+                }
+                .disabled(!model.selectionPlayable)
+            }
+            .padding(.bottom, 8)
+        }
+    }
+}
+

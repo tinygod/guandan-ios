@@ -19,6 +19,12 @@ public enum Tribute {
         public let from: Seat
         public let to: Seat
         public let card: Card
+
+        public init(from: Seat, to: Seat, card: Card) {
+            self.from = from
+            self.to = to
+            self.card = card
+        }
     }
 
     public struct Resolution: Equatable, Sendable {

@@ -184,7 +184,6 @@ extension Combo {
             results.append(combo)
         }
 
-        let byRank = Dictionary(grouping: hand, by: \.rank)
         let wilds = hand.filter { $0.isWildcard(level: level) }
         let handNoWilds = hand.filter { !$0.isWildcard(level: level) }
         let byRankNoWilds = Dictionary(grouping: handNoWilds, by: \.rank)
