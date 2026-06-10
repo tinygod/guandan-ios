@@ -1,7 +1,9 @@
+/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Bot.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Card.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Combo.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/ComboCompare.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Deck.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/GameEngine.swift
+/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift
 /Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift

@@ -2,6 +2,13 @@
   "": {
     "swift-dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/primary.swiftdeps"
   },
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Bot.swift": {
+    "dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot.d",
+    "object": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot.swift.o",
+    "swiftmodule": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot~partial.swiftmodule",
+    "swift-dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot.swiftdeps",
+    "diagnostics": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot.dia"
+  },
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Card.swift": {
     "dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Card.d",
     "object": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Card.swift.o",
@@ -36,6 +43,13 @@
     "swiftmodule": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine~partial.swiftmodule",
     "swift-dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.swiftdeps",
     "diagnostics": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.dia"
+  },
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift": {
+    "dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.d",
+    "object": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o",
+    "swiftmodule": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner~partial.swiftmodule",
+    "swift-dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swiftdeps",
+    "diagnostics": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.dia"
   },
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift": {
     "dependencies": "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.d",
