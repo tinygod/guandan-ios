@@ -22,13 +22,14 @@ struct GuandanApp: App {
             .environment(progress)
             .preferredColorScheme(.dark)
             .onAppear {
-                // dev shortcut: `simctl launch ... -route game|lobby|learn|lesson3|lesson5`
+                // dev shortcut: `simctl launch ... -route game|lobby|learn|lesson<N>`
                 if let route = UserDefaults.standard.string(forKey: "route") {
                     if route == "game" { router.go(.game(.normal)) }
                     if route == "lobby" { router.go(.lobby) }
                     if route == "learn" { router.go(.learn) }
-                    if route == "lesson3" { router.go(.lesson(3)) }
-                    if route == "lesson5" { router.go(.lesson(5)) }
+                    if route.hasPrefix("lesson"), let id = Int(route.dropFirst(6)) {
+                        router.go(.lesson(id))
+                    }
                 }
                 #if DEBUG
                 for lesson in LessonScripts.allScripted {
@@ -48,13 +49,19 @@ struct GuandanApp: App {
         switch id {
         case 1: WhatIsGuandanLesson()
         case 2: CombosLessonView()
-        case 4: ClimbToAceLesson()
-        case 7: WildcardMasteryLesson()
-        case 8: BombTimingLesson()
-        case 9: CardCountingLesson()
+        case 5: ClimbToAceLesson()
+        case 6: TributeBasicsLesson()
+        case 7: HandScoringLesson()
+        case 8: HandPlanningLesson()
+        case 11: CatchingWindLesson()
+        case 13: WildcardMasteryLesson()
+        case 20: CardCountingLesson()
+        case 23: BombTimingLesson()
         default:
             if let script = LessonScripts.lesson(for: id) {
                 ScriptedLessonView(lesson: script)
+            } else if let info = Lessons.info(id) {
+                ComingSoonLesson(info: info)
             } else {
                 LearnHomeView()
             }

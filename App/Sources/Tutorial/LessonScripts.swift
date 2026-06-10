@@ -76,7 +76,7 @@ enum LessonScripts {
         let e4a = card(.four, .spades), e4b = card(.four, .hearts)
 
         return ScriptedLesson(
-            lessonId: 5,
+            lessonId: 12,
             title: "Bombs!",
             level: .two,
             hands: [
@@ -112,12 +112,16 @@ enum LessonScripts {
     static func lesson(for id: Int) -> ScriptedLesson? {
         switch id {
         case 3: return firstHand
-        case 5: return bombs
-        case 6: return partnerPlay
-        case 10: return endgame
+        case 4: return followOrPass
+        case 9: return tailCard
+        case 10: return partnerPlay
+        case 12: return bombs
+        case 22: return endgame
         default: return nil
         }
     }
 
-    static var allScripted: [ScriptedLesson] { [firstHand, bombs, partnerPlay, endgame] }
+    static var allScripted: [ScriptedLesson] {
+        [firstHand, followOrPass, tailCard, partnerPlay, bombs, endgame]
+    }
 }

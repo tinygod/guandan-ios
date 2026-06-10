@@ -12,6 +12,13 @@ struct ReviewView: View {
 
     private var engine: GameEngine { record.engineState(afterSteps: step) }
 
+    /// Flagged mistakes for the human seat, computed once.
+    private var mistakes: [Mistake] {
+        MistakeDetector.analyze(level: record.level, initialHands: record.initialHands,
+                                firstLeader: record.firstLeader,
+                                actions: record.actions.map { ($0.seat, $0.action) })
+    }
+
     /// The action about to happen at this position (nil at the very end).
     private var upcoming: (seat: Seat, action: PlayerAction)? {
         step < record.actions.count ? record.actions[step] : nil
@@ -117,12 +124,17 @@ struct ReviewView: View {
             .frame(maxWidth: .infinity, minHeight: 84)
             .background(.black.opacity(0.2), in: RoundedRectangle(cornerRadius: 12))
 
-            // upcoming move + coach note
+            // upcoming move + coach note + mistake flags
             if let next = upcoming {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("\(seatName(next.seat)): \(next.action.reviewDescription)")
                         .font(.heading(14)).foregroundStyle(.white)
-                    if next.seat == .south, let note = coachNote(at: step) {
+                    if let mistake = mistakes.first(where: { $0.stepIndex == step }) {
+                        HStack(alignment: .top, spacing: 6) {
+                            Text("🚩")
+                            Text(mistake.note).font(.body(13)).foregroundStyle(Theme.coral)
+                        }
+                    } else if next.seat == .south, let note = coachNote(at: step) {
                         HStack(alignment: .top, spacing: 6) {
                             Text("🐼")
                             Text(note).font(.body(13)).foregroundStyle(Theme.goldSoft)

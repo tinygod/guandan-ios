@@ -5,7 +5,7 @@ import GuandanCore
 
 struct WildcardMasteryLesson: View {
     var body: some View {
-        PagedLessonView(lessonId: 7, pages: [
+        PagedLessonView(lessonId: 13, pages: [
             AnyView(TechPage(
                 title: "Your two magic cards",
                 body: "While playing level 8, the two HEART 8s are wildcards — each can stand in for ANY card except a joker. Spot them the second you pick up your hand.",
@@ -51,7 +51,7 @@ private struct WildLadderDemo: View {
 
 struct BombTimingLesson: View {
     var body: some View {
-        PagedLessonView(lessonId: 8, pages: [
+        PagedLessonView(lessonId: 23, pages: [
             AnyView(TechPage(
                 title: "Bombs are tempo, not points",
                 body: "A bomb doesn't score — it STEALS THE LEAD. Its whole value is choosing the moment the table resets to you. Spend it like money, not like fireworks.",
@@ -103,7 +103,7 @@ private struct TimingTable: View {
 
 struct CardCountingLesson: View {
     var body: some View {
-        PagedLessonView(lessonId: 9, pages: [
+        PagedLessonView(lessonId: 20, pages: [
             AnyView(TechPage(
                 title: "Count only what matters",
                 body: "Nobody tracks 108 cards. Track FOUR things: the 2 big jokers, the 2 small jokers, the 8 level cards, and every bomb that explodes. That's it.",

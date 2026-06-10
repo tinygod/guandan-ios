@@ -20,7 +20,7 @@ extension LessonScripts {
         let eQ = card(.queen, .spades)
 
         return ScriptedLesson(
-            lessonId: 6,
+            lessonId: 10,
             title: "Partner Play",
             level: .two,
             hands: [
@@ -61,7 +61,7 @@ extension LessonScripts {
         let e9 = card(.nine, .diamonds)
 
         return ScriptedLesson(
-            lessonId: 10,
+            lessonId: 22,
             title: "Endgame Lines",
             level: .two,
             hands: [

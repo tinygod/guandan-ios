@@ -117,3 +117,43 @@ final class MistakeDetectorTests: XCTestCase {
         XCTAssertTrue(mistakes.contains { $0.kind == .earlyWildcard })
     }
 }
+
+final class LeadOrderTests: XCTestCase {
+    let level = Rank.two
+
+    /// South holds lone singles 3 and 6 plus other structure; leading the 3
+    /// first violates the tail-card principle.
+    func makeHands(southExtra: [Card]) -> [Seat: [Card]] {
+        let south = [c(.three, .clubs), c(.six, .diamonds)] + southExtra
+        let filler = Deck.standard().filter { card in
+            !south.contains(where: { $0.id == card.id })
+        }
+        return [.south: south,
+                .east: Array(filler[0..<10]),
+                .north: Array(filler[10..<20]),
+                .west: Array(filler[20..<30])]
+    }
+
+    var structure: [Card] {
+        [c(.nine), c(.nine, .hearts), c(.queen), c(.queen, .hearts),
+         c(.king), c(.king, .hearts), c(.ace), c(.ace, .hearts)]
+    }
+
+    func testLeadingSmallestLoneSingleFlagged() {
+        let hands = makeHands(southExtra: structure)
+        let mistakes = MistakeDetector.analyze(
+            level: level, initialHands: hands, firstLeader: .south,
+            actions: [(.south, .play(Combo.detect([c(.three, .clubs)], level: level)!))])
+        XCTAssertTrue(mistakes.contains { $0.kind == .wrongLeadOrder },
+                      "leading the 3 while holding a lone 6 should be flagged")
+    }
+
+    func testLeadingBiggerSmallSingleNotFlagged() {
+        let hands = makeHands(southExtra: structure)
+        let mistakes = MistakeDetector.analyze(
+            level: level, initialHands: hands, firstLeader: .south,
+            actions: [(.south, .play(Combo.detect([c(.six, .diamonds)], level: level)!))])
+        XCTAssertFalse(mistakes.contains { $0.kind == .wrongLeadOrder },
+                       "leading the 6 first (keeping 3 as tail) is correct")
+    }
+}

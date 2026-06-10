@@ -134,31 +134,68 @@ private struct MiniLadder: View {
     }
 }
 
-// MARK: - Lesson 4: Climb to Ace (levels, wildcard, tribute)
+// MARK: - Lesson 5: Climb to Ace
 
 struct ClimbToAceLesson: View {
     var body: some View {
-        PagedLessonView(lessonId: 4, pages: [
-            AnyView(page(
+        PagedLessonView(lessonId: 5, pages: [
+            AnyView(LessonPage(
                 title: "Winning moves you up",
                 body: "Finish 1st and your team climbs. The further your partner gets, the bigger the jump.",
                 diagram: AnyView(DeltaTable()))),
-            AnyView(page(
+            AnyView(LessonPage(
                 title: "The level card is special",
                 body: "While your team plays level 8, all 8s outrank even Aces. And the two HEART 8s are wildcards — they can stand in for any card you need.",
                 diagram: AnyView(WildcardDemo()))),
-            AnyView(page(
-                title: "Tribute — the loser pays",
-                body: "Lose badly and you owe tribute: your single highest card goes to the winner, who hands back any card of 10 or below. Hold both big jokers to refuse!",
-                diagram: AnyView(TributeDemo()))),
+            AnyView(LessonPage(
+                title: "The Ace hand wins it all",
+                body: "First team to win a hand while playing their ACE level takes the match — but only if the winner's partner doesn't finish last. The final climb has discipline.",
+                diagram: AnyView(MiniLadder()))),
         ])
     }
+}
 
-    private func page(title: String, body bodyText: String, diagram: AnyView) -> some View {
+// MARK: - Lesson 6: Tribute Basics
+
+struct TributeBasicsLesson: View {
+    var body: some View {
+        PagedLessonView(lessonId: 6, pages: [
+            AnyView(LessonPage(
+                title: "Tribute — the loser pays",
+                body: "Lose a hand badly and you owe tribute: your single highest card (wildcards stay home) goes to the winner. If BOTH losers finish at the bottom, both pay.",
+                diagram: AnyView(TributeDemo()))),
+            AnyView(LessonPage(
+                title: "The winner gives back",
+                body: "The receiver returns any card of 10 or below. Choose that return wisely — sloppy returns hand the enemy a bomb half the time (you'll master this in Stage 3).",
+                diagram: AnyView(TributeDemo()))),
+            AnyView(LessonPage(
+                title: "Anti-tribute: the refusal",
+                body: "Holding BOTH big jokers on the losing side? Then nobody pays — the table respects firepower. It's called anti-tribute, and it feels fantastic.",
+                diagram: AnyView(HStack(spacing: 8) {
+                    CardView(card: Card(rank: .bigJoker, suit: nil), width: 56)
+                    CardView(card: Card(rank: .bigJoker, suit: nil, copy: 1), width: 56)
+                }))),
+        ])
+    }
+}
+
+/// Shared landscape lesson page: text left, diagram right.
+struct LessonPage: View {
+    let title: String
+    let body_: String
+    let diagram: AnyView
+
+    init(title: String, body: String, diagram: AnyView) {
+        self.title = title
+        self.body_ = body
+        self.diagram = diagram
+    }
+
+    var body: some View {
         HStack(spacing: 30) {
             VStack(alignment: .leading, spacing: 12) {
                 Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
-                Text(bodyText).font(.body(15)).foregroundStyle(.white.opacity(0.9))
+                Text(body_).font(.body(15)).foregroundStyle(.white.opacity(0.9))
                     .lineSpacing(4)
             }
             .frame(maxWidth: 360, alignment: .leading)

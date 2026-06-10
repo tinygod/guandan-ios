@@ -40,6 +40,7 @@ public enum MistakeKind: String, CaseIterable, Sendable {
     case beatPartner        // 压队友：盖过队友正在赢的牌
     case wastedBomb         // 浪费炸弹：炸低价值小牌桌
     case earlyWildcard      // 早烧逢人配：前期把万能牌用在普通小牌型上
+    case wrongLeadOrder     // 顺序颠倒：违反尾牌原理，小单先行放跑下家
 }
 
 public struct Mistake: Sendable {
@@ -98,9 +99,36 @@ public enum MistakeDetector {
                         kind: .earlyWildcard, stepIndex: i,
                         note: "A wildcard spent early on a small \(combo.cards.count)-card play — held, it could complete a straight flush or grow a bomb."))
                 }
+
+                // 顺序颠倒（尾牌原理）：领出最小的孤单张，手里却还有更大的
+                // 小孤单张 — 应先出大的卡下家，最小的留作尾牌。
+                if state.trick.tableOwner == nil || state.trick.tableOwner == focus,
+                   combo.kind == .single, handCount > 8,
+                   let led = combo.cards.first, !led.rank.isJoker,
+                   !led.isWildcard(level: level), led.rank != level, led.rank.rawValue <= 9 {
+                    let loneSmallSingles = loneSingles(in: state.hands[focus]!, level: level)
+                        .filter { $0.rank.rawValue <= 10 && $0.rank.rawValue > led.rank.rawValue }
+                    if !loneSmallSingles.isEmpty {
+                        let bigger = loneSmallSingles.map(\.displayName).joined(separator: " ")
+                        mistakes.append(Mistake(
+                            kind: .wrongLeadOrder, stepIndex: i,
+                            note: "Tail-card principle: lead \(bigger) first and keep \(led.displayName) as your very last card — the bigger small single blocks the next player's escapes."))
+                    }
+                }
             }
             try? engine.apply(action, by: seat)
         }
         return mistakes
+    }
+
+    /// Ranks held exactly once (no pair/triple potential), excluding jokers,
+    /// wildcards and the level rank.
+    static func loneSingles(in hand: [Card], level: Rank) -> [Card] {
+        let counts = Dictionary(grouping: hand, by: \.rank)
+        return counts.compactMap { rank, cards in
+            guard cards.count == 1, !rank.isJoker, rank != level,
+                  !cards[0].isWildcard(level: level) else { return nil }
+            return cards[0]
+        }
     }
 }
