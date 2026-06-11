@@ -49,6 +49,8 @@ public struct HandState: Sendable {
     public internal(set) var trick = TrickState()
     /// Seats that passed since the last play on this trick.
     public internal(set) var passedSinceLastPlay: Set<Seat> = []
+    /// Every card played so far this hand (记牌 memory for bots and HUDs).
+    public internal(set) var played: [Card] = []
 
     public var isOver: Bool {
         if finished.count >= 3 { return true }
@@ -117,6 +119,7 @@ public struct GameEngine: Sendable {
                 }
             }
             state.hands[seat]!.removeAll { comboSet.contains($0) }
+            state.played += validated.cards
             state.trick.tableCombo = validated
             state.trick.tableOwner = seat
             state.passedSinceLastPlay = []
