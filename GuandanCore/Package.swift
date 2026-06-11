@@ -9,6 +9,7 @@ let package = Package(
     targets: [
         .target(name: "GuandanCore"),
         .executableTarget(name: "guandan-lab", dependencies: ["GuandanCore"]),
+        .executableTarget(name: "guandan-web", dependencies: ["GuandanCore"]),
         .testTarget(name: "GuandanCoreTests", dependencies: ["GuandanCore"]),
     ]
 )
