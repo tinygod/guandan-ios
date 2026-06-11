@@ -39,15 +39,29 @@ public enum HandPlanner {
             pool.removeAll { ids.contains($0.id) }
         }
 
-        // wildcards held out as flexible assets
-        let wilds = pool.filter { $0.isWildcard(level: level) }
-        if !wilds.isEmpty { take(wilds, .wildcard) }
-
-        // joker bomb or joker pairs
+        // joker bomb
         let jokers = pool.filter { $0.rank.isJoker }
         if jokers.count == 4 {
             take(jokers, .jokerBomb)
         }
+
+        // wildcards: first try to INVEST them — complete a straight flush
+        // from 4 suited consecutive naturals, or upgrade a triple to a bomb.
+        // Only leftovers are held as flexible assets.
+        var wilds = pool.filter { $0.isWildcard(level: level) }
+        while let wild = wilds.first,
+              let four = fourFlushNeedingOne(in: pool.filter { !$0.isWildcard(level: level) }) {
+            take(four + [wild], .straightFlush)
+            wilds.removeFirst()
+        }
+        while let wild = wilds.first,
+              let triple = byRank(pool.filter { !$0.isWildcard(level: level) })
+                  .filter({ !$0.key.isJoker && $0.value.count == 3 })
+                  .max(by: { strengthOf($0.key, level) < strengthOf($1.key, level) })?.value {
+            take(triple + [wild], .bomb)
+            wilds.removeFirst()
+        }
+        if !wilds.isEmpty { take(wilds, .wildcard) }
 
         // bombs (4+ of a rank)
         for (_, cards) in byRank(pool) where cards.count >= 4 {
@@ -100,6 +114,23 @@ public enum HandPlanner {
     /// Cards whose rank appears exactly once (safe to use in straights).
     private static func singlesOnly(_ cards: [Card]) -> [Card] {
         byRank(cards).values.filter { $0.count == 1 }.flatMap { $0 }
+    }
+
+    /// Four suited cards covering 4 of 5 consecutive positions — one wildcard
+    /// away from a straight flush. Highest window wins.
+    private static func fourFlushNeedingOne(in cards: [Card]) -> [Card]? {
+        for suit in Suit.allCases {
+            var byPosition: [Int: Card] = [:]
+            for card in cards where card.suit == suit && !card.rank.isJoker {
+                byPosition[card.rank.rawValue] = card
+                if card.rank == .ace { byPosition[1] = card }
+            }
+            for top in stride(from: 14, through: 5, by: -1) {
+                let run = ((top - 4)...top).compactMap { byPosition[$0] }
+                if Set(run.map(\.id)).count == 4 { return run }
+            }
+        }
+        return nil
     }
 
     /// Highest run of `length` consecutive natural ranks, one card per rank.

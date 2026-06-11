@@ -76,8 +76,18 @@ public struct HeuristicBot: Bot {
             return .play(out)
         }
 
-        let bombs = combos.filter { $0.kind.isBomb }
-        let nonBombs = combos.filter { !$0.kind.isBomb }
+        // 逢人配 discipline: a wildcard is half a bomb — it may only be spent
+        // inside a bomb/straight flush or to go out, never as a casual play
+        func wastesWild(_ combo: Combo) -> Bool {
+            guard combo.cards.contains(where: { $0.isWildcard(level: level) }) else {
+                return false
+            }
+            return !combo.kind.isBomb && combo.cards.count != hand.count
+        }
+        let usable = combos.filter { !wastesWild($0) }
+
+        let bombs = usable.filter { $0.kind.isBomb }
+        let nonBombs = usable.filter { !$0.kind.isBomb }
         let clean = nonBombs.filter(isClean)          // weakest-first
 
         let partnerCards = state.isActive(seat.partner)

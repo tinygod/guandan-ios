@@ -285,3 +285,49 @@ final class PassPhilosophyTests: XCTestCase {
         }
     }
 }
+
+final class WildDisciplineTests: XCTestCase {
+    let level = Rank.two
+
+    /// The bot must not burn its wildcard as a casual single while holding
+    /// any other legal answer.
+    func testNeverPlaysBareWildSingle() throws {
+        let wild = Card(rank: .two, suit: .hearts)
+        let south = [wild, c(.nine), c(.queen), c(.queen, .hearts),
+                     c(.seven), c(.seven, .hearts), c(.five), c(.four)]
+        let pool = Deck.standard().filter { card in
+            !south.contains(where: { $0.id == card.id })
+        }
+        var engine = GameEngine(level: level,
+                                hands: [.south: south, .east: Array(pool[0..<8]),
+                                        .north: Array(pool[8..<16]), .west: Array(pool[16..<24])],
+                                firstLeader: .east)
+        let eastSmall = pool[0..<8].first {
+            $0.rank.rawValue >= 3 && $0.rank.rawValue <= 6 && $0.rank != level
+                && !$0.isWildcard(level: level)
+        }!
+        try engine.apply(.play(Combo.detect([eastSmall], level: level)!), by: .east)
+        try engine.apply(.pass, by: .north)
+        try engine.apply(.pass, by: .west)
+
+        var rng = SeededGenerator(seed: 5)
+        for style in BotStyle.allCases {
+            let action = HeuristicBot(difficulty: .hard, style: style)
+                .decide(engine: engine, seat: .south, rng: &rng)
+            if case .play(let combo) = action {
+                XCTAssertFalse(combo.cards.contains { $0.isWildcard(level: level) },
+                               "\(style) burned the wildcard on a casual trick")
+            }
+        }
+    }
+
+    /// Planner invests a wildcard into a 4-suited run → straight flush unit.
+    func testPlannerBuildsWildStraightFlush() {
+        let wild = Card(rank: .two, suit: .hearts)
+        let hand = [wild, c(.five, .clubs), c(.six, .clubs), c(.seven, .clubs),
+                    c(.eight, .clubs), c(.king), c(.king, .hearts)]
+        let groups = HandPlanner.partition(hand, level: level)
+        XCTAssertTrue(groups.contains { $0.kind == .straightFlush && $0.cards.count == 5 },
+                      "wild + 4 suited consecutive should become a straight flush")
+    }
+}
