@@ -184,6 +184,13 @@ struct DownstreamLesson: View {
                 body: "Blocking a straight? Don't nudge it — CAP IT. Equal straights are 20× more common than equal full houses and 500× more common than equal plates. Cap low and they ride a higher straight over you; cap to the top and their only answer is a bomb — expensive for them, perfect for you.",
                 diagram: AnyView(CapDemo()))),
             AnyView(LessonPage(
+                title: "Block by the numbers",
+                body: "Lab-tested thresholds: at 3 cards or fewer, cap with your best whole unit — they're one move from out, nothing is too expensive. At 4–6 cards, a FIRM middle beat makes riding costly without shredding your hand. Blanket max-blocking below 7 cards collapsed our test AI to an 11% win rate.",
+                diagram: AnyView(VStack(spacing: 8) {
+                    GoldPlaque(top: "≤3 CARDS", big: "CAP", bottom: "best whole unit")
+                    GoldPlaque(top: "4–6 CARDS", big: "FIRM", bottom: "make riding costly")
+                }))),
+            AnyView(LessonPage(
                 title: "Fire for fire",
                 body: "When someone plays huge to FORCE a bomb out of you — give it, instantly. More than half of all bomb-forcing plays are bluffs propping up a mediocre hand. The exception: a true 诱火 trap from a skilled player. Judge the player; when unsure against a strong one, hold.",
                 diagram: AnyView(Text("🔥 ⇄ 🔥").font(.system(size: 36))))),

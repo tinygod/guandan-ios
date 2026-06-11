@@ -67,6 +67,7 @@ struct GuandanApp: App {
         case 26: BombTimingLesson()
         case 27: ReadingOpponentsLesson()
         case 28: HowToReviewLesson()
+        case 29: AILabLesson()
         default:
             if let script = LessonScripts.lesson(for: id) {
                 ScriptedLessonView(lesson: script)

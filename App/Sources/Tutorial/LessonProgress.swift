@@ -101,6 +101,8 @@ enum Lessons {
               icon: "eye.fill", minutes: 2, stage: .endgame),
         .init(id: 28, title: "How to Review", subtitle: "Three key moves, one takeaway",
               icon: "magnifyingglass", minutes: 1, stage: .endgame),
+        .init(id: 29, title: "AI Lab Secrets", subtitle: "Five iron rules from 10,000 games",
+              icon: "flask.fill", minutes: 3, stage: .endgame),
     ]
 
     static func info(_ id: Int) -> Info? { all.first { $0.id == id } }

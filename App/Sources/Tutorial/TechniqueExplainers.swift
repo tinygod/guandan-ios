@@ -99,11 +99,30 @@ private struct TimingTable: View {
     }
 }
 
-// MARK: - Course 9: Card Counting
+// MARK: - Course 20: Counting & New Tops (with crowned-top drills)
 
 struct CardCountingLesson: View {
     var body: some View {
-        PagedLessonView(lessonId: 20, pages: [
+        QuizLessonView(
+            lessonId: 20,
+            title: "Counting & New Tops",
+            intro: countingPages,
+            questions: [
+                QuizQuestion(
+                    prompt: "Level is 8. Both big jokers are gone, ONE small joker is out, and five 8s have been played (you hold one of the remaining). Is your ♠A single safe to lead?",
+                    options: ["Yes — nothing can beat it now", "No — a small joker and 8s are still hiding out there", "Only safe if you also hold a bomb"],
+                    correct: 1,
+                    explanation: "Count: 1 small joker + 2 unseen 8s still live — three cards beat your Ace. Crowning needs ALL of them gone: 2 big + 2 small jokers and the 8s above you."),
+                QuizQuestion(
+                    prompt: "All four jokers AND all eight level cards are accounted for. You hold A♠A♥. What's the play philosophy?",
+                    options: ["Save the pair for the final trick", "Spend it freely — it wins any pair trick AND returns the lead", "Break it into two strong singles"],
+                    correct: 1,
+                    explanation: "A crowned pair is a free lead machine: nobody can answer it. Use it to reclaim control whenever you need tempo — hoarding a sure winner gains nothing."),
+            ])
+    }
+
+    private var countingPages: [AnyView] {
+        [
             AnyView(TechPage(
                 title: "Count only what matters",
                 body: "Nobody tracks 108 cards. Track FOUR things: the 2 big jokers, the 2 small jokers, the 8 level cards, and every bomb that explodes. That's it.",
@@ -129,7 +148,7 @@ struct CardCountingLesson: View {
                     badge("Lena", "3", danger: true)
                     badge("Marco", "14", danger: false)
                 }))),
-        ])
+        ]
     }
 
     private func counter(_ label: String, _ n: String) -> some View {
