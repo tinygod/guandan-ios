@@ -28,6 +28,11 @@ public struct HeuristicBot: Bot {
     public let difficulty: BotDifficulty
     public let style: BotStyle
 
+    // lab ablation flags (default on; set LAB_BLOCK=0 etc. to disable)
+    static let labBlock = ProcessInfo.processInfo.environment["LAB_BLOCK"] != "0"
+    static let labConserve = ProcessInfo.processInfo.environment["LAB_CONSERVE"] != "0"
+
+
     public init(difficulty: BotDifficulty = .normal, style: BotStyle = .balanced) {
         self.difficulty = difficulty
         self.style = style
@@ -75,8 +80,6 @@ public struct HeuristicBot: Bot {
         let nonBombs = combos.filter { !$0.kind.isBomb }
         let clean = nonBombs.filter(isClean)          // weakest-first
 
-        let opponents = Seat.allCases.filter { $0.team != seat.team && state.isActive($0) }
-        let minOppCards = opponents.map { state.hands[$0]?.count ?? 99 }.min() ?? 99
         let partnerCards = state.isActive(seat.partner)
             ? (state.hands[seat.partner]?.count ?? 0) : 0
 
@@ -93,14 +96,24 @@ public struct HeuristicBot: Bot {
                 return .pass
             }
 
-            let ownerRunning = (state.hands[owner]?.count ?? 99) <= 6
+            let ownerCards = state.hands[owner]?.count ?? 99
 
-            // 阻断: an opponent close to out gets capped to the TOP, not
-            // nudged (要封封到顶) — break structures if that's what it takes
-            if ownerRunning {
-                if let top = clean.last ?? nonBombs.last { return .play(top) }
+            // 阻断 (hard only, PRECISE): cap to the top only when the owner
+            // is genuinely one step from out; at 4–6 cards make riding
+            // expensive with a firm (not maximal) beat
+            if difficulty == .hard, Self.labBlock, ownerCards <= 3 {
+                // cap with our best WHOLE unit; break structures only as
+                // a last resort, and bomb rather than let them walk
+                if let top = clean.last { return .play(top) }
+                if let cheapBreak = nonBombs.first { return .play(cheapBreak) }
                 if let bomb = bombs.first { return .play(bomb) }
                 return .pass
+            }
+
+            // normal-difficulty bots play the cheapest beat even when it
+            // fragments a planned unit — the classic club-player habit
+            if difficulty != .hard, let naive = nonBombs.first {
+                return .play(naive)
             }
 
             // normal defence: spend small, save shape — passing is a weapon.
@@ -119,13 +132,14 @@ public struct HeuristicBot: Bot {
                 case .charger:
                     conserve = false                          // 见牌就盖的性格
                 case .controller:
-                    conserve = cheapTrick && (bigSpend || overkill)
+                    conserve = cheapTrick && bigSpend
                 case .balanced:
-                    conserve = earlyGame && cheapTrick && (bigSpend || overkill)
-                        && !shedsTrash
+                    conserve = earlyGame && cheapTrick && bigSpend && !shedsTrash
                 }
-                // never conserve while racing — tempo is worth more then
-                if conserve && moveCount > 4 { return .pass }
+                _ = overkill
+                // pass philosophy is a hard-bot skill; never conserve racing
+                if difficulty == .hard && Self.labConserve && conserve && hand.count > 16
+                    && moveCount > 4 { return .pass }
                 return .play(cheap)
             }
             // structure-breaking beats only when the trick matters
@@ -158,18 +172,8 @@ public struct HeuristicBot: Bot {
             }
         }
 
-        let pool = clean.isEmpty ? nonBombs : clean
+        let pool = (difficulty == .hard && !clean.isEmpty) ? clean : nonBombs
         guard !pool.isEmpty else { return .play(combos.first!) }   // only bombs left
-
-        // 防顺: an opponent is short — don't hand them cheap rides; lead a
-        // multi-card unit or our strongest single lane instead
-        if minOppCards <= 6 {
-            if let multi = pool.filter({ $0.cards.count >= 2 })
-                .min(by: { $0.rankValue < $1.rankValue }) {
-                return .play(multi)
-            }
-            if let strong = pool.last { return .play(strong) }   // big single jams
-        }
 
         // normal lead: shed the weakest unit; 尾牌原理 — among small lone
         // singles lead the BIGGER one and park the runt for last

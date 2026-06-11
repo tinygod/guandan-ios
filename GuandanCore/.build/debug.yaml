@@ -8,16 +8,23 @@ targets:
   "GuandanCorePackageTests-arm64-apple-macosx-debug.test": ["<GuandanCorePackageTests-arm64-apple-macosx-debug.test>"]
   "GuandanCoreTests-arm64-apple-macosx-debug.module": ["<GuandanCoreTests-arm64-apple-macosx-debug.module>"]
   "PackageStructure": ["<PackageStructure>"]
-  "main": ["<GuandanCore-arm64-apple-macosx-debug.module>"]
-  "test": ["<GuandanCore-arm64-apple-macosx-debug.module>","<GuandanCorePackageTests-arm64-apple-macosx-debug.test>","<GuandanCoreTests-arm64-apple-macosx-debug.module>"]
+  "guandan-lab-arm64-apple-macosx-debug.exe": ["<guandan-lab-arm64-apple-macosx-debug.exe>"]
+  "guandan-lab-arm64-apple-macosx-debug.module": ["<guandan-lab-arm64-apple-macosx-debug.module>"]
+  "main": ["<GuandanCore-arm64-apple-macosx-debug.module>","<guandan-lab-arm64-apple-macosx-debug.exe>","<guandan-lab-arm64-apple-macosx-debug.module>"]
+  "test": ["<GuandanCore-arm64-apple-macosx-debug.module>","<GuandanCorePackageTests-arm64-apple-macosx-debug.test>","<GuandanCoreTests-arm64-apple-macosx-debug.module>","<guandan-lab-arm64-apple-macosx-debug.exe>","<guandan-lab-arm64-apple-macosx-debug.module>"]
 default: "main"
 nodes:
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/":
     is-directory-structure: true
     content-exclusion-patterns: [".git",".build"]
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/guandan-lab/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/":
     is-directory-structure: true
     content-exclusion-patterns: [".git",".build"]
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab":
+    is-mutated: true
 commands:
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/sources":
     tool: write-auxiliary-file
@@ -48,6 +55,24 @@ commands:
     outputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/sources"]
     description: "Write auxiliary file /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/sources"
 
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab-entitlement.plist":
+    tool: write-auxiliary-file
+    inputs: ["<entitlement-plist>","<com.apple.security.get-task-allow>"]
+    outputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab-entitlement.plist"]
+    description: "Write auxiliary file /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab-entitlement.plist"
+
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Card.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Combo.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/ComboCompare.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Deck.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/HandPlanner.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/main.swift.o"]
+    outputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab.product/Objects.LinkFileList"
+
+  "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/guandan-lab/main.swift"]
+    outputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/sources"]
+    description: "Write auxiliary file /Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/sources"
+
   "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt":
     tool: write-auxiliary-file
     inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
@@ -74,6 +99,16 @@ commands:
     tool: phony
     inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/CardDeckTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboCompareTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ComboDetectTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/FuzzMatchTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/HandPlannerTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/ScoringTributeTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrainingTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/TrickLegalityTests.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/GuandanCoreTests.swiftmodule"]
     outputs: ["<GuandanCoreTests-arm64-apple-macosx-debug.module>"]
+
+  "<guandan-lab-arm64-apple-macosx-debug.exe>":
+    tool: phony
+    inputs: ["<guandan-lab-arm64-apple-macosx-debug.exe-CodeSigning>"]
+    outputs: ["<guandan-lab-arm64-apple-macosx-debug.exe>"]
+
+  "<guandan-lab-arm64-apple-macosx-debug.module>":
+    tool: phony
+    inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/main.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/guandan_lab.swiftmodule"]
+    outputs: ["<guandan-lab-arm64-apple-macosx-debug.module>"]
 
   "C.GuandanCore-arm64-apple-macosx-debug.module":
     tool: shell
@@ -103,9 +138,30 @@ commands:
     description: "Compiling Swift Module 'GuandanCoreTests' (8 sources)"
     args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","GuandanCoreTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/GuandanCoreTests.swiftmodule","-output-file-map","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCoreTests.build/sources","-I","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-index-store-path","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j18","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-swift-version","5","-plugin-path","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","guandancore"]
 
+  "C.guandan-lab-arm64-apple-macosx-debug.exe":
+    tool: shell
+    inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Bot.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Card.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Combo.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/ComboCompare.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Deck.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/GameEngine.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/HandPlanner.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/main.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab.product/Objects.LinkFileList"]
+    outputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab"]
+    description: "Linking ./.build/arm64-apple-macosx/debug/guandan-lab"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug","-o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab","-module-name","guandan_lab","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-alias","-Xlinker","_guandan_lab_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab.product/Objects.LinkFileList","-Xlinker","-rpath","-Xlinker","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.5/macosx","-Xlinker","-rpath","-Xlinker","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx","-target","arm64-apple-macosx10.13","-Xlinker","-add_ast_path","-Xlinker","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/GuandanCore.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/guandan_lab.swiftmodule","-plugin-path","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.guandan-lab-arm64-apple-macosx-debug.exe-entitlements":
+    tool: shell
+    inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab-entitlement.plist"]
+    outputs: ["<guandan-lab-arm64-apple-macosx-debug.exe-CodeSigning>"]
+    description: "Applying debug entitlements to ./.build/arm64-apple-macosx/debug/guandan-lab"
+    args: ["codesign","--force","--sign","-","--entitlements","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab-entitlement.plist","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan-lab"]
+
+  "C.guandan-lab-arm64-apple-macosx-debug.module":
+    tool: shell
+    inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/guandan-lab/main.swift","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/GuandanCore.swiftmodule","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/sources"]
+    outputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/main.swift.o","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/guandan_lab.swiftmodule"]
+    description: "Compiling Swift Module 'guandan_lab' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","guandan_lab","-emit-dependencies","-emit-module","-emit-module-path","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules/guandan_lab.swiftmodule","-output-file-map","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/output-file-map.json","-incremental","-c","@/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/guandan_lab.build/sources","-I","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx10.13","-incremental","-enable-batch-mode","-serialize-diagnostics","-index-store-path","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j18","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","guandan_lab_main","-swift-version","5","-plugin-path","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","guandancore"]
+
   "PackageStructure":
     tool: package-structure-tool
-    inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Package.swift","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Package.resolved"]
+    inputs: ["/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/guandan-lab/","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Tests/GuandanCoreTests/","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Package.swift","/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Package.resolved"]
     outputs: ["<PackageStructure>"]
     description: "Planning build"
     allow-missing-inputs: true
