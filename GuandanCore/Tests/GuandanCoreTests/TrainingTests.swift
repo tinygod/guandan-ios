@@ -241,3 +241,47 @@ final class PlannerBotTests: XCTestCase {
         }
     }
 }
+
+final class PassPhilosophyTests: XCTestCase {
+    let level = Rank.two
+
+    /// Early game, cheap single on the table, our cheapest answer is a lone
+    /// King — the disciplined bot passes instead of burning a top card.
+    func testConservesBigCardOnCheapTrickEarly() throws {
+        // 16 cards, smallest lone single is the King (others are pairs/runs)
+        let south = [c(.king),
+                     c(.queen), c(.queen, .hearts), c(.jack), c(.jack, .hearts),
+                     c(.ten), c(.ten, .hearts), c(.nine), c(.nine, .hearts),
+                     c(.eight), c(.eight, .hearts), c(.seven), c(.seven, .hearts),
+                     c(.six), c(.six, .hearts), c(.ace)]
+        let pool = Deck.standard().filter { card in
+            !south.contains(where: { $0.id == card.id })
+        }
+        let east = Array(pool[0..<16]), north = Array(pool[16..<32]), west = Array(pool[32..<48])
+        var engine = GameEngine(level: level,
+                                hands: [.south: south, .east: east,
+                                        .north: north, .west: west],
+                                firstLeader: .east)
+        let eastSmall = east.first {
+            $0.rank.rawValue >= 3 && $0.rank.rawValue <= 5 && $0.rank != level
+                && !$0.isWildcard(level: level)
+        }!
+        try engine.apply(.play(Combo.detect([eastSmall], level: level)!), by: .east)
+        try engine.apply(.pass, by: .north)
+        try engine.apply(.pass, by: .west)
+
+        var rng = SeededGenerator(seed: 2)
+        let balanced = HeuristicBot(difficulty: .hard, style: .balanced)
+            .decide(engine: engine, seat: .south, rng: &rng)
+        if case .play(let combo) = balanced {
+            XCTAssertLessThan(combo.rankValue, 12,
+                              "should not burn K/A on a cheap early trick")
+        }
+        // controllers definitely pass here
+        let controller = HeuristicBot(difficulty: .hard, style: .controller)
+            .decide(engine: engine, seat: .south, rng: &rng)
+        if case .play(let combo) = controller {
+            XCTAssertLessThan(combo.rankValue, 12, "controller must conserve")
+        }
+    }
+}

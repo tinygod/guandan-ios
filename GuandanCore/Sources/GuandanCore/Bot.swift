@@ -103,12 +103,29 @@ public struct HeuristicBot: Bot {
                 return .pass
             }
 
-            // normal defence: cheapest CLEAN beat
+            // normal defence: spend small, save shape — passing is a weapon.
+            // Beating everything beatable early leaves no late-game pivots.
             if let cheap = clean.first {
-                if style == .controller, cheap.rankValue >= 13,
-                   table.rankValue < 9, hand.count > 10 {
-                    return .pass
+                let gap = cheap.rankValue - table.rankValue
+                let earlyGame = hand.count > 14
+                let cheapTrick = table.rankValue < 9 && table.cards.count <= 2
+                    && !table.kind.isBomb
+                let bigSpend = cheap.rankValue >= 12        // J/Q/K/A/level on junk
+                let overkill = gap >= 6 && cheap.rankValue >= 11
+                let shedsTrash = cheap.cards.count <= 2 && cheap.rankValue <= 10
+
+                let conserve: Bool
+                switch style {
+                case .charger:
+                    conserve = false                          // 见牌就盖的性格
+                case .controller:
+                    conserve = cheapTrick && (bigSpend || overkill)
+                case .balanced:
+                    conserve = earlyGame && cheapTrick && (bigSpend || overkill)
+                        && !shedsTrash
                 }
+                // never conserve while racing — tempo is worth more then
+                if conserve && moveCount > 4 { return .pass }
                 return .play(cheap)
             }
             // structure-breaking beats only when the trick matters
