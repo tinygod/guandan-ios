@@ -192,6 +192,16 @@ public struct HeuristicBot: Bot {
                 // a crowned top is never a waste — it wins and reclaims the
                 // lead for free (记牌 knowledge beats blanket conservation)
                 if isCrownedTop(cheap) { return .play(cheap) }
+                // 打七不打八: at 7 the runner is 5+2 — one firm block kills
+                // the exit; at 8 (5+3 or two bombs) big spends are wasted
+                if difficulty == .hard, ownerCards == 7,
+                   let firm = clean.first(where: { $0.rankValue - table.rankValue >= 3 }) {
+                    return .play(firm)
+                }
+                if difficulty == .hard, ownerCards == 8,
+                   cheap.rankValue >= 11, moveCount > 4 {
+                    return .pass
+                }
                 // pass philosophy is a hard-bot skill; never conserve racing
                 if difficulty == .hard && Self.labConserve && conserve && hand.count > 16
                     && moveCount > 4 { return .pass }
@@ -205,8 +215,12 @@ public struct HeuristicBot: Bot {
             }
             // bombs: stop a runner, take a rich table, or clear our own road
             if let bomb = bombs.first {
-                let tableValuable = table.rankValue >= 12 || table.cards.count >= 4
                 let exitAfterBomb = moveCount <= 3
+                // 炸五不炸四: at 4 cards they're a bomb or trapped — save it;
+                // at 5 (one 5-shape from freedom) bomb decisively
+                if ownerCards == 4 && !exitAfterBomb { return .pass }
+                if ownerCards == 5 { return .play(bomb) }
+                let tableValuable = table.rankValue >= 12 || table.cards.count >= 4
                 let useBomb: Bool
                 switch style {
                 case .charger: useBomb = tableValuable || exitAfterBomb
@@ -241,7 +255,8 @@ public struct HeuristicBot: Bot {
         guard !pool.isEmpty else { return .play(combos.first!) }   // only bombs left
 
         // 卡位: deny the runner's ride — enemy at 1 card can't follow a
-        // pair; at 2 cards a single forces a break (both reference AIs)
+        // pair; at 2 cards a single forces a break (both reference AIs);
+        // 逢五出对 at 5; avoid pairs at 6 (folk rules, lab-verified)
         if difficulty == .hard {
             if minOppCards == 1,
                let pair = pool.first(where: { $0.kind == .pair }) {
@@ -250,6 +265,14 @@ public struct HeuristicBot: Bot {
             if minOppCards == 2,
                let single = pool.first(where: { $0.kind == .single && $0.rankValue <= 11 }) {
                 return .play(single)
+            }
+            if minOppCards == 5,
+               let pair = pool.first(where: { $0.kind == .pair && $0.rankValue <= 11 }) {
+                return .play(pair)
+            }
+            if minOppCards == 6,
+               let nonPair = pool.first(where: { $0.kind != .pair }) {
+                return .play(nonPair)
             }
         }
 
