@@ -33,12 +33,17 @@ final class GameViewModel {
         case .normal: .normal
         case .hard: .hard
         }
-        // each table gets personalities (taught in Reading Opponents)
+        // each table gets personalities (taught in Reading Opponents);
+        // the Expert table fields Monte-Carlo search brains instead
         var styleRng = SeededGenerator(seed: seed)
         let styles: [BotStyle] = [.controller, .charger, .balanced].shuffled(using: &styleRng)
         for (i, seat) in [Seat.east, .north, .west].enumerated() {
-            bots[seat] = HeuristicBot(difficulty: botDifficulty,
-                                      style: botDifficulty == .easy ? .balanced : styles[i])
+            if botDifficulty == .hard {
+                bots[seat] = SearchBot(rollouts: 8)
+            } else {
+                bots[seat] = HeuristicBot(difficulty: botDifficulty,
+                                          style: botDifficulty == .easy ? .balanced : styles[i])
+            }
         }
         startHand()
     }
@@ -220,7 +225,16 @@ final class GameViewModel {
             guard let engine = self.engine, engine.state.turn != .south,
                   self.handResult == nil else { return }
             let seat = engine.state.turn
-            let action = self.bots[seat]!.decide(engine: engine, seat: seat, rng: &self.rng)
+            let bot = self.bots[seat]!
+            let seed = self.rng.next()
+            // search bots can think for a second or two — keep it OFF the
+            // main actor so the table stays responsive
+            let action = await Task.detached(priority: .userInitiated) {
+                var rng = SeededGenerator(seed: seed)
+                return bot.decide(engine: engine, seat: seat, rng: &rng)
+            }.value
+            guard !Task.isCancelled, self.engine?.state.turn == seat,
+                  self.handResult == nil else { return }
             self.apply(action, by: seat)
         }
     }
