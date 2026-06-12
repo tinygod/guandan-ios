@@ -7,19 +7,24 @@ import GuandanCore
 //   swift run -c release guandan-lab <matches> <nsDiff>:<nsStyle> <ewDiff>:<ewStyle>
 //   e.g. swift run -c release guandan-lab 100 hard:balanced normal:balanced
 
-func parseBot(_ s: String) -> (BotDifficulty, BotStyle) {
+func parseBot(_ s: String) -> any Bot {
     let parts = s.split(separator: ":").map(String.init)
+    if parts[0] == "search" {
+        return SearchBot(rollouts: parts.count > 1 ? Int(parts[1]) ?? 8 : 8)
+    }
     let d = BotDifficulty(rawValue: parts[0]) ?? .normal
     let st = parts.count > 1 ? (BotStyle(rawValue: parts[1]) ?? .balanced) : .balanced
-    return (d, st)
+    return HeuristicBot(difficulty: d, style: st)
 }
 
 let args = CommandLine.arguments
 let matches = args.count > 1 ? Int(args[1]) ?? 50 : 50
-let nsCfg = args.count > 2 ? parseBot(args[2]) : (.hard, .balanced)
-let ewCfg = args.count > 3 ? parseBot(args[3]) : (.normal, .balanced)
+let nsName = args.count > 2 ? args[2] : "hard:balanced"
+let ewName = args.count > 3 ? args[3] : "normal:balanced"
+let nsBot = parseBot(nsName)
+let ewBot = parseBot(ewName)
 
-print("LAB: \(matches) matches — NS=\(nsCfg.0.rawValue):\(nsCfg.1.rawValue) vs EW=\(ewCfg.0.rawValue):\(ewCfg.1.rawValue)")
+print("LAB: \(matches) matches — NS=\(nsName) vs EW=\(ewName)")
 
 var nsWins = 0, ewWins = 0
 var totalHands = 0
@@ -30,10 +35,8 @@ for m in 0..<matches {
     var match = MatchSession()
     var previous: [Seat]? = nil
     let bots: [Seat: any Bot] = [
-        .south: HeuristicBot(difficulty: nsCfg.0, style: nsCfg.1),
-        .north: HeuristicBot(difficulty: nsCfg.0, style: nsCfg.1),
-        .east: HeuristicBot(difficulty: ewCfg.0, style: ewCfg.1),
-        .west: HeuristicBot(difficulty: ewCfg.0, style: ewCfg.1),
+        .south: nsBot, .north: nsBot,
+        .east: ewBot, .west: ewBot,
     ]
     var hands = 0
     while match.matchWinner == nil && hands < 200 {

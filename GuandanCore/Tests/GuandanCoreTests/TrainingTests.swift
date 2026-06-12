@@ -331,3 +331,20 @@ final class WildDisciplineTests: XCTestCase {
                       "wild + 4 suited consecutive should become a straight flush")
     }
 }
+
+final class SearchBotTests: XCTestCase {
+    /// Search bots must stay legal across seeded hands (small N — search is slow).
+    func testSearchBotLegality() throws {
+        let bots: [Seat: any Bot] = [
+            .south: SearchBot(rollouts: 4), .north: SearchBot(rollouts: 4),
+            .east: HeuristicBot(difficulty: .hard), .west: HeuristicBot(difficulty: .hard),
+        ]
+        var previous: [Seat]? = nil
+        for seed in 0..<5 {
+            let result = try MatchRunner.playBotHand(seed: UInt64(seed + 424242), level: .five,
+                                                     previousFinishOrder: previous, bots: bots)
+            XCTAssertEqual(Set(result.finishOrder), Set(Seat.allCases))
+            previous = result.finishOrder
+        }
+    }
+}

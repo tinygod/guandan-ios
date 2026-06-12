@@ -11,10 +11,11 @@ final class WebGame {
     var tributeNote: String?
     var rng = SeededGenerator(seed: UInt64(Date().timeIntervalSince1970 * 1000))
 
-    let bots: [Seat: HeuristicBot] = [
-        .east: HeuristicBot(difficulty: .hard, style: .charger),     // Lena 🔥
-        .north: HeuristicBot(difficulty: .hard, style: .balanced),   // Coach Wu
-        .west: HeuristicBot(difficulty: .hard, style: .controller),  // Marco 🧊
+    // Monte-Carlo search bots — they think a moment before each move
+    let bots: [Seat: any Bot] = [
+        .east: SearchBot(rollouts: 10),    // Lena
+        .north: SearchBot(rollouts: 10),   // Coach Wu
+        .west: SearchBot(rollouts: 10),    // Marco
     ]
 
     init() { startHand() }
@@ -89,7 +90,7 @@ final class WebGame {
         }
     }
 
-    func humanPlay(ids: [String]) -> String? {
+    func humanPlay(ids: [Int]) -> String? {
         guard handResult == nil, engine.state.turn == .south else { return "not your turn" }
         let hand = engine.state.hands[.south] ?? []
         let cards = hand.filter { ids.contains($0.id) }
@@ -114,7 +115,7 @@ final class WebGame {
     }
 
     var hintIndex = 0
-    func hint() -> [String] {
+    func hint() -> [Int] {
         guard engine.state.turn == .south else { return [] }
         let candidates = engine.legalCombos(for: .south)
         guard !candidates.isEmpty else { return [] }

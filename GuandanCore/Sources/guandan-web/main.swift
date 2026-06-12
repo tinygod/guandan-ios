@@ -28,7 +28,7 @@ func handle(method: String, path: String, body: Data) -> Data {
         return json(["ids": game.hint()])
     case ("POST", "/play"):
         let obj = (try? JSONSerialization.jsonObject(with: body)) as? [String: Any]
-        let ids = obj?["ids"] as? [String] ?? []
+        let ids = obj?["ids"] as? [Int] ?? []
         return json(["error": game.humanPlay(ids: ids) ?? ""])
     case ("POST", "/pass"):
         return json(["error": game.humanPass() ?? ""])

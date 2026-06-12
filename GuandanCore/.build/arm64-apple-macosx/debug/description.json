@@ -64,6 +64,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/SearchBot.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift"
         },
         {
@@ -92,6 +96,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/HandPlanner.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/MatchRunner.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/SearchBot.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Tribute.swift.o"
       ],
@@ -184,6 +189,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/SearchBot.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o"
         },
         {
@@ -206,6 +215,7 @@
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/HandPlanner.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift",
+        "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/SearchBot.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift",
         "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift"
       ],
@@ -702,6 +712,7 @@
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/HandPlanner.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/MatchRunner.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Scoring.swift",
+      "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/SearchBot.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift",
       "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Tribute.swift",
       "-I",
@@ -1090,6 +1101,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/SearchBot.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/Sources/GuandanCore/Training.swift"
         },
         {
@@ -1155,6 +1170,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/SearchBot.swift.o"
         },
         {
           "kind" : "file",
@@ -1304,6 +1323,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/SearchBot.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Training.swift.o"
         },
         {
@@ -1373,6 +1396,10 @@
         {
           "kind" : "file",
           "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/Scoring.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/yorick.w/claudecode/guandan-ios/GuandanCore/.build/arm64-apple-macosx/debug/GuandanCore.build/SearchBot.swift.o"
         },
         {
           "kind" : "file",

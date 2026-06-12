@@ -26,7 +26,7 @@ public enum HandPlanner {
     public struct Group: Identifiable, Sendable {
         public let kind: GroupKind
         public let cards: [Card]
-        public var id: String { cards.map(\.id).joined(separator: "|") }
+        public var id: String { cards.map { String($0.id) }.joined(separator: "|") }
     }
 
     public static func partition(_ hand: [Card], level: Rank) -> [Group] {

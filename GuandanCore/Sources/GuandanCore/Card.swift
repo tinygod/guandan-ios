@@ -58,8 +58,9 @@ public struct Card: Hashable, Identifiable, Codable, Sendable {
         self.copy = copy
     }
 
-    public var id: String {
-        "\(rank.rawValue)-\(suit.map { String($0.rawValue) } ?? "j")-\(copy)"
+    /// Cheap, stable identity (rank | suit | copy packed into an Int).
+    public var id: Int {
+        Int(rank.rawValue) << 8 | Int(suit?.rawValue ?? 8) << 4 | Int(copy)
     }
 
     /// Heart cards of the current level rank are wildcards (逢人配).

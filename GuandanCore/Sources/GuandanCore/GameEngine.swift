@@ -78,6 +78,12 @@ public struct GameEngine: Sendable {
         state = HandState(level: level, hands: hands, turn: firstLeader)
     }
 
+    /// Resume from a mid-hand state (used by search bots to simulate
+    /// determinized worlds).
+    public init(resuming state: HandState) {
+        self.state = state
+    }
+
     /// Legal combos for the seat right now (empty when only passing is legal).
     public func legalCombos(for seat: Seat) -> [Combo] {
         guard seat == state.turn, !state.isOver else { return [] }
@@ -174,10 +180,10 @@ extension Combo {
     public static func allPlayable(from hand: [Card], beating table: Combo?,
                                    level: Rank) -> [Combo] {
         var results: [Combo] = []
-        var seen = Set<[Card]>()
+        var seen = Set<[Int]>()
 
         func consider(_ cards: [Card]) {
-            let key = cards.sorted { $0.id < $1.id }
+            let key = cards.map(\.id).sorted()
             guard !seen.contains(key) else { return }
             seen.insert(key)
             guard let combo = Combo.detect(cards, level: level) else { return }
