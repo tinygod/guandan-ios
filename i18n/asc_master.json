@@ -1,0 +1,25 @@
+{
+  "loc_map": {
+    "en": "en-US",
+    "zh-Hans": "zh-Hans",
+    "zh-Hant": "zh-Hant",
+    "ja": "ja",
+    "ko": "ko",
+    "es": "es-ES",
+    "fr": "fr-FR",
+    "de": "de-DE",
+    "pt-BR": "pt-BR",
+    "ru": "ru",
+    "ar": "ar-SA",
+    "hi": "hi",
+    "id": "id"
+  },
+  "master": {
+    "name": "Coach Pan: Learn GuanDan",
+    "subtitle": "Master the game, hand by hand",
+    "promotional_text": "Train against an AI tuned by thousands of self-play matches, and master GuanDan one hand at a time — now in 12 languages.",
+    "keywords": "guandan,card game,strategy,tutorial,coach,AI,bomb,tractor,trick,learn,trainer,tichu",
+    "description": "Coach Pan turns GuanDan (掼蛋) — China's most-played card game, with over 100 million players — into a game you can actually master.\n\nMost apps just let you play. Coach Pan teaches you to WIN.\n\nLEARN BY DOING\n• 31 hands-on lessons, from your very first deal to championship-level endgame tactics\n• Scripted real-game scenarios with a coach explaining every single move\n• Quick quizzes that check you truly got it\n\nPLAY A SMART AI\n• Bots tuned by thousands of self-play matches and by studying champion engines\n• Card-counting, tribute strategy, blocking and feeding — the AI plays like a real partner and a real rival\n• Review any hand move-by-move with the coach\n\nWHAT YOU'LL MASTER\n• Striker vs support roles and the all-important opening-lead signals\n• Bombs, straight flushes, tubes and plates — when to build them and when to spend them\n• Tribute and return-tribute, wildcards, and engineering the caught-wind finish\n• Data-backed folk rules the champions actually use\n\nWhether you're sitting down at your very first table or sharpening up for the next tournament, Coach Pan is the partner that makes you better every hand.\n\nNow fully localized in 12 languages.",
+    "release_notes": "Welcome to Coach Pan! Learn and master GuanDan with 31 lessons, a self-play-trained AI, move-by-move review — now fully localized in 12 languages."
+  }
+}
