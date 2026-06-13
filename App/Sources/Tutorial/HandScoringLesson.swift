@@ -76,7 +76,7 @@ struct HandScoringLesson: View {
                         picked = strategy
                         if strategy == sample.answer { solved += 1 }
                     } label: {
-                        Text(strategy.rawValue)
+                        Text(tr(strategy.rawValue))
                             .font(.heading(14))
                             .foregroundStyle(buttonFG(strategy, sample))
                             .frame(maxWidth: .infinity).padding(.vertical, 11)
@@ -90,7 +90,7 @@ struct HandScoringLesson: View {
             if let picked {
                 HStack(alignment: .top, spacing: 8) {
                     Text("🐼")
-                    Text((picked == sample.answer ? "Right! " : "Not quite — ") + sample.math)
+                    Text((picked == sample.answer ? tr("Right! ") : tr("Not quite — ")) + tr(sample.math))
                         .font(.body(13)).foregroundStyle(Theme.ink)
                         .padding(10)
                         .background(Theme.ivory, in: RoundedRectangle(cornerRadius: 12))
@@ -196,7 +196,7 @@ struct ComingSoonLesson: View {
             VStack(spacing: 14) {
                 Image(systemName: info.icon)
                     .font(.system(size: 40)).foregroundStyle(Theme.gold)
-                Text(info.title).font(.display(26)).foregroundStyle(.white)
+                Text(tr(info.title)).font(.display(26)).foregroundStyle(.white)
                 Text("This course is being polished by Coach Pan 🐼 — arriving in the next update.")
                     .font(.body(15)).foregroundStyle(Theme.mint)
                 SecondaryButton(title: "Back") { router.popOne() }

@@ -7,3 +7,4 @@ App/fastlane/.env
 App/fastlane/AuthKey_*.p8
 App/build/ipa/
 App/fastlane/report.xml
+App/fastlane/screenshots/

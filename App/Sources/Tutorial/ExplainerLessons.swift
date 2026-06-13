@@ -66,8 +66,8 @@ struct WhatIsGuandanLesson: View {
         HStack(spacing: 30) {
             VStack(alignment: .leading, spacing: 12) {
                 Text(emoji).font(.system(size: 44))
-                Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
-                Text(bodyText).font(.body(15)).foregroundStyle(.white.opacity(0.9))
+                Text(tr(title)).font(.display(26)).foregroundStyle(Theme.goldSoft)
+                Text(tr(bodyText)).font(.body(15)).foregroundStyle(.white.opacity(0.9))
                     .lineSpacing(4)
             }
             .frame(maxWidth: 360, alignment: .leading)
@@ -95,7 +95,7 @@ private struct TeamDiagram: View {
     private func seat(_ label: String, _ color: Color, x: CGFloat, y: CGFloat) -> some View {
         VStack(spacing: 2) {
             Circle().fill(color).frame(width: 34, height: 34)
-            Text(label).font(.body(11)).foregroundStyle(Theme.mint)
+            Text(tr(label)).font(.body(11)).foregroundStyle(Theme.mint)
         }
         .offset(x: x, y: y)
     }
@@ -194,8 +194,8 @@ struct LessonPage: View {
     var body: some View {
         HStack(spacing: 30) {
             VStack(alignment: .leading, spacing: 12) {
-                Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
-                Text(body_).font(.body(15)).foregroundStyle(.white.opacity(0.9))
+                Text(tr(title)).font(.display(26)).foregroundStyle(Theme.goldSoft)
+                Text(tr(body_)).font(.body(15)).foregroundStyle(.white.opacity(0.9))
                     .lineSpacing(4)
             }
             .frame(maxWidth: 360, alignment: .leading)
@@ -216,9 +216,9 @@ private struct DeltaTable: View {
 
     private func row(_ left: String, _ right: String, strong: Bool) -> some View {
         HStack {
-            Text(left).font(.body(14)).foregroundStyle(.white)
+            Text(tr(left)).font(.body(14)).foregroundStyle(.white)
             Spacer()
-            Text(right).font(.heading(14))
+            Text(tr(right)).font(.heading(14))
                 .foregroundStyle(strong ? Theme.goldSoft : Theme.mint)
         }
         .padding(.horizontal, 14).padding(.vertical, 10)

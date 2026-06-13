@@ -18,4 +18,72 @@ platform :ios do
     )
     upload_to_testflight(api_key: api_key, skip_waiting_for_build_processing: true)
   end
+
+  desc "Upload localized App Store screenshots only (skips metadata to avoid the review-detail fetch path)"
+  lane :screenshots do
+    key_path = File.expand_path(File.basename(ENV["ASC_KEY_PATH"]), __dir__)
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_filepath: key_path
+    )
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_metadata: true,
+      skip_screenshots: false,
+      overwrite_screenshots: true,
+      submit_for_review: false,
+      run_precheck_before_submit: false,
+      force: true
+    )
+  end
+
+  desc "Read-only: inspect ASC app, versions and which localizations are populated"
+  lane :asc_status do
+    key_path = File.expand_path(File.basename(ENV["ASC_KEY_PATH"]), __dir__)
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.create(
+      key_id: ENV["ASC_KEY_ID"], issuer_id: ENV["ASC_ISSUER_ID"], filepath: key_path
+    )
+    app = Spaceship::ConnectAPI::App.find("com.yorick.guandan")
+    UI.important("APP id=#{app.id} bundle=#{app.bundle_id}")
+    vers = app.get_app_store_versions
+    UI.important("VERSIONS: #{vers.count}")
+    vers.each do |v|
+      locs = v.get_app_store_version_localizations
+      filled = locs.select { |l| !l.description.to_s.empty? }.map(&:locale)
+      UI.important("  v#{v.version_string} state=#{v.app_store_state} loc=#{locs.count} withDesc=[#{filled.join(',')}]")
+      shots = locs.map do |l|
+        sets = l.get_app_screenshot_sets rescue []
+        total = sets.sum { |s| (s.app_screenshots || []).count rescue 0 }
+        "#{l.locale}:#{total}"
+      end
+      UI.important("    screenshots per locale: #{shots.join(' ')}")
+    end
+    info = app.fetch_edit_app_info
+    ilocs = info.get_app_info_localizations
+    named = ilocs.select { |l| !l.name.to_s.empty? }.map { |l| "#{l.locale}=#{l.name} / #{l.subtitle}" }
+    UI.important("APPINFO state=#{info.app_store_state} count=#{ilocs.count}")
+    named.each { |n| UI.important("  #{n}") }
+  end
+
+  desc "Upload localized App Store metadata (no binary, no screenshots, saves as draft — does NOT submit for review)"
+  lane :metadata do
+    key_path = File.expand_path(File.basename(ENV["ASC_KEY_PATH"]), __dir__)
+    api_key = app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_filepath: key_path
+    )
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_app_version_update: false,
+      submit_for_review: false,
+      run_precheck_before_submit: false,
+      force: true,
+      overwrite_screenshots: false
+    )
+  end
 end

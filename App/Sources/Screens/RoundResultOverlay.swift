@@ -22,10 +22,10 @@ struct RoundResultOverlay: View {
                     ForEach(Array(order.enumerated()), id: \.offset) { i, seat in
                         HStack {
                             Text(medal(i)).font(.body(16))
-                            Text(model.seatName(seat))
+                            Text(tr(model.seatName(seat)))
                                 .font(.heading(15)).foregroundStyle(.white)
                             Spacer()
-                            Text(seat.team == .northSouth ? "Your team" : "Opponents")
+                            Text(tr(seat.team == .northSouth ? "Your team" : "Opponents"))
                                 .font(.body(12))
                                 .foregroundStyle(seat.team == .northSouth ? Theme.goldSoft : Theme.mint)
                         }
@@ -37,7 +37,7 @@ struct RoundResultOverlay: View {
 
                 // headline + actions
                 VStack(spacing: 12) {
-                    Text(headline)
+                    Text(tr(headline))
                         .font(.display(28))
                         .foregroundStyle(humanTeamWon ? Theme.goldSoft : Theme.mintBright)
                         .multilineTextAlignment(.center)
@@ -78,9 +78,9 @@ struct RoundResultOverlay: View {
         let them = model.match.levels[.eastWest]!.shortName
         if let winner = model.match.matchWinner {
             return winner == .northSouth
-                ? "Your team conquered the Ace level!"
-                : "Opponents took the match at Ace level."
+                ? tr("Your team conquered the Ace level!")
+                : tr("Opponents took the match at Ace level.")
         }
-        return "Your team: \(us) · Opponents: \(them) — next hand plays \(model.match.activeLevel.shortName)s"
+        return String(format: tr("Your team: %@ · Opponents: %@ — next hand plays %@s"), us, them, model.match.activeLevel.shortName)
     }
 }

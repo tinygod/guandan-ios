@@ -1,0 +1,1 @@
+Train against an AI tuned by thousands of self-play matches, and master GuanDan one hand at a time — now in 12 languages.

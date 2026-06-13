@@ -27,7 +27,7 @@ struct LobbyView: View {
                                     Image(systemName: "chevron.right").foregroundStyle(Theme.mint)
                                 }
                                 if let next = progress.nextLesson {
-                                    Text("Next: Lesson \(next.id) · \(next.title)")
+                                    Text("Next: Lesson \(next.id) · \(tr(next.title))")
                                         .font(.body(14)).foregroundStyle(Theme.mint)
                                 } else {
                                     Text("All 5 lessons complete 🎓")
@@ -97,8 +97,8 @@ struct LobbyView: View {
                     .frame(width: 44, height: 44)
                     .background(.white.opacity(0.08), in: Circle())
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.heading(17)).foregroundStyle(.white)
-                    Text(subtitle).font(.body(13)).foregroundStyle(Theme.mint)
+                    Text(tr(title)).font(.heading(17)).foregroundStyle(.white)
+                    Text(tr(subtitle)).font(.body(13)).foregroundStyle(Theme.mint)
                 }
                 Spacer()
                 Image(systemName: "chevron.right")

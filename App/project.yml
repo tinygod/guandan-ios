@@ -1,8 +1,10 @@
 name: GuandanApp
 options:
   bundleIdPrefix: com.yorick
+  developmentLanguage: en
   deploymentTarget:
     iOS: "17.0"
+knownRegions: [en, Base, zh-Hans, zh-Hant, ja, ko, es, fr, de, pt-BR, ru, ar, hi, id]
 packages:
   GuandanCore:
     path: ../GuandanCore

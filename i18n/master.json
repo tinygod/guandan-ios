@@ -1,0 +1,2618 @@
+[
+ {
+  "id": "s0",
+  "en": "\"Never fight a four\": a bomb beats your effort, a non-bomb can't escape without winning a trick. Save your strength for the player who can actually run."
+ },
+ {
+  "id": "s1",
+  "en": ")) instead."
+ },
+ {
+  "id": "s2",
+  "en": "+1 level"
+ },
+ {
+  "id": "s3",
+  "en": "+2 levels"
+ },
+ {
+  "id": "s4",
+  "en": "+3 levels"
+ },
+ {
+  "id": "s5",
+  "en": "10 cards"
+ },
+ {
+  "id": "s6",
+  "en": "108 cards: two full decks plus four jokers. You and your partner sit ACROSS from each other and win or lose together — 2 vs 2."
+ },
+ {
+  "id": "s7",
+  "en": "11% — the worst result in our entire lab. Beating every cheap trick burned its good cards by mid-hand, leaving zero late-game pivots. Passing is not weakness; it's ammunition management."
+ },
+ {
+  "id": "s8",
+  "en": "1st 🥇"
+ },
+ {
+  "id": "s9",
+  "en": "1️⃣ first lead"
+ },
+ {
+  "id": "s10",
+  "en": "2 consecutive triples"
+ },
+ {
+  "id": "s11",
+  "en": "2nd 🥈"
+ },
+ {
+  "id": "s12",
+  "en": "2️⃣ biggest spend"
+ },
+ {
+  "id": "s13",
+  "en": "3 consecutive pairs"
+ },
+ {
+  "id": "s14",
+  "en": "3rd 🥉"
+ },
+ {
+  "id": "s15",
+  "en": "3️⃣ the 🚩 flag"
+ },
+ {
+  "id": "s16",
+  "en": "4+ of a kind — beats any shape"
+ },
+ {
+  "id": "s17",
+  "en": "4th"
+ },
+ {
+  "id": "s18",
+  "en": "4–6 CARDS"
+ },
+ {
+  "id": "s19",
+  "en": "5 cards in a row, any suits"
+ },
+ {
+  "id": "s20",
+  "en": "5 cards is one move from freedom only via a 5-shape or 3+2 — pairs fit neither. Singles, meanwhile, slip straight through. 逢五出对: against a five, go double."
+ },
+ {
+  "id": "s21",
+  "en": "7 splits as 5+2 or 4+3 — block once and the exit dies. 8 hides 5+3 or two bombs; blocking burns your cards for nothing. Fight the 7, release the 8."
+ },
+ {
+  "id": "s22",
+  "en": "9 cards"
+ },
+ {
+  "id": "s23",
+  "en": "9 cards left usually means a 5-card shape plus a small 4-bomb — weak fire, worth pressuring. 10 cards splits 5+5: the bomb behind it is bigger, often a straight flush. Pressure the 9, respect the 10."
+ },
+ {
+  "id": "s24",
+  "en": "9 → lead pairs · 10 → lead singles"
+ },
+ {
+  "id": "s25",
+  "en": "9 → lead singles · 10 → lead pairs"
+ },
+ {
+  "id": "s26",
+  "en": "9 ≈ 5-shape + 4-bomb (weak escort). 10 ≈ 5+5 — the escort is real fire, maybe a straight flush. Pressure where the guard is thin."
+ },
+ {
+  "id": "s27",
+  "en": "= 5 + 5 → real fire, respect it"
+ },
+ {
+  "id": "s28",
+  "en": "= 5-shape + small bomb → pressure"
+ },
+ {
+  "id": "s29",
+  "en": "A"
+ },
+ {
+  "id": "s30",
+  "en": "A bomb doesn't score — it STEALS THE LEAD. Its whole value is choosing the moment the table resets to you. Spend it like money, not like fireworks."
+ },
+ {
+  "id": "s31",
+  "en": "A bomb — guarantee the stop"
+ },
+ {
+  "id": "s32",
+  "en": "A card left over from building your straight"
+ },
+ {
+  "id": "s33",
+  "en": "A charger — pressure them with bait"
+ },
+ {
+  "id": "s34",
+  "en": "A classic club hand, replayed"
+ },
+ {
+  "id": "s35",
+  "en": "A confident small single says \"I can win this race.\" Even if your own hand is strong, yield the striker role first — two strikers on one team lose to one organized pair."
+ },
+ {
+  "id": "s36",
+  "en": "A controller setting a trap"
+ },
+ {
+  "id": "s37",
+  "en": "A crowned pair is a free lead machine: nobody can answer it. Use it to reclaim control whenever you need tempo — hoarding a sure winner gains nothing."
+ },
+ {
+  "id": "s38",
+  "en": "A five-card straight"
+ },
+ {
+  "id": "s39",
+  "en": "A pair opening usually means a so-so hand asking questions. With 13 points you take the striker role at your first lead — make it loud (small single or a ragged straight)."
+ },
+ {
+  "id": "s40",
+  "en": "A pair walls them off completely: a lone card can't answer a pair, ever. Your big single might still lose to theirs — and a bomb is massive overpayment. At TWO cards left, flip it: lead singles to force them to break."
+ },
+ {
+  "id": "s41",
+  "en": "A pair — their 5 can't ride pairs out"
+ },
+ {
+  "id": "s42",
+  "en": "A real club hand, famous enough to be quoted in every Guandan guide. Coach Wu holds TWO cards — you've read them as a small pair. The enemies still hold one BIG pair and one BOMB."
+ },
+ {
+  "id": "s43",
+  "en": "A straight isn't free"
+ },
+ {
+  "id": "s44",
+  "en": "A third of all moves are free rides — and over half of those ride on the player BEFORE you. If their leads suit you, wave them through (even help them). If their shape blocks you, cut it down immediately. And never casually beat your PARTNER's table — blocking it is the enemy's job, not yours."
+ },
+ {
+  "id": "s45",
+  "en": "A throwaway card — means nothing"
+ },
+ {
+  "id": "s46",
+  "en": "A wildcard completes straight flushes and grows bombs — worth about half a bomb (~2 points). Our human tester beat that AI version every single game. The fixed rule: a wildcard leaves your hand only inside a bomb, a straight flush, or your final exit."
+ },
+ {
+  "id": "s47",
+  "en": "AI Lab Secrets"
+ },
+ {
+  "id": "s48",
+  "en": "About 1 game in 9"
+ },
+ {
+  "id": "s49",
+  "en": "About half the games"
+ },
+ {
+  "id": "s50",
+  "en": "Ace pair clears the road…"
+ },
+ {
+  "id": "s51",
+  "en": "After every Arena hand, tap Review and find exactly THREE moments: your first lead (did it match your hand score?), your biggest spend (was the trick worth it?), and any 🚩 flag. Don't replay everything — three moves, honestly examined, beat thirty skimmed."
+ },
+ {
+  "id": "s52",
+  "en": "Against a CONTROLLER: don't feed the ambush — vary your lanes and make them spend. Against a CHARGER: bait early caps with small stuff, let them burn out, then collect. Dream team note: the best partnership is one controller + one charger."
+ },
+ {
+  "id": "s53",
+  "en": "All 5 lessons complete 🎓"
+ },
+ {
+  "id": "s54",
+  "en": "All fold. Control is yours."
+ },
+ {
+  "id": "s55",
+  "en": "All four jokers AND all eight level cards are accounted for. You hold A♠A♥. What's the play philosophy?"
+ },
+ {
+  "id": "s56",
+  "en": "All pass — the lead is yours."
+ },
+ {
+  "id": "s57",
+  "en": "All pass."
+ },
+ {
+  "id": "s58",
+  "en": "An early AI version sometimes played its WILDCARD (♥ level card) as a plain single. How costly was that habit?"
+ },
+ {
+  "id": "s59",
+  "en": "An enemy guards exactly 2 cards. How do you torture them? (单张降级)"
+ },
+ {
+  "id": "s60",
+  "en": "An enemy is down to exactly ONE card. The strongest lead, per both champion engines we studied:"
+ },
+ {
+  "id": "s61",
+  "en": "An enemy sits at exactly 5 cards. Your safest LEAD shape? (逢五出对)"
+ },
+ {
+  "id": "s62",
+  "en": "An enemy sits at two cards, listening for a pair. You also hold two. Don't reveal yours — even when you COULD ride a single out, hold both and act like a pair. Now nobody dares lead pairs, the table freezes, and your partner gets time to run."
+ },
+ {
+  "id": "s63",
+  "en": "An opponent bombs your medium full house in trick two, with 20+ cards still in hand. What are they?"
+ },
+ {
+  "id": "s64",
+  "en": "An opponent has exactly 4 cards left and just lost the lead. Your move?"
+ },
+ {
+  "id": "s65",
+  "en": "An opponent has passed every single you led — then suddenly drops a big joker late. Their style, and the danger?"
+ },
+ {
+  "id": "s66",
+  "en": "And out! 🎉"
+ },
+ {
+  "id": "s67",
+  "en": "And the 6s walk out unopposed. OUT — a flawless exit."
+ },
+ {
+  "id": "s68",
+  "en": "And the 9 walks out last. First place!"
+ },
+ {
+  "id": "s69",
+  "en": "And your last card — out FIRST again!"
+ },
+ {
+  "id": "s70",
+  "en": "Anti-tribute! The losers hold both big jokers."
+ },
+ {
+  "id": "s71",
+  "en": "Anti-tribute: the refusal"
+ },
+ {
+  "id": "s72",
+  "en": "Any PAIR — their single can never follow it"
+ },
+ {
+  "id": "s73",
+  "en": "Any one card"
+ },
+ {
+  "id": "s74",
+  "en": "Apply your lessons vs AI — every hand can be reviewed move-by-move with the coach"
+ },
+ {
+  "id": "s75",
+  "en": "At 4 cards they hold either a bomb (yours bounces) or a hand that can't exit in one move (no need). At 5 they may hold a straight, flush bomb or 3+2 — one play and gone. Bomb the FIVE."
+ },
+ {
+  "id": "s76",
+  "en": "BIG JKR"
+ },
+ {
+  "id": "s77",
+  "en": "BOMB"
+ },
+ {
+  "id": "s78",
+  "en": "BOMBS"
+ },
+ {
+  "id": "s79",
+  "en": "BOOM — Coach Wu slams his last two cards: Kings! He's out FIRST."
+ },
+ {
+  "id": "s80",
+  "en": "Back"
+ },
+ {
+  "id": "s81",
+  "en": "Back to Home"
+ },
+ {
+  "id": "s82",
+  "en": "Beat it with the Jack — never spend more than the trick needs."
+ },
+ {
+  "id": "s83",
+  "en": "Beating is optional — passing is a weapon"
+ },
+ {
+  "id": "s84",
+  "en": "Before playing a single card, rate your 27:\n\n💣  each bomb = +4 points\n👑  each top card (big joker, level pair…) = +1\n🪨  each dead small card = −1\n\n12+ → fight for 1st.  6–11 → stay flexible.  Under 6 → your job is feeding your partner."
+ },
+ {
+  "id": "s85",
+  "en": "Beginners feed small-to-large… and watch every gift get eaten. The masters feed THE LADDER: biggest first, to drain the blockers before the real gift."
+ },
+ {
+  "id": "s86",
+  "en": "Best saved for the last trick"
+ },
+ {
+  "id": "s87",
+  "en": "Best to worst: ① complete a STRAIGHT FLUSH (a bomb from thin air) ② grow a bomb by one ③ finish a tube or plate ④ pair the level card itself (a 15-strength pair). Worst: padding a cheap pair."
+ },
+ {
+  "id": "s88",
+  "en": "Big bomb? Sit still and wait"
+ },
+ {
+  "id": "s89",
+  "en": "Big table + you need lead"
+ },
+ {
+  "id": "s90",
+  "en": "Block by the numbers"
+ },
+ {
+  "id": "s91",
+  "en": "Blocking Downstream"
+ },
+ {
+  "id": "s92",
+  "en": "Blocking a straight? Don't nudge it — CAP IT. Equal straights are 20× more common than equal full houses and 500× more common than equal plates. Cap low and they ride a higher straight over you; cap to the top and their only answer is a bomb — expensive for them, perfect for you."
+ },
+ {
+  "id": "s93",
+  "en": "Bomb Value"
+ },
+ {
+  "id": "s94",
+  "en": "Bomb them immediately"
+ },
+ {
+  "id": "s95",
+  "en": "Bomb these moments"
+ },
+ {
+  "id": "s96",
+  "en": "Bomb, charge, listen or ambush"
+ },
+ {
+  "id": "s97",
+  "en": "Bomb-on-sight that early is charger DNA. Feed them small caps; chargers burn themselves out by mid-hand."
+ },
+ {
+  "id": "s98",
+  "en": "Bombs are tempo, not points"
+ },
+ {
+  "id": "s99",
+  "en": "Bombs!"
+ },
+ {
+  "id": "s100",
+  "en": "Born"
+ },
+ {
+  "id": "s101",
+  "en": "Both big jokers and all natural level cards have hit the table. Your ♠A single is now…"
+ },
+ {
+  "id": "s102",
+  "en": "Both equally"
+ },
+ {
+  "id": "s103",
+  "en": "Both you and your partner hold roughly equal, decent hands. Who should support?"
+ },
+ {
+  "id": "s104",
+  "en": "Both → always pairs"
+ },
+ {
+  "id": "s105",
+  "en": "Break it into two strong singles"
+ },
+ {
+  "id": "s106",
+  "en": "Break the rules, win the trick"
+ },
+ {
+  "id": "s107",
+  "en": "Broken"
+ },
+ {
+  "id": "s108",
+  "en": "Build a gradient"
+ },
+ {
+  "id": "s109",
+  "en": "Building a low straight that strands 3 extra singles is a bad trade — you removed one move and added three. Build runs to SHRINK your single count, not to admire the shape."
+ },
+ {
+  "id": "s110",
+  "en": "By Rank"
+ },
+ {
+  "id": "s111",
+  "en": "CAP"
+ },
+ {
+  "id": "s112",
+  "en": "CONTROLLERS save big cards to ambush, wait for their exact lane, and almost never bomb the player before them. CHARGERS cap everything cappable, bomb on sight, and charge early. Your Arena bots now have real personalities — spot them by trick three."
+ },
+ {
+  "id": "s113",
+  "en": "CURRENT LEVEL"
+ },
+ {
+  "id": "s114",
+  "en": "Cap to the top, answer fire with fire"
+ },
+ {
+  "id": "s115",
+  "en": "Cap to the very top"
+ },
+ {
+  "id": "s116",
+  "en": "Card Combos"
+ },
+ {
+  "id": "s117",
+  "en": "Cards get promoted mid-hand: one big joker and one small joker gone → your LEVEL PAIR is now the biggest pair alive. All four natural level cards gone → your triple Aces rule every full house. Track promotions and cash them as forcing plays."
+ },
+ {
+  "id": "s118",
+  "en": "Cash in — play your 7s."
+ },
+ {
+  "id": "s119",
+  "en": "Catching the Wind"
+ },
+ {
+  "id": "s120",
+  "en": "Charge with different lanes"
+ },
+ {
+  "id": "s121",
+  "en": "Charger — they'll keep attacking"
+ },
+ {
+  "id": "s122",
+  "en": "Cheap single early"
+ },
+ {
+  "id": "s123",
+  "en": "Chinese club players compress endgame judgment into counting rhymes — and the good ones survive statistical checking. This drill decodes five: bomb-at-5-not-4, fight-7-not-8, pairs-against-5, the 9/10 lead rule, and the low-single squeeze."
+ },
+ {
+  "id": "s124",
+  "en": "Climb to Ace"
+ },
+ {
+  "id": "s125",
+  "en": "Close"
+ },
+ {
+  "id": "s126",
+  "en": "Clubs"
+ },
+ {
+  "id": "s127",
+  "en": "Co-Defense"
+ },
+ {
+  "id": "s128",
+  "en": "Coach Pan"
+ },
+ {
+  "id": "s129",
+  "en": "Coach Wu"
+ },
+ {
+  "id": "s130",
+  "en": "Coach Wu POUNCES — his 6s take it and he's OUT! 🎉"
+ },
+ {
+  "id": "s131",
+  "en": "Coach Wu can't match it."
+ },
+ {
+  "id": "s132",
+  "en": "Coach Wu fires back Queens — he's fighting for your team!"
+ },
+ {
+  "id": "s133",
+  "en": "Coach Wu kept exactly TWO cards all hand. He answered pairs eagerly and ignored every single — he's been telling you all along: MY LAST TWO ARE A PAIR."
+ },
+ {
+  "id": "s134",
+  "en": "Coach Wu passes. Partners don't fight each other."
+ },
+ {
+  "id": "s135",
+  "en": "Coach Wu strengthens the team's grip with 10s."
+ },
+ {
+  "id": "s136",
+  "en": "Coach Wu waits…"
+ },
+ {
+  "id": "s137",
+  "en": "Coach Wu's 4s take it — he's OUT! The ladder worked: 10s drew the Kings, 8s drew the bomb, 3s walked home."
+ },
+ {
+  "id": "s138",
+  "en": "Combos"
+ },
+ {
+  "id": "s139",
+  "en": "Coming Soon"
+ },
+ {
+  "id": "s140",
+  "en": "Continue Learning"
+ },
+ {
+  "id": "s141",
+  "en": "Control & Teamwork"
+ },
+ {
+  "id": "s142",
+  "en": "Controller — the ambush is sprung; expect a clean exit behind it"
+ },
+ {
+  "id": "s143",
+  "en": "Controllers vs chargers"
+ },
+ {
+  "id": "s144",
+  "en": "Count only what matters"
+ },
+ {
+  "id": "s145",
+  "en": "Count the tops: with jokers and level cards gone, no hidden hand can beat an Ace. A crowned top costs you NOTHING to play — it wins the trick AND hands you the lead. Hoarding it is the real waste. (This is why the counting HUD exists.)"
+ },
+ {
+  "id": "s146",
+  "en": "Count your exits: the Ace wins a trick. The 6s only walk if everyone passes. The 3 can NEVER win. So the 3 must go while your Ace can still win back the lead."
+ },
+ {
+  "id": "s147",
+  "en": "Count: 1 small joker + 2 unseen 8s still live — three cards beat your Ace. Crowning needs ALL of them gone: 2 big + 2 small jokers and the 8s above you."
+ },
+ {
+  "id": "s148",
+  "en": "Counter each one"
+ },
+ {
+  "id": "s149",
+  "en": "Counting & New Tops"
+ },
+ {
+  "id": "s150",
+  "en": "Cover the lanes your partner can't"
+ },
+ {
+  "id": "s151",
+  "en": "Danger scan: Lena is down to TWO cards — loose singles, waiting to ride out behind your small leads. Your pair is tiny and can't reclaim anything."
+ },
+ {
+  "id": "s152",
+  "en": "Deliver exactly what they need"
+ },
+ {
+  "id": "s153",
+  "en": "Deny the free ride"
+ },
+ {
+  "id": "s154",
+  "en": "Don't burn a wildcard early to win a meaningless trick. A held wildcard is a future bomb; a spent one is a 3 with makeup on. If in doubt, hold."
+ },
+ {
+  "id": "s155",
+  "en": "Don't fight the four"
+ },
+ {
+  "id": "s156",
+  "en": "Done — and thanks to 接风…"
+ },
+ {
+  "id": "s157",
+  "en": "Drop the big joker — force their hand."
+ },
+ {
+  "id": "s158",
+  "en": "Earn it on purpose"
+ },
+ {
+  "id": "s159",
+  "en": "Easy"
+ },
+ {
+  "id": "s160",
+  "en": "Easy bots — review every hand after"
+ },
+ {
+  "id": "s161",
+  "en": "Either, they're equal"
+ },
+ {
+  "id": "s162",
+  "en": "Endgame Mastery"
+ },
+ {
+  "id": "s163",
+  "en": "Every hand, your team has ONE striker chasing 1st place and ONE support player. The STRIKER clears weak lanes, trims moves and saves muscle. The SUPPORT blocks the player before the striker, jams the one after, and feeds the partner. Strong hand strikes; weak hand supports; equal hands — the better player supports."
+ },
+ {
+  "id": "s164",
+  "en": "Every opponent's card count is on screen. At 5 cards or fewer, assume they hold an exit plan — stop leading the shapes they're waiting for, and save a bomb for their last play."
+ },
+ {
+  "id": "s165",
+  "en": "Every shape you can play"
+ },
+ {
+  "id": "s166",
+  "en": "Everyone passes!"
+ },
+ {
+  "id": "s167",
+  "en": "Everything reverses for your own team: feed the suit they're long in, complete their shapes. The textbook's exact words: think in mirror image."
+ },
+ {
+  "id": "s168",
+  "en": "Expert Table"
+ },
+ {
+  "id": "s169",
+  "en": "FIRM"
+ },
+ {
+  "id": "s170",
+  "en": "FOUR JOKERS 👑"
+ },
+ {
+  "id": "s171",
+  "en": "FOURS THAT GET FOUGHT"
+ },
+ {
+  "id": "s172",
+  "en": "FREE RIDES"
+ },
+ {
+  "id": "s173",
+  "en": "Fake a pair, freeze the table"
+ },
+ {
+  "id": "s174",
+  "en": "Fake the pair"
+ },
+ {
+  "id": "s175",
+  "en": "Feed him: a tiny pair — a gift only your partner can want."
+ },
+ {
+  "id": "s176",
+  "en": "Feed your partner, never fight them"
+ },
+ {
+  "id": "s177",
+  "en": "Feeding Your Partner"
+ },
+ {
+  "id": "s178",
+  "en": "Fight the nine, not the ten"
+ },
+ {
+  "id": "s179",
+  "en": "Final lesson: the BOMB 💣 — four or more cards of the same rank. Bombs ignore the follow-the-shape rule."
+ },
+ {
+  "id": "s180",
+  "en": "Finish 1st and your team climbs. The further your partner gets, the bigger the jump."
+ },
+ {
+  "id": "s181",
+  "en": "Finish Lesson"
+ },
+ {
+  "id": "s182",
+  "en": "Finish each review by naming ONE thing you'll do differently — out loud if you have to. Champions aren't built from talent (30% feel + 30% luck + 40% craft, says the textbook) — craft is the only part that compounds, and it compounds through review. Now graduate: beat a Hard table. 🎓"
+ },
+ {
+  "id": "s183",
+  "en": "Finish every course in the previous stage to unlock this one."
+ },
+ {
+  "id": "s184",
+  "en": "Fire for fire"
+ },
+ {
+  "id": "s185",
+  "en": "First team to win a hand while playing their ACE level takes the match — but only if the winner's partner doesn't finish last. The final climb has discipline."
+ },
+ {
+  "id": "s186",
+  "en": "Five iron rules from 10,000 games"
+ },
+ {
+  "id": "s187",
+  "en": "Flip side: when the player BEFORE you is listening, shape your own last cards into a DIFFERENT lane than theirs. Same-lane listening means their interference cuts you both ways, and your partner can't feed you safely."
+ },
+ {
+  "id": "s188",
+  "en": "Follow or Pass"
+ },
+ {
+  "id": "s189",
+  "en": "Forcing the Bomb"
+ },
+ {
+  "id": "s190",
+  "en": "Four Ways to First"
+ },
+ {
+  "id": "s191",
+  "en": "Free lead. March: the other Ace…"
+ },
+ {
+  "id": "s192",
+  "en": "Full House"
+ },
+ {
+  "id": "s193",
+  "en": "Fundamentals"
+ },
+ {
+  "id": "s194",
+  "en": "Game Lobby"
+ },
+ {
+  "id": "s195",
+  "en": "Go for 1st"
+ },
+ {
+  "id": "s196",
+  "en": "Good split vs bad split"
+ },
+ {
+  "id": "s197",
+  "en": "Good — exactly what I'd play."
+ },
+ {
+  "id": "s198",
+  "en": "Got them all?"
+ },
+ {
+  "id": "s199",
+  "en": "Graduated! 🎓 One tip: a bomb spent on a cheap trick is a bomb wasted — save them for big moments. Now go win a real match!"
+ },
+ {
+  "id": "s200",
+  "en": "GuanDan (掼蛋, \"throwing eggs\") is China's most-played card game — over 100 million players. It's a climbing game: shed all your cards before the others do."
+ },
+ {
+  "id": "s201",
+  "en": "GuanDan Academy"
+ },
+ {
+  "id": "s202",
+  "en": "GuanDan!"
+ },
+ {
+  "id": "s203",
+  "en": "Guided play — win a real trick"
+ },
+ {
+  "id": "s204",
+  "en": "HOLD"
+ },
+ {
+  "id": "s205",
+  "en": "Half of all returns build a bomb"
+ },
+ {
+  "id": "s206",
+  "en": "Hand Planning"
+ },
+ {
+  "id": "s207",
+  "en": "Hand Scoring"
+ },
+ {
+  "id": "s208",
+  "en": "Hard"
+ },
+ {
+  "id": "s209",
+  "en": "Hard bots protect their bombs"
+ },
+ {
+  "id": "s210",
+  "en": "He leads a 6 off the bomb's win."
+ },
+ {
+  "id": "s211",
+  "en": "He leads a 6."
+ },
+ {
+  "id": "s212",
+  "en": "He leads a cheap single to probe."
+ },
+ {
+  "id": "s213",
+  "en": "He leads a small pair."
+ },
+ {
+  "id": "s214",
+  "en": "Hearts"
+ },
+ {
+  "id": "s215",
+  "en": "Hearts — returns near the level rank in hearts keep wildcard mechanics on YOUR side of the table and rarely complete their suited runs."
+ },
+ {
+  "id": "s216",
+  "en": "Hint 💡"
+ },
+ {
+  "id": "s217",
+  "en": "His pair stands. Obviously, pass."
+ },
+ {
+  "id": "s218",
+  "en": "Hold through these"
+ },
+ {
+  "id": "s219",
+  "en": "Holding 2 triples and 4 pairs? Attach the MIDDLE pairs to the triples and keep one big + one small pair. The big one reclaims the lead after the small one probes — a self-sustaining loop. Keep two adjacent big pairs instead and the loop dies."
+ },
+ {
+  "id": "s220",
+  "en": "Holding BOTH big jokers on the losing side? Then nobody pays — the table respects firepower. It's called anti-tribute, and it feels fantastic."
+ },
+ {
+  "id": "s221",
+  "en": "How to Review"
+ },
+ {
+  "id": "s222",
+  "en": "I already know how to play"
+ },
+ {
+  "id": "s223",
+  "en": "I'M STRIKING"
+ },
+ {
+  "id": "s224",
+  "en": "I'd PASS here — no need to spend cards on this trick."
+ },
+ {
+  "id": "s225",
+  "en": "Impossible to tell"
+ },
+ {
+  "id": "s226",
+  "en": "It dominated — pressure wins"
+ },
+ {
+  "id": "s227",
+  "en": "It stands. Her singles are now trapped."
+ },
+ {
+  "id": "s228",
+  "en": "J"
+ },
+ {
+  "id": "s229",
+  "en": "JOKER"
+ },
+ {
+  "id": "s230",
+  "en": "JOKERS"
+ },
+ {
+  "id": "s231",
+  "en": "Jokers gone = your Aces rule"
+ },
+ {
+  "id": "s232",
+  "en": "Keep rolling — the 10s."
+ },
+ {
+  "id": "s233",
+  "en": "LEVEL"
+ },
+ {
+  "id": "s234",
+  "en": "LVL"
+ },
+ {
+  "id": "s235",
+  "en": "Lab-tested thresholds: at 3 cards or fewer, cap with your best whole unit — they're one move from out, nothing is too expensive. At 4–6 cards, a FIRM middle beat makes riding costly without shredding your hand. Blanket max-blocking below 7 cards collapsed our test AI to an 11% win rate."
+ },
+ {
+  "id": "s236",
+  "en": "Last card. Go out FIRST! 🎉"
+ },
+ {
+  "id": "s237",
+  "en": "Late hand, you're charging out with JJ-QQ-KK while your partner holds pairs too? If a bomb stops you, you BOTH die in the same lane. Split your charge — go out via KK and keep QQQ-JJ, or vice versa — so your tails cover different shapes."
+ },
+ {
+  "id": "s238",
+  "en": "Lead LOW singles repeatedly — force them to burn high cards or split their pair"
+ },
+ {
+  "id": "s239",
+  "en": "Lead a LOW pair. If his two cards are a pair, you just opened his lane."
+ },
+ {
+  "id": "s240",
+  "en": "Lead a small shape ON PURPOSE to lure their big block — clearing the sky for your real run in that lane next time. You traded a pawn for their queen's attention."
+ },
+ {
+  "id": "s241",
+  "en": "Lead big singles to beat their best"
+ },
+ {
+  "id": "s242",
+  "en": "Lead pairs to wall them"
+ },
+ {
+  "id": "s243",
+  "en": "Lead strength — or hide it"
+ },
+ {
+  "id": "s244",
+  "en": "Lead the 6 — not the 3."
+ },
+ {
+  "id": "s245",
+  "en": "Lead the 8 — keep the Ace as your closer."
+ },
+ {
+  "id": "s246",
+  "en": "Lead the 9 first instead and watch the disaster: her Jack rides over it, her 8 follows next trick — she's out before you. Big single FIRST is the forcing play. Cousins of this move: lead a newly-crowned top pair, toss a small bomb to burn tempo, even split a flush bomb into a straight to jam the lane. 💣"
+ },
+ {
+  "id": "s247",
+  "en": "Lead what you can reclaim"
+ },
+ {
+  "id": "s248",
+  "en": "Leave Table"
+ },
+ {
+  "id": "s249",
+  "en": "Leftover"
+ },
+ {
+  "id": "s250",
+  "en": "Lena"
+ },
+ {
+  "id": "s251",
+  "en": "Lena answers with two 9s. A pair can only be beaten by a higher pair."
+ },
+ {
+  "id": "s252",
+  "en": "Lena bumps it with 9s — she smells danger."
+ },
+ {
+  "id": "s253",
+  "en": "Lena can only watch…"
+ },
+ {
+  "id": "s254",
+  "en": "Lena grabs it with a Queen…"
+ },
+ {
+  "id": "s255",
+  "en": "Lena leads a single 7. Only a higher single answers it."
+ },
+ {
+  "id": "s256",
+  "en": "Lena leads a single 7…"
+ },
+ {
+  "id": "s257",
+  "en": "Lena opens with a monster: a full house of Kings."
+ },
+ {
+  "id": "s258",
+  "en": "Lena passes too. Coach Wu wins the trick and leads next."
+ },
+ {
+  "id": "s259",
+  "en": "Lena passes. The Kings stand…"
+ },
+ {
+  "id": "s260",
+  "en": "Lena pays a 10 to take a 6. Already a win: her 4s and 5s are still stuck in hand."
+ },
+ {
+  "id": "s261",
+  "en": "Lena takes it cheap with a 9."
+ },
+ {
+  "id": "s262",
+  "en": "Lena won't waste cards on a 4-pair…"
+ },
+ {
+  "id": "s263",
+  "en": "Lena's Kings stomp it. GOOD. That big pair can never block again."
+ },
+ {
+  "id": "s264",
+  "en": "Let her have the trick — her Kings died for nothing."
+ },
+ {
+  "id": "s265",
+  "en": "Let it go — the 6 did its job."
+ },
+ {
+  "id": "s266",
+  "en": "Level is 8. Both big jokers are gone, ONE small joker is out, and five 8s have been played (you hold one of the remaining). Is your ♠A single safe to lead?"
+ },
+ {
+  "id": "s267",
+  "en": "Levels, wildcards, winning the match"
+ },
+ {
+  "id": "s268",
+  "en": "Listen where they don't"
+ },
+ {
+  "id": "s269",
+  "en": "Long patience then one decisive top card is the controller ambush. Behind that joker is usually a prepared run — block the FIRST follow-up at any cost."
+ },
+ {
+  "id": "s270",
+  "en": "Look at Coach Wu: only TWO cards left! Your one job now is to clear the road so he can go out."
+ },
+ {
+  "id": "s271",
+  "en": "Lose a hand badly and you owe tribute: your single highest card (wildcards stay home) goes to the winner. If BOTH losers finish at the bottom, both pay."
+ },
+ {
+  "id": "s272",
+  "en": "MEDIUM"
+ },
+ {
+  "id": "s273",
+  "en": "MOVES PER HAND"
+ },
+ {
+  "id": "s274",
+  "en": "MOVES TO FINISH 1st"
+ },
+ {
+  "id": "s275",
+  "en": "Make them burn their fire"
+ },
+ {
+  "id": "s276",
+  "en": "Marco"
+ },
+ {
+  "id": "s277",
+  "en": "Marco BOMBS a pair of 8s! Perfect — a bomb spent on a feed, not on your partner's exit."
+ },
+ {
+  "id": "s278",
+  "en": "Marco bumps it to an 8."
+ },
+ {
+  "id": "s279",
+  "en": "Marco can't answer."
+ },
+ {
+  "id": "s280",
+  "en": "Marco can't beat Queens. He passes."
+ },
+ {
+  "id": "s281",
+  "en": "Marco folds too."
+ },
+ {
+  "id": "s282",
+  "en": "Marco has nothing bigger."
+ },
+ {
+  "id": "s283",
+  "en": "Marco rides a Jack through."
+ },
+ {
+  "id": "s284",
+  "en": "Marco too."
+ },
+ {
+  "id": "s285",
+  "en": "Marco tops you with a Queen."
+ },
+ {
+  "id": "s286",
+  "en": "Match Lost"
+ },
+ {
+  "id": "s287",
+  "en": "Match Won! 🏆"
+ },
+ {
+  "id": "s288",
+  "en": "Minor — it's just one card"
+ },
+ {
+  "id": "s289",
+  "en": "Momentum"
+ },
+ {
+  "id": "s290",
+  "en": "Move"
+ },
+ {
+  "id": "s291",
+  "en": "Muddy the water"
+ },
+ {
+  "id": "s292",
+  "en": "NOW the Ace earns its keep — take the trick!"
+ },
+ {
+  "id": "s293",
+  "en": "Never bid against your own partner — pass and protect his exit."
+ },
+ {
+  "id": "s294",
+  "en": "Never bomb a four — except when you must"
+ },
+ {
+  "id": "s295",
+  "en": "Never — always block minimally"
+ },
+ {
+  "id": "s296",
+  "en": "Newly-crowned tops"
+ },
+ {
+  "id": "s297",
+  "en": "Next"
+ },
+ {
+  "id": "s298",
+  "en": "Next Hand"
+ },
+ {
+  "id": "s299",
+  "en": "Next Question"
+ },
+ {
+  "id": "s300",
+  "en": "No answers."
+ },
+ {
+  "id": "s301",
+  "en": "No bomb, one Ace pair, and a swamp of dead smalls — barely 2 points. A pro doesn't fight this: block enemies, feed your partner, take the assist."
+ },
+ {
+  "id": "s302",
+  "en": "No exit after bombing"
+ },
+ {
+  "id": "s303",
+  "en": "No — a small joker and 8s are still hiding out there"
+ },
+ {
+  "id": "s304",
+  "en": "No — flip every rule: now you WANT to arm them"
+ },
+ {
+  "id": "s305",
+  "en": "Nobody answers a bomb cheaply. The lead is yours."
+ },
+ {
+  "id": "s306",
+  "en": "Nobody answers. And since the trick-winner is out — you catch the wind."
+ },
+ {
+  "id": "s307",
+  "en": "Nobody fights for a small trick."
+ },
+ {
+  "id": "s308",
+  "en": "Nobody fights. Marco's trick."
+ },
+ {
+  "id": "s309",
+  "en": "Nobody tracks 108 cards. Track FOUR things: the 2 big jokers, the 2 small jokers, the 8 level cards, and every bomb that explodes. That's it."
+ },
+ {
+  "id": "s310",
+  "en": "Nobody — play it safe"
+ },
+ {
+  "id": "s311",
+  "en": "Normal"
+ },
+ {
+  "id": "s312",
+  "en": "Normal bots, full rules"
+ },
+ {
+  "id": "s313",
+  "en": "Not a combo"
+ },
+ {
+  "id": "s314",
+  "en": "Not quite — "
+ },
+ {
+  "id": "s315",
+  "en": "Not quite. "
+ },
+ {
+  "id": "s316",
+  "en": "Nothing to block with…"
+ },
+ {
+  "id": "s317",
+  "en": "Now"
+ },
+ {
+  "id": "s318",
+  "en": "Now the table is yours, and nothing big is left out there."
+ },
+ {
+  "id": "s319",
+  "en": "Now the tiny pair — she holds no pairs, the lane is shut."
+ },
+ {
+  "id": "s320",
+  "en": "Now win the lead back — Ace!"
+ },
+ {
+  "id": "s321",
+  "en": "Number Rules"
+ },
+ {
+  "id": "s322",
+  "en": "OK"
+ },
+ {
+  "id": "s323",
+  "en": "Onboarding"
+ },
+ {
+  "id": "s324",
+  "en": "Once both big jokers have hit the table, the strongest single left is a level card — and if those are gone too, your Ace is unbeatable. Singles you were scared to lead become winners."
+ },
+ {
+  "id": "s325",
+  "en": "One bomb (+4), small-joker pair and Kings (+2)… but four dead small cards (−4ish). Around 6–7 points: stay flexible, watch one trick before committing."
+ },
+ {
+  "id": "s326",
+  "en": "One card from a small pair"
+ },
+ {
+  "id": "s327",
+  "en": "One enemy has 4 cards left, another situation has an enemy at 5. Which one deserves your bomb? (炸五不炸四)"
+ },
+ {
+  "id": "s328",
+  "en": "One takeaway per hand"
+ },
+ {
+  "id": "s329",
+  "en": "Online play is on the roadmap. Practice vs bots for now!"
+ },
+ {
+  "id": "s330",
+  "en": "Online — coming soon"
+ },
+ {
+  "id": "s331",
+  "en": "Only matters in the endgame"
+ },
+ {
+  "id": "s332",
+  "en": "Only safe if you also hold a bomb"
+ },
+ {
+  "id": "s333",
+  "en": "Only when they're at ~3 cards or fewer — at 4–6, a firm middle beat is enough"
+ },
+ {
+  "id": "s334",
+  "en": "Opening Leads"
+ },
+ {
+  "id": "s335",
+  "en": "Opponent at 1–3 cards"
+ },
+ {
+  "id": "s336",
+  "en": "Opponents"
+ },
+ {
+  "id": "s337",
+  "en": "Opponents took the match at Ace level."
+ },
+ {
+  "id": "s338",
+  "en": "Or hide your strength"
+ },
+ {
+  "id": "s339",
+  "en": "Organize"
+ },
+ {
+  "id": "s340",
+  "en": "Our first 'block everything below 7 cards at maximum strength' AI collapsed to an 11% win rate — it shredded its own hand. The data said: go maximal only when they're genuinely one or two moves from out; otherwise make riding expensive, not impossible."
+ },
+ {
+  "id": "s341",
+  "en": "Our lab gave one AI the habit of beating EVERYTHING it could beat. Against a twin that picked its battles, it won…"
+ },
+ {
+  "id": "s342",
+  "en": "P"
+ },
+ {
+  "id": "s343",
+  "en": "PAIR"
+ },
+ {
+  "id": "s344",
+  "en": "PATCHES A RUN"
+ },
+ {
+  "id": "s345",
+  "en": "PLATE"
+ },
+ {
+  "id": "s346",
+  "en": "Pair"
+ },
+ {
+  "id": "s347",
+  "en": "Pairs answer pairs — your 5s do the job."
+ },
+ {
+  "id": "s348",
+  "en": "Park your smallest card LAST"
+ },
+ {
+  "id": "s349",
+  "en": "Partner"
+ },
+ {
+  "id": "s350",
+  "en": "Partner Discipline"
+ },
+ {
+  "id": "s351",
+  "en": "Partner Play"
+ },
+ {
+  "id": "s352",
+  "en": "Partner already winning"
+ },
+ {
+  "id": "s353",
+  "en": "Partner finishes 2nd"
+ },
+ {
+  "id": "s354",
+  "en": "Partner finishes 3rd"
+ },
+ {
+  "id": "s355",
+  "en": "Partner finishes last"
+ },
+ {
+  "id": "s356",
+  "en": "Partner is weak and asking for help"
+ },
+ {
+  "id": "s357",
+  "en": "Partner led first, so partner strikes"
+ },
+ {
+  "id": "s358",
+  "en": "Partners finishing 1st and 2nd is a DOUBLE — your team rockets up 3 levels. Feed your partner, never fight them. 🐼"
+ },
+ {
+  "id": "s359",
+  "en": "Pass"
+ },
+ {
+  "id": "s360",
+  "en": "Pass — and feel how little it costs."
+ },
+ {
+  "id": "s361",
+  "en": "Patch the hole they're aiming at"
+ },
+ {
+  "id": "s362",
+  "en": "Patience"
+ },
+ {
+  "id": "s363",
+  "en": "Pay the Ace from YOUR long suit: the receiver now holds a card whose suit-mates sit in your hand, so their straight-flush odds collapse."
+ },
+ {
+  "id": "s364",
+  "en": "Pick a table"
+ },
+ {
+  "id": "s365",
+  "en": "Plate"
+ },
+ {
+  "id": "s366",
+  "en": "Play"
+ },
+ {
+  "id": "s367",
+  "en": "Play it by ear"
+ },
+ {
+  "id": "s368",
+  "en": "Play your 6s."
+ },
+ {
+  "id": "s369",
+  "en": "Play ▸"
+ },
+ {
+  "id": "s370",
+  "en": "Playing 5s"
+ },
+ {
+  "id": "s371",
+  "en": "Practice Arena"
+ },
+ {
+  "id": "s372",
+  "en": "Practice vs Bots"
+ },
+ {
+  "id": "s373",
+  "en": "Quick Match"
+ },
+ {
+  "id": "s374",
+  "en": "RETURN COMPLETES"
+ },
+ {
+  "id": "s375",
+  "en": "RUN"
+ },
+ {
+  "id": "s376",
+  "en": "Race from 2 to Ace"
+ },
+ {
+  "id": "s377",
+  "en": "Rank"
+ },
+ {
+  "id": "s378",
+  "en": "Rate 3 hands"
+ },
+ {
+  "id": "s379",
+  "en": "Rate your 27 cards like a pro"
+ },
+ {
+  "id": "s380",
+  "en": "Reading Opponents"
+ },
+ {
+  "id": "s381",
+  "en": "Replay"
+ },
+ {
+  "id": "s382",
+  "en": "Reset"
+ },
+ {
+  "id": "s383",
+  "en": "Review Hand 🔍"
+ },
+ {
+  "id": "s384",
+  "en": "Right! "
+ },
+ {
+  "id": "s385",
+  "en": "Rival"
+ },
+ {
+  "id": "s386",
+  "en": "Roles & Signals"
+ },
+ {
+  "id": "s387",
+  "en": "Roughly half a bomb thrown away every hand"
+ },
+ {
+  "id": "s388",
+  "en": "Round Lost"
+ },
+ {
+  "id": "s389",
+  "en": "Round Won! 🎉"
+ },
+ {
+  "id": "s390",
+  "en": "Rule one of following: match the SHAPE, beat the rank — or pass. Rule two, the one nobody teaches: beating is OPTIONAL. Passing is a weapon."
+ },
+ {
+  "id": "s391",
+  "en": "Rules forged in 10,000 games"
+ },
+ {
+  "id": "s392",
+  "en": "Rung one — feed the pair of 10s."
+ },
+ {
+  "id": "s393",
+  "en": "Rung two — the pair of 8s."
+ },
+ {
+  "id": "s394",
+  "en": "SELF-PLAY MATCHES"
+ },
+ {
+  "id": "s395",
+  "en": "SM JKR"
+ },
+ {
+  "id": "s396",
+  "en": "ST.FLUSH"
+ },
+ {
+  "id": "s397",
+  "en": "STRONG"
+ },
+ {
+  "id": "s398",
+  "en": "Save the pair for the final trick"
+ },
+ {
+  "id": "s399",
+  "en": "Score"
+ },
+ {
+  "id": "s400",
+  "en": "Score your hand in 10 seconds"
+ },
+ {
+  "id": "s401",
+  "en": "Seat"
+ },
+ {
+  "id": "s402",
+  "en": "Second Ace — reclaim."
+ },
+ {
+  "id": "s403",
+  "en": "See? She's forced to lead those small cards as a PAIR now, where you have answers."
+ },
+ {
+  "id": "s404",
+  "en": "She leads a 7."
+ },
+ {
+  "id": "s405",
+  "en": "Shed the dead card — lead the 3."
+ },
+ {
+  "id": "s406",
+  "en": "Single"
+ },
+ {
+  "id": "s407",
+  "en": "Singles come from three places: BORN single (nothing connects), LEFTOVER single (you built a straight and one card fell out), and BROKEN single (you split a set to answer a trick). Plan to have as few as possible."
+ },
+ {
+  "id": "s408",
+  "en": "Small bait, big fish"
+ },
+ {
+  "id": "s409",
+  "en": "Small single — cheap probe"
+ },
+ {
+  "id": "s410",
+  "en": "Smart Sort"
+ },
+ {
+  "id": "s411",
+  "en": "Smile and pass. The board is now BLOCKER-FREE."
+ },
+ {
+  "id": "s412",
+  "en": "Soft Power"
+ },
+ {
+  "id": "s413",
+  "en": "Spades"
+ },
+ {
+  "id": "s414",
+  "en": "Spend big cards hunting their four"
+ },
+ {
+  "id": "s415",
+  "en": "Spend it freely — it wins any pair trick AND returns the lead"
+ },
+ {
+  "id": "s416",
+  "en": "Spend the free lead: Jacks."
+ },
+ {
+  "id": "s417",
+  "en": "Spend them where they multiply"
+ },
+ {
+  "id": "s418",
+  "en": "Split your hand the right way"
+ },
+ {
+  "id": "s419",
+  "en": "Squeeze your ♥ level cards"
+ },
+ {
+  "id": "s420",
+  "en": "Stacking your strength onto a partner's run is HARDER than running yourself — the textbook rule is: equal hands, the better player supports."
+ },
+ {
+  "id": "s421",
+  "en": "Stage locked"
+ },
+ {
+  "id": "s422",
+  "en": "Standard Match"
+ },
+ {
+  "id": "s423",
+  "en": "Start Learning"
+ },
+ {
+  "id": "s424",
+  "en": "Step one of feeding: TAKE CONTROL. Your Ace."
+ },
+ {
+  "id": "s425",
+  "en": "Still no answer."
+ },
+ {
+  "id": "s426",
+  "en": "Still risky — someone may hold A"
+ },
+ {
+  "id": "s427",
+  "en": "Straight"
+ },
+ {
+  "id": "s428",
+  "en": "Straight Flush 💥"
+ },
+ {
+  "id": "s429",
+  "en": "Straight in one suit — big bomb"
+ },
+ {
+  "id": "s430",
+  "en": "Straight leftovers are the statistically safest — the ranks around them are thin. Splitting a small pair is plan B. \"Lowest whatever\" is how you gift a 4th bomb card."
+ },
+ {
+  "id": "s431",
+  "en": "Striker or support?"
+ },
+ {
+  "id": "s432",
+  "en": "Striker or support? Decide in one trick"
+ },
+ {
+  "id": "s433",
+  "en": "Strong hand: partner wants to strike — switch to support"
+ },
+ {
+  "id": "s434",
+  "en": "Stuck."
+ },
+ {
+  "id": "s435",
+  "en": "Support my partner"
+ },
+ {
+  "id": "s436",
+  "en": "TRIPLE"
+ },
+ {
+  "id": "s437",
+  "en": "TUBE"
+ },
+ {
+  "id": "s438",
+  "en": "Take the lead back — first Ace."
+ },
+ {
+  "id": "s439",
+  "en": "Take the pair fight with your 8s."
+ },
+ {
+  "id": "s440",
+  "en": "Taming the Upstream"
+ },
+ {
+  "id": "s441",
+  "en": "Teams, decks and the race to Ace"
+ },
+ {
+  "id": "s442",
+  "en": "Tenpai Tricks"
+ },
+ {
+  "id": "s443",
+  "en": "That's an endgame line: dump the dead card while you still hold control, then exit clean. Lead the 6s first instead, and that 3 strands you in last place. 🏁"
+ },
+ {
+  "id": "s444",
+  "en": "That's the feeding craft: read the signal, seize control, deliver the exact shape, then ride the wind home. Timing note — feed too early and enemies wall it off; strike when their blockers are spent. 🐼"
+ },
+ {
+  "id": "s445",
+  "en": "The 10 — fewer moves to freedom"
+ },
+ {
+  "id": "s446",
+  "en": "The 3-move review"
+ },
+ {
+  "id": "s447",
+  "en": "The 4 — closer to out"
+ },
+ {
+  "id": "s448",
+  "en": "The 5 — bombing the 4 is wasted either way"
+ },
+ {
+  "id": "s449",
+  "en": "The 7 — likely a 5-shape + 2, one block stops the run"
+ },
+ {
+  "id": "s450",
+  "en": "The 8 — bigger threat"
+ },
+ {
+  "id": "s451",
+  "en": "The 9 — their backup fire is small"
+ },
+ {
+  "id": "s452",
+  "en": "The Ace hand wins it all"
+ },
+ {
+  "id": "s453",
+  "en": "The Feeding Ladder"
+ },
+ {
+  "id": "s454",
+  "en": "The Feeding Ladder: feed from the TOP so every blocker dies on a decoy, then slide the true gift underneath. Count the enemy's weapons, spend your feeds against them one for one. 🪜"
+ },
+ {
+  "id": "s455",
+  "en": "The REAL gift, last rung: pair of 3s."
+ },
+ {
+  "id": "s456",
+  "en": "The Tail Card"
+ },
+ {
+  "id": "s457",
+  "en": "The card game 100 million people\nplay in China — learn it in minutes"
+ },
+ {
+  "id": "s458",
+  "en": "The classic opening: lead your STRONG lanes — shapes you can play AND win back. \"Who leads it, reclaims it\": your partner trusts your lane and won't waste cards guarding it. Know your numbers: a hand averages 38 total moves, and 1st place uses only about 10."
+ },
+ {
+  "id": "s459",
+  "en": "The endgame rule: when the next player is about to listen-win, lead your BIGGEST single first — the joker. Nothing rides over it, and any bomb spent stopping it is a bomb they no longer have."
+ },
+ {
+  "id": "s460",
+  "en": "The first lead is a message"
+ },
+ {
+  "id": "s461",
+  "en": "The folk numbers that work"
+ },
+ {
+  "id": "s462",
+  "en": "The free lead"
+ },
+ {
+  "id": "s463",
+  "en": "The free lead and how to earn it"
+ },
+ {
+  "id": "s464",
+  "en": "The lead is yours. Now deliver."
+ },
+ {
+  "id": "s465",
+  "en": "The level card is special"
+ },
+ {
+  "id": "s466",
+  "en": "The loser pays — and sometimes refuses"
+ },
+ {
+  "id": "s467",
+  "en": "The mistake everyone makes"
+ },
+ {
+  "id": "s468",
+  "en": "The more skilled player"
+ },
+ {
+  "id": "s469",
+  "en": "The receiver returns any card of 10 or below. Choose that return wisely — sloppy returns hand the enemy a bomb half the time (you'll master this in Stage 3)."
+ },
+ {
+  "id": "s470",
+  "en": "The return is a weapon"
+ },
+ {
+  "id": "s471",
+  "en": "The reverse works too: open with your WEAK lanes and bank the muscle — \"hiding the edge.\" Only do it when you're sure you can seize the lead later AND your hand flows once you have it. Otherwise you're just donating tempo."
+ },
+ {
+  "id": "s472",
+  "en": "The same 27 cards can be 9 tidy moves or 13 ragged ones. Keep bombs whole, build the longest runs, and let pairs stay pairs. Count your moves: a winner plays out in about 10."
+ },
+ {
+  "id": "s473",
+  "en": "The stronger card holder"
+ },
+ {
+  "id": "s474",
+  "en": "The tail-card principle is worth about half a bomb: lead your bigger small cards early to jam the next player, and save the runt for the final step. 🏁"
+ },
+ {
+  "id": "s475",
+  "en": "The trick is Coach Wu's."
+ },
+ {
+  "id": "s476",
+  "en": "The unbeatable king bomb"
+ },
+ {
+  "id": "s477",
+  "en": "The winner gives back"
+ },
+ {
+  "id": "s478",
+  "en": "There are four roads to 1st place: BOMB out (fire escorts everything), CHARGE out (your last big play just happens to be unbeatable), LISTEN out (one move left, partner delivers), and AMBUSH out (a 6-card tube nobody saw coming). Most wins are charges and listens."
+ },
+ {
+  "id": "s479",
+  "en": "There's no bidding in GuanDan — the OPENING LEAD is the signal. A small single, a full house or a ragged straight says: strong hand, I'm striking. A tube, plate or bare triple says: decent hand, testing. A pair or high single says: weak-ish, I'll support. When in doubt — \"lead pairs to ask questions.\""
+ },
+ {
+  "id": "s480",
+  "en": "They just got lucky cards"
+ },
+ {
+  "id": "s481",
+  "en": "This course is being polished by Coach Pan 🐼 — arriving in the next update."
+ },
+ {
+  "id": "s482",
+  "en": "This drill is a CHARGE. 4 cards left — a lone ♣3, a pair of 6s, and an Ace. STOP. Plan the exit before touching anything."
+ },
+ {
+  "id": "s483",
+  "en": "Three key moves, one takeaway"
+ },
+ {
+  "id": "s484",
+  "en": "Three kinds of loners"
+ },
+ {
+  "id": "s485",
+  "en": "Three of a kind"
+ },
+ {
+  "id": "s486",
+  "en": "Tribute Basics"
+ },
+ {
+  "id": "s487",
+  "en": "Tribute Craft"
+ },
+ {
+  "id": "s488",
+  "en": "Tribute data nobody tells beginners: HALF of all returned cards complete a bomb for the payer. Another 6% patch their straight. A careless return doesn't soften the loser — it arms them. The pros call it \"the reversal\": the payer often profits more than the winner."
+ },
+ {
+  "id": "s489",
+  "en": "Tribute paid TO YOUR PARTNER — do the same defensive rules apply?"
+ },
+ {
+  "id": "s490",
+  "en": "Tribute — the loser pays"
+ },
+ {
+  "id": "s491",
+  "en": "Trick won — you lead again. Time to dump everything."
+ },
+ {
+  "id": "s492",
+  "en": "Trick yours — now sequence the exit."
+ },
+ {
+  "id": "s493",
+  "en": "Triple"
+ },
+ {
+  "id": "s494",
+  "en": "Triple + pair"
+ },
+ {
+  "id": "s495",
+  "en": "Tube"
+ },
+ {
+  "id": "s496",
+  "en": "Two bombs (+8), both big jokers (+2), the level pair (+1), triple Aces and two royal runs — about 13 points. Plant the flag: this hand fights for 1st."
+ },
+ {
+  "id": "s497",
+  "en": "Two cards = a pair (walled by your pairs) or two singles. Cheap singles force a brutal choice every trick: spend the big one, or crack the pair. Either way their exit decays."
+ },
+ {
+  "id": "s498",
+  "en": "Two cards left. Lead the 8 first, keep the 3 for last (you'll learn why in Stage 2)."
+ },
+ {
+  "id": "s499",
+  "en": "Two decks, four players"
+ },
+ {
+  "id": "s500",
+  "en": "Two lonely small singles: a 3 and a 6. Most beginners lead the 3 first. Most beginners are wrong."
+ },
+ {
+  "id": "s501",
+  "en": "Two of the same rank"
+ },
+ {
+  "id": "s502",
+  "en": "Two opponents: one holds 9 cards, one holds 10. Who gets your pressure?"
+ },
+ {
+  "id": "s503",
+  "en": "Two runners: one at 7 cards, one at 8. The rhyme says fight only one of them. Which? (打七不打八)"
+ },
+ {
+  "id": "s504",
+  "en": "Two species of player"
+ },
+ {
+  "id": "s505",
+  "en": "U"
+ },
+ {
+  "id": "s506",
+  "en": "Unbeatable — and should be played MORE freely, not hoarded"
+ },
+ {
+  "id": "s507",
+  "en": "Unclear hand, unclear table? \"Situation unknown — pairs go first.\" Pairs are the probing shape: cheap, informative, and they ask your partner a question without overcommitting."
+ },
+ {
+  "id": "s508",
+  "en": "Upstream is your supply line"
+ },
+ {
+  "id": "s509",
+  "en": "Usually ignore it — bomb or trapped either way"
+ },
+ {
+  "id": "s510",
+  "en": "WEAK"
+ },
+ {
+  "id": "s511",
+  "en": "WILD"
+ },
+ {
+  "id": "s512",
+  "en": "Watch the card counters"
+ },
+ {
+  "id": "s513",
+  "en": "We trained this app's AI by making different versions fight each other for thousands of matches — and by studying champion engines. Some 'obvious' strategies LOST badly; some boring ones dominated. These five questions are the survivors. Every answer comes with the win-rate data."
+ },
+ {
+  "id": "s514",
+  "en": "Welcome to GuanDan!"
+ },
+ {
+  "id": "s515",
+  "en": "Welcome to your first real hand! 🐼 Coach Wu, across the table, is your PARTNER. Everyone got 8 cards — empty your hand first to win."
+ },
+ {
+  "id": "s516",
+  "en": "What is GuanDan?"
+ },
+ {
+  "id": "s517",
+  "en": "When a clean fight doesn't favor you, follow tricks you don't strictly need — without breaking your shapes. Opponents lose the thread of what you hold, and confusion is cover for an escape."
+ },
+ {
+  "id": "s518",
+  "en": "When a player goes out and nobody beats their final play, the next lead doesn't go around the table — it lands on their PARTNER. That's catching the wind: a whole free turn."
+ },
+ {
+  "id": "s519",
+  "en": "When an opponent is down to 4 cards: if it's a bomb, fighting is pointless; if it's not, they can't escape anyway. So \"never fight a four\"… except: you're guarding a bigger bomb behind a finished run; you're mid-charge with dead leftovers; or their 4 splits into two moves that would unlock their partner. One in five fours IS fought — know why."
+ },
+ {
+  "id": "s520",
+  "en": "When in doubt, pairs first"
+ },
+ {
+  "id": "s521",
+  "en": "When should you cap a running opponent with your absolute biggest cards (封到顶)?"
+ },
+ {
+  "id": "s522",
+  "en": "When someone plays huge to FORCE a bomb out of you — give it, instantly. More than half of all bomb-forcing plays are bluffs propping up a mediocre hand. The exception: a true 诱火 trap from a skilled player. Judge the player; when unsure against a strong one, hold."
+ },
+ {
+  "id": "s523",
+  "en": "When the player after you is one move from out, your lone small single is a death sentence — any single they lead, you must answer or feed them. Spend a strong play to win a trick, THEN shed the weak single while you still control the table."
+ },
+ {
+  "id": "s524",
+  "en": "When your Ace becomes a king"
+ },
+ {
+  "id": "s525",
+  "en": "When your partner is down to a few cards, stop competing — clear small shapes for them and let their last play stand. Engineering a caught wind is one of the cheapest wins in GuanDan."
+ },
+ {
+  "id": "s526",
+  "en": "Whenever they drop below 7 cards"
+ },
+ {
+  "id": "s527",
+  "en": "While playing level 8, the two HEART 8s are wildcards — each can stand in for ANY card except a joker. Spot them the second you pick up your hand."
+ },
+ {
+  "id": "s528",
+  "en": "While your team plays level 8, all 8s outrank even Aces. And the two HEART 8s are wildcards — they can stand in for any card you need."
+ },
+ {
+  "id": "s529",
+  "en": "Whoever is losing the match"
+ },
+ {
+  "id": "s530",
+  "en": "Whoever played last"
+ },
+ {
+  "id": "s531",
+  "en": "Wildcard Basics"
+ },
+ {
+  "id": "s532",
+  "en": "Win without showing your strength"
+ },
+ {
+  "id": "s533",
+  "en": "Winning moves you up"
+ },
+ {
+  "id": "s534",
+  "en": "YOU"
+ },
+ {
+  "id": "s535",
+  "en": "Yes — nothing can beat it now"
+ },
+ {
+  "id": "s536",
+  "en": "Yes, always return safe cards"
+ },
+ {
+  "id": "s537",
+  "en": "You"
+ },
+ {
+  "id": "s538",
+  "en": "You beat only when it was worth it, passed twice on purpose, and still finished first. That's the follow-or-pass mindset."
+ },
+ {
+  "id": "s539",
+  "en": "You can't beat Kings shape-for-shape… but your four glowing 5s are a BOMB. Drop it!"
+ },
+ {
+  "id": "s540",
+  "en": "You can't read the receiver's hand at all. Which SUIT should your return lean toward?"
+ },
+ {
+  "id": "s541",
+  "en": "You do — a pair opening signals a support hand, and yours is strong"
+ },
+ {
+  "id": "s542",
+  "en": "You exit right after"
+ },
+ {
+  "id": "s543",
+  "en": "You finished 1st — that's how your team climbs levels. Next lesson: levels, wildcards and tribute."
+ },
+ {
+  "id": "s544",
+  "en": "You know this one already: never outbid your partner. Pass."
+ },
+ {
+  "id": "s545",
+  "en": "You lead. Tap the two glowing 3s, then hit Play — shed low pairs early."
+ },
+ {
+  "id": "s546",
+  "en": "You must return a card after receiving tribute. Which is safest?"
+ },
+ {
+  "id": "s547",
+  "en": "You owe tribute and hold TWO equal biggest cards (♠A and ♣A). Your spades run long. Which Ace do you pay?"
+ },
+ {
+  "id": "s548",
+  "en": "Your Ace crushes the 8 — take the trick!"
+ },
+ {
+  "id": "s549",
+  "en": "Your First Hand"
+ },
+ {
+  "id": "s550",
+  "en": "Your LAST card decides nothing — the hand is already won when it leaves. So park your very smallest card at the tail, and spend the 6 NOW, where it blocks the next player's 4s and 5s."
+ },
+ {
+  "id": "s551",
+  "en": "Your OWN hand: 9 cards in one case, 10 in another. The rhyme assigns each a preferred lead. Which pairing is right?"
+ },
+ {
+  "id": "s552",
+  "en": "Your biggest single — outrank their last card"
+ },
+ {
+  "id": "s553",
+  "en": "Your lead — play anything"
+ },
+ {
+  "id": "s554",
+  "en": "Your lowest card, whatever it is"
+ },
+ {
+  "id": "s555",
+  "en": "Your partner opens the hand with a small single 3. What does it mean?"
+ },
+ {
+  "id": "s556",
+  "en": "Your partner opens with a middling PAIR. Your hand scores 13 points. Who strikes?"
+ },
+ {
+  "id": "s557",
+  "en": "Your partner's Queens are winning. Never outbid your own partner — pass!"
+ },
+ {
+  "id": "s558",
+  "en": "Your real job is the player AFTER you: deny their cheap discards. When the enemy passes cards toward a teammate — BLOCK, every time, even if it costs you a comfortable discard. \"A delivery must be jammed\" — one hesitation can hand over the whole hand."
+ },
+ {
+  "id": "s559",
+  "en": "Your team"
+ },
+ {
+  "id": "s560",
+  "en": "Your team conquered the Ace level!"
+ },
+ {
+  "id": "s561",
+  "en": "Your team starts at level 2. Win hands to climb — first team to win a hand while playing their Ace level wins the match."
+ },
+ {
+  "id": "s562",
+  "en": "Your turn against the Queen. Your Ace CAN beat it. But an Ace spent here is an Ace you won't have when it matters."
+ },
+ {
+  "id": "s563",
+  "en": "Your two magic cards"
+ },
+ {
+  "id": "s564",
+  "en": "Yours again."
+ },
+ {
+  "id": "s565",
+  "en": "a bomb!"
+ },
+ {
+  "id": "s566",
+  "en": "a lone 6 with no neighbours"
+ },
+ {
+  "id": "s567",
+  "en": "about to exit!"
+ },
+ {
+  "id": "s568",
+  "en": "all four players"
+ },
+ {
+  "id": "s569",
+  "en": "almost as bad"
+ },
+ {
+  "id": "s570",
+  "en": "any\ncard"
+ },
+ {
+  "id": "s571",
+  "en": "best whole unit"
+ },
+ {
+  "id": "s572",
+  "en": "block upstream · jam downstream · feed partner"
+ },
+ {
+  "id": "s573",
+  "en": "bomb split into pairs, runs never built"
+ },
+ {
+  "id": "s574",
+  "en": "bomb · run · run · 3 pairs · 3 singles"
+ },
+ {
+  "id": "s575",
+  "en": "built 2-3-4-5-6, the spare 4 fell out"
+ },
+ {
+  "id": "s576",
+  "en": "caps everything · bombs on sight · charges early"
+ },
+ {
+  "id": "s577",
+  "en": "checkmark"
+ },
+ {
+  "id": "s578",
+  "en": "clear weak lanes · save muscle · finish 1st"
+ },
+ {
+  "id": "s579",
+  "en": "completedLessonsV3"
+ },
+ {
+  "id": "s580",
+  "en": "early cheap pair"
+ },
+ {
+  "id": "s581",
+  "en": "every rule battle-tested"
+ },
+ {
+  "id": "s582",
+  "en": "game"
+ },
+ {
+  "id": "s583",
+  "en": "go for 1st"
+ },
+ {
+  "id": "s584",
+  "en": "half via upstream"
+ },
+ {
+  "id": "s585",
+  "en": "hoards tops · waits · ambushes late"
+ },
+ {
+  "id": "s586",
+  "en": "joker"
+ },
+ {
+  "id": "s587",
+  "en": "late straight flush"
+ },
+ {
+  "id": "s588",
+  "en": "learn"
+ },
+ {
+  "id": "s589",
+  "en": "lesson"
+ },
+ {
+  "id": "s590",
+  "en": "lobby"
+ },
+ {
+  "id": "s591",
+  "en": "loser pays"
+ },
+ {
+  "id": "s592",
+  "en": "make riding costly"
+ },
+ {
+  "id": "s593",
+  "en": "medium"
+ },
+ {
+  "id": "s594",
+  "en": "move"
+ },
+ {
+  "id": "s595",
+  "en": "numbers that decide hands"
+ },
+ {
+  "id": "s596",
+  "en": "out"
+ },
+ {
+  "id": "s597",
+  "en": "own the tempo, feed your partner"
+ },
+ {
+  "id": "s598",
+  "en": "pair · high single"
+ },
+ {
+  "id": "s599",
+  "en": "partner out"
+ },
+ {
+  "id": "s600",
+  "en": "plan yours"
+ },
+ {
+  "id": "s601",
+  "en": "play it by ear"
+ },
+ {
+  "id": "s602",
+  "en": "play your first match in 30 minutes"
+ },
+ {
+  "id": "s603",
+  "en": "probes"
+ },
+ {
+  "id": "s604",
+  "en": "reclaims"
+ },
+ {
+  "id": "s605",
+  "en": "route"
+ },
+ {
+  "id": "s606",
+  "en": "s"
+ },
+ {
+  "id": "s607",
+  "en": "score your hand, make zero blunders"
+ },
+ {
+  "id": "s608",
+  "en": "small single · 3+2 · ragged straight"
+ },
+ {
+  "id": "s609",
+  "en": "split AAA to beat a pair, one A left"
+ },
+ {
+  "id": "s610",
+  "en": "still in enemy/partner hands · bombs = exploded so far"
+ },
+ {
+  "id": "s611",
+  "en": "strong"
+ },
+ {
+  "id": "s612",
+  "en": "support partner"
+ },
+ {
+  "id": "s613",
+  "en": "supporting"
+ },
+ {
+  "id": "s614",
+  "en": "table empty"
+ },
+ {
+  "id": "s615",
+  "en": "testing waters"
+ },
+ {
+  "id": "s616",
+  "en": "the exceptions matter"
+ },
+ {
+  "id": "s617",
+  "en": "tube · plate · bare triple"
+ },
+ {
+  "id": "s618",
+  "en": "watch the table…"
+ },
+ {
+  "id": "s619",
+  "en": "weak"
+ },
+ {
+  "id": "s620",
+  "en": "what I would do"
+ },
+ {
+  "id": "s621",
+  "en": "win the hands that matter"
+ },
+ {
+  "id": "s622",
+  "en": "winner returns"
+ },
+ {
+  "id": "s623",
+  "en": "you lead, free"
+ },
+ {
+  "id": "s624",
+  "en": "you: full house tail · partner: pair tail"
+ },
+ {
+  "id": "s625",
+  "en": "you: pairs · partner: pairs → one bomb kills both"
+ },
+ {
+  "id": "s626",
+  "en": "…and Coach Wu ignores it. Confirmation: he doesn't hold singles."
+ },
+ {
+  "id": "s627",
+  "en": "…and here's the magic: the trick-winner already went out, so his PARTNER inherits the lead. That's 接风 — catching the wind. The lead is yours, free."
+ },
+ {
+  "id": "s628",
+  "en": "…and out. Partners 1st and 2nd — a DOUBLE, +3 levels!"
+ },
+ {
+  "id": "s629",
+  "en": "…and the 3 — the tail card — walks out LAST. Flawless."
+ },
+ {
+  "id": "s630",
+  "en": "…and your Ace takes it right back. That's your LAST card!"
+ },
+ {
+  "id": "s631",
+  "en": "…the King strolls through…"
+ },
+ {
+  "id": "s632",
+  "en": "…the Queen…"
+ },
+ {
+  "id": "s633",
+  "en": "…the free lead is yours. Out — a DOUBLE finish."
+ },
+ {
+  "id": "s634",
+  "en": "→ plays next"
+ },
+ {
+  "id": "s635",
+  "en": "≤3 CARDS"
+ },
+ {
+  "id": "s636",
+  "en": "① An opponent is about to go out — stop the exit. ② A big table (full house of Aces) you can't otherwise answer AND you need the lead. ③ Your own hand exits cleanly right after the bomb."
+ },
+ {
+  "id": "s637",
+  "en": "① Cheap tricks — let them go. ② Your PARTNER is winning the trick. ③ Early game with no exit plan — a bomb without a follow-up just gifts everyone information."
+ },
+ {
+  "id": "s638",
+  "en": "♠A — pay from your long suit"
+ },
+ {
+  "id": "s639",
+  "en": "♣A — keep the suit you're long in"
+ },
+ {
+  "id": "s640",
+  "en": "⚔️ STRIKER"
+ },
+ {
+  "id": "s641",
+  "en": "✅ 9 moves"
+ },
+ {
+  "id": "s642",
+  "en": "✅ split lanes"
+ },
+ {
+  "id": "s643",
+  "en": "❌ 13 moves"
+ },
+ {
+  "id": "s644",
+  "en": "❌ same lane"
+ },
+ {
+  "id": "s645",
+  "en": "九打单、十打对: at 9 your structure is likely 5+3+1 — singles keep flexibility; at 10 (5+5 or 4+4+2) pairs interfere with enemy timing while keeping your shapes whole."
+ },
+ {
+  "id": "s646",
+  "en": "口诀"
+ },
+ {
+  "id": "s647",
+  "en": "炸五不炸四 and friends, decoded"
+ },
+ {
+  "id": "s648",
+  "en": "🃏🃏 gone → A♠ = 👑"
+ },
+ {
+  "id": "s649",
+  "en": "🎭 2 cards = 2 cards"
+ },
+ {
+  "id": "s650",
+  "en": "💥 A bomb beats ANY non-bomb. Bigger bombs beat smaller ones, a straight flush sits between 5- and 6-bombs, and the four jokers beat everything."
+ },
+ {
+  "id": "s651",
+  "en": "🔥 CHARGER"
+ },
+ {
+  "id": "s652",
+  "en": "🛡 SUPPORT"
+ },
+ {
+  "id": "s653",
+  "en": "🧊 CONTROLLER"
+ }
+]

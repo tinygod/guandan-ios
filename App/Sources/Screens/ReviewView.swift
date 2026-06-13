@@ -35,7 +35,7 @@ struct ReviewView: View {
 
             VStack(spacing: 8) {
                 Picker("", selection: $tab) {
-                    ForEach(Tab.allCases, id: \.self) { Text($0.rawValue) }
+                    ForEach(Tab.allCases, id: \.self) { Text(tr($0.rawValue)) }
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 280)
@@ -93,7 +93,7 @@ struct ReviewView: View {
                 ForEach([Seat.south, .north, .east, .west], id: \.self) { seat in
                     HStack(spacing: 4) {
                         Circle().fill(colors[seat] ?? .white).frame(width: 8, height: 8)
-                        Text(seatName(seat)).font(.body(12)).foregroundStyle(Theme.mint)
+                        Text(tr(seatName(seat))).font(.body(12)).foregroundStyle(Theme.mint)
                     }
                 }
                 Spacer()
@@ -124,7 +124,7 @@ struct ReviewView: View {
 
         return VStack(alignment: .leading, spacing: 3) {
             HStack(spacing: 6) {
-                Text(seatName(seat))
+                Text(tr(seatName(seat)))
                     .font(.heading(13))
                     .foregroundStyle(seat == .south ? Theme.goldSoft : .white)
                 if seat == .south {
@@ -253,11 +253,11 @@ struct ReviewView: View {
         case (.pass, .pass):
             return nil
         case (.play(let a), .play(let b)) where Set(a.cards) == Set(b.cards):
-            return "Good — exactly what I'd play."
+            return tr("Good — exactly what I'd play.")
         case (_, .pass):
-            return "I'd PASS here — no need to spend cards on this trick."
+            return tr("I'd PASS here — no need to spend cards on this trick.")
         case (_, .play(let b)):
-            return "I'd play \(b.cards.map(\.displayName).joined(separator: " ")) instead."
+            return String(format: tr("I'd play %@ instead."), b.cards.map(\.displayName).joined(separator: " "))
         }
     }
 }
