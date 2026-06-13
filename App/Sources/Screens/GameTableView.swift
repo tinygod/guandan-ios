@@ -169,7 +169,7 @@ struct GameTableView: View {
             Text("\(n)")
                 .font(.heading(14))
                 .foregroundStyle(max != nil && n == 0 ? Theme.coral : Theme.goldSoft)
-            Text(label).font(.system(size: 8, weight: .semibold))
+            Text(tr(label)).font(.system(size: 8, weight: .semibold))
                 .foregroundStyle(Theme.mint)
         }
     }
@@ -248,7 +248,7 @@ struct GameTableView: View {
     private func bigPill(_ title: String, fill: Color, stroke: Color,
                          action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Text(title)
+            Text(tr(title))
                 .font(.heading(17)).foregroundStyle(.white)
                 .padding(.horizontal, 26).padding(.vertical, 11)
                 .background(fill, in: Capsule())
@@ -262,7 +262,7 @@ struct GameTableView: View {
         Button(action: action) {
             HStack(spacing: 4) {
                 Image(systemName: icon).font(.system(size: 10))
-                Text(title).font(.heading(11))
+                Text(tr(title)).font(.heading(11))
             }
             .foregroundStyle(Theme.goldSoft)
             .padding(.horizontal, 10).padding(.vertical, 6)
@@ -273,16 +273,16 @@ struct GameTableView: View {
 
     private func comboName(_ combo: Combo) -> String {
         switch combo.kind {
-        case .single: return "Single"
-        case .pair: return "Pair"
-        case .triple: return "Triple"
-        case .fullHouse: return "Full House"
-        case .straight: return "Straight"
-        case .tube: return "Tube"
-        case .plate: return "Plate"
-        case .bomb(let size): return "\(size)-Bomb 💥"
-        case .straightFlush: return "Straight Flush 💥"
-        case .jokerBomb: return "FOUR JOKERS 👑"
+        case .single: return tr("Single")
+        case .pair: return tr("Pair")
+        case .triple: return tr("Triple")
+        case .fullHouse: return tr("Full House")
+        case .straight: return tr("Straight")
+        case .tube: return tr("Tube")
+        case .plate: return tr("Plate")
+        case .bomb(let size): return String(format: tr("%lld-Bomb 💥"), Int64(size))
+        case .straightFlush: return tr("Straight Flush 💥")
+        case .jokerBomb: return tr("FOUR JOKERS 👑")
         }
     }
 
@@ -330,7 +330,7 @@ struct GameTableView: View {
                 HStack(spacing: 4) {
                     Image(systemName: sortMode == .byRank ? "wand.and.stars" : "list.number")
                         .font(.system(size: 10))
-                    Text(sortMode == .byRank ? "Smart Sort" : "By Rank").font(.heading(11))
+                    Text(tr(sortMode == .byRank ? "Smart Sort" : "By Rank")).font(.heading(11))
                 }
                 .foregroundStyle(Theme.goldSoft)
                 .padding(.horizontal, 10).padding(.vertical, 6)
@@ -398,7 +398,7 @@ struct GameTableView: View {
     private func pill(_ title: String, color: Color, textColor: Color,
                       action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Text(title)
+            Text(tr(title))
                 .font(.heading(14)).foregroundStyle(textColor)
                 .padding(.horizontal, 18).padding(.vertical, 8)
                 .background(color, in: Capsule())

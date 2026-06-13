@@ -156,7 +156,7 @@ final class GameViewModel {
             let level = match.activeLevel
             let resolution = Tribute.resolve(finishOrder: prev, hands: hands, level: level)
             if resolution.antiTribute {
-                tributeBanner = "Anti-tribute! The losers hold both big jokers."
+                tributeBanner = tr("Anti-tribute! The losers hold both big jokers.")
             } else if !resolution.transfers.isEmpty {
                 Tribute.apply(resolution.transfers, to: &hands)
                 let returns = resolution.transfers.map { t in
@@ -166,9 +166,9 @@ final class GameViewModel {
                 }
                 Tribute.apply(returns, to: &hands)
                 let summary = resolution.transfers
-                    .map { "\(seatName($0.from)) pays \($0.card.displayName)" }
+                    .map { String(format: tr("%@ pays %@"), seatName($0.from), $0.card.displayName) }
                     .joined(separator: ", ")
-                tributeBanner = "Tribute: \(summary)"
+                tributeBanner = String(format: tr("Tribute: %@"), summary)
             }
             leader = resolution.firstLeader
         }

@@ -72,9 +72,9 @@ private struct SignalTable: View {
 
     private func row(_ lead: String, _ meaning: String, _ color: Color) -> some View {
         HStack {
-            Text(lead).font(.body(12)).foregroundStyle(.white.opacity(0.85))
+            Text(tr(lead)).font(.body(12)).foregroundStyle(.white.opacity(0.85))
             Spacer()
-            Text(meaning).font(.heading(11)).foregroundStyle(color)
+            Text(tr(meaning)).font(.heading(11)).foregroundStyle(color)
         }
         .padding(.horizontal, 12).padding(.vertical, 7)
         .background(.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 9))

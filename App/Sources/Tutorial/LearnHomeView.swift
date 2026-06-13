@@ -58,7 +58,7 @@ struct LearnHomeView: View {
         let stageDone = progress.fraction(of: stage) >= 1.0
         return VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
-                Text("\(stage.emoji) Stage \(stage.rawValue) · \(stage.title)")
+                Text("\(stage.emoji) \(tr("Stage")) \(stage.rawValue) · \(tr(stage.title))")
                     .font(.heading(18))
                     .foregroundStyle(unlocked ? Theme.goldSoft : Theme.mint.opacity(0.6))
                 if stageDone {
@@ -67,7 +67,7 @@ struct LearnHomeView: View {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 13)).foregroundStyle(Theme.mint.opacity(0.6))
                 }
-                Text(stage.tagline).font(.body(13)).foregroundStyle(Theme.mint.opacity(0.8))
+                Text(tr(stage.tagline)).font(.body(13)).foregroundStyle(Theme.mint.opacity(0.8))
                 Spacer()
                 ProgressView(value: progress.fraction(of: stage))
                     .tint(Theme.gold).frame(width: 80)
@@ -96,10 +96,10 @@ struct LearnHomeView: View {
                                          : (unlocked ? Theme.coral : Theme.mint.opacity(0.5)))
                 }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(lesson.id) · \(lesson.title)")
+                    Text("\(lesson.id) · \(tr(lesson.title))")
                         .font(.heading(15)).foregroundStyle(.white.opacity(unlocked ? 1 : 0.55))
                         .lineLimit(1)
-                    Text(lesson.subtitle).font(.body(12))
+                    Text(tr(lesson.subtitle)).font(.body(12))
                         .foregroundStyle(Theme.mint.opacity(unlocked ? 1 : 0.55))
                         .lineLimit(1)
                 }

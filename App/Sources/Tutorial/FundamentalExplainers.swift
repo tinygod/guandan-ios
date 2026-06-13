@@ -39,9 +39,9 @@ private struct LonersDemo: View {
 
     private func row(_ kind: String, _ text: String) -> some View {
         HStack(spacing: 8) {
-            Text(kind).font(.heading(13)).foregroundStyle(Theme.goldSoft)
+            Text(tr(kind)).font(.heading(13)).foregroundStyle(Theme.goldSoft)
                 .frame(width: 76, alignment: .leading)
-            Text(text).font(.body(13)).foregroundStyle(.white.opacity(0.85))
+            Text(tr(text)).font(.body(13)).foregroundStyle(.white.opacity(0.85))
         }
         .padding(.horizontal, 12).padding(.vertical, 8)
         .background(.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 10))

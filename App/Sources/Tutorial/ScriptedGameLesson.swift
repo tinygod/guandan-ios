@@ -231,7 +231,7 @@ struct ScriptedLessonView: View {
                     .background(.white.opacity(0.08), in: Circle())
             }
             Spacer()
-            Text(runner.lesson.title)
+            Text(tr(runner.lesson.title))
                 .font(.heading(17)).foregroundStyle(Theme.goldSoft)
             Spacer()
             Text("\(min(runner.stepIndex + 1, runner.lesson.steps.count))/\(runner.lesson.steps.count)")
@@ -266,7 +266,7 @@ struct ScriptedLessonView: View {
                         .frame(width: 52, height: 52)
                 }
             }
-            Text(name).font(.body(11)).foregroundStyle(Theme.mint)
+            Text(tr(name)).font(.body(11)).foregroundStyle(Theme.mint)
             Text("\(count)")
                 .font(.heading(11)).foregroundStyle(.white)
                 .padding(.horizontal, 7).padding(.vertical, 2)
@@ -301,7 +301,7 @@ struct ScriptedLessonView: View {
                     .background(.white.opacity(0.1), in: Circle())
                 Text("Coach Pan").font(.heading(14)).foregroundStyle(Theme.goldSoft)
             }
-            Text(runner.coachText)
+            Text(tr(runner.coachText))
                 .font(.body(15))
                 .foregroundStyle(Theme.ink)
                 .padding(12)

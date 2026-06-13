@@ -99,7 +99,7 @@ struct CombosLessonView: View {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(spacing: 6) {
-                        Text(row.name).font(.heading(15))
+                        Text(tr(row.name)).font(.heading(15))
                             .foregroundStyle(row.flame ? Theme.coral : .white)
                         if row.flame { Text("🔥").font(.system(size: 12)) }
                         if done {
@@ -107,7 +107,7 @@ struct CombosLessonView: View {
                                 .font(.system(size: 14)).foregroundStyle(Theme.gold)
                         }
                     }
-                    Text(row.detail).font(.body(12)).foregroundStyle(Theme.mint)
+                    Text(tr(row.detail)).font(.body(12)).foregroundStyle(Theme.mint)
                 }
                 Spacer()
                 HStack(spacing: -14) {

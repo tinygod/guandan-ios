@@ -28,7 +28,7 @@ struct QuizLessonView: View {
         ZStack {
             Theme.background
             VStack(spacing: 10) {
-                Text(title).font(.heading(17)).foregroundStyle(Theme.goldSoft)
+                Text(tr(title)).font(.heading(17)).foregroundStyle(Theme.goldSoft)
                     .padding(.top, 10)
 
                 if inQuiz {
@@ -52,7 +52,7 @@ struct QuizLessonView: View {
         VStack(spacing: 10) {
             Text("Question \(questionIndex + 1) of \(questions.count)")
                 .font(.body(12)).foregroundStyle(Theme.mint)
-            Text(q.prompt)
+            Text(tr(q.prompt))
                 .font(.heading(16)).foregroundStyle(.white)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 640)
@@ -69,7 +69,7 @@ struct QuizLessonView: View {
                         guard picked == nil else { return }
                         picked = i
                     } label: {
-                        Text(q.options[i])
+                        Text(tr(q.options[i]))
                             .font(.body(14))
                             .foregroundStyle(optionFG(i, q))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -83,7 +83,7 @@ struct QuizLessonView: View {
             if picked != nil {
                 HStack(alignment: .top, spacing: 6) {
                     Text("🐼")
-                    Text((picked == q.correct ? "Right! " : "Not quite. ") + q.explanation)
+                    Text((picked == q.correct ? tr("Right! ") : tr("Not quite. ")) + tr(q.explanation))
                         .font(.body(13)).foregroundStyle(Theme.ink)
                         .padding(10)
                         .background(Theme.ivory, in: RoundedRectangle(cornerRadius: 12))

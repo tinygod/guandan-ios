@@ -83,9 +83,9 @@ private struct TimingTable: View {
         VStack(spacing: 8) {
             ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
                 HStack {
-                    Text(row.0).font(.body(14)).foregroundStyle(.white)
+                    Text(tr(row.0)).font(.body(14)).foregroundStyle(.white)
                     Spacer()
-                    Text(row.1)
+                    Text(tr(row.1))
                         .font(.heading(13))
                         .foregroundStyle(row.2 ? Theme.ink : .white)
                         .padding(.horizontal, 10).padding(.vertical, 4)
@@ -154,7 +154,7 @@ struct CardCountingLesson: View {
     private func counter(_ label: String, _ n: String) -> some View {
         VStack(spacing: 3) {
             Text(n).font(.display(22)).foregroundStyle(Theme.goldSoft)
-            Text(label).font(.body(10)).foregroundStyle(Theme.mint)
+            Text(tr(label)).font(.body(10)).foregroundStyle(Theme.mint)
         }
         .frame(width: 56, height: 56)
         .background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
@@ -190,8 +190,8 @@ struct TechPage: View {
     var body: some View {
         HStack(spacing: 30) {
             VStack(alignment: .leading, spacing: 12) {
-                Text(title).font(.display(26)).foregroundStyle(Theme.goldSoft)
-                Text(body_).font(.body(15)).foregroundStyle(.white.opacity(0.9))
+                Text(tr(title)).font(.display(26)).foregroundStyle(Theme.goldSoft)
+                Text(tr(body_)).font(.body(15)).foregroundStyle(.white.opacity(0.9))
                     .lineSpacing(4)
             }
             .frame(maxWidth: 380, alignment: .leading)

@@ -62,13 +62,13 @@ struct GoldPlaque: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text(top).font(.system(size: 8, weight: .semibold, design: .serif))
+            Text(tr(top)).font(.system(size: 8, weight: .semibold, design: .serif))
                 .tracking(1.5)
                 .foregroundStyle(Theme.gold.opacity(0.8))
             Text(big).font(.system(size: 19, weight: .bold, design: .serif))
                 .foregroundStyle(Theme.goldSoft)
             if let bottom {
-                Text(bottom).font(.system(size: 8, weight: .medium, design: .serif))
+                Text(tr(bottom)).font(.system(size: 8, weight: .medium, design: .serif))
                     .foregroundStyle(Theme.gold.opacity(0.8))
             }
         }
@@ -113,7 +113,7 @@ struct PrimaryButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
-                Text(title).font(.heading(18))
+                Text(tr(title)).font(.heading(18))
                 if let icon { Image(systemName: icon) }
             }
             .foregroundStyle(.white)
@@ -131,7 +131,7 @@ struct SecondaryButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
+            Text(tr(title))
                 .font(.heading(16))
                 .foregroundStyle(Theme.mintBright)
                 .frame(maxWidth: .infinity)
